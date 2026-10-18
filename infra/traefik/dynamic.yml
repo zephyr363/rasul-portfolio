@@ -13,3 +13,8 @@ http:
       headers:
         customResponseHeaders:
           X-Robots-Tag: noindex, nofollow
+    ratelimit:
+      rateLimit:
+        average: 20
+        burst: 40
+        period: 1s

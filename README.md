@@ -36,6 +36,27 @@ npm ci
 
 В текущей рабочей среде создан локальный суперпользователь `owner`. Сгенерированный пароль находится в `.runtime/admin-credentials.txt` (не входит в Git). Для другой среды создавайте собственную учётную запись через `createsuperuser`. Автоматической публичной регистрации нет.
 
+### Запуск (nginx)
+
+`docker compose up -d --build` собирает и поднимает локальный контур: PostgreSQL, Django (Gunicorn), React Router SSR и nginx. nginx — единственная точка входа: он отдаёт `/static/` и `/media/` из read-only volumes и проксирует `/api/`, `/admin/` в Django, остальное — в SSR. Backend при старте выполняет `collectstatic` в общий volume.
+
+Сайт: http://localhost · Админка: http://localhost/admin/ · Кабинет: http://localhost/studio. Локально используется HTTP, поэтому `DJANGO_DEBUG` по умолчанию `true` (secure-cookies выключены).
+
+### Production (Traefik + Let's Encrypt)
+
+Для деплоя добавляется overlay `docker-compose.prod.yml`:
+
+```sh
+docker compose -f docker-compose.yml -f docker-compose.prod.yml --env-file .env up -d --build
+```
+
+- **Traefik** слушает 80/443, перенаправляет HTTP→HTTPS и автоматически выпускает сертификаты Let's Encrypt (HTTP-01) для `DOMAIN`.
+- **nginx** остаётся внутренним и доступен только через Traefik; статику и медиа по-прежнему отдаёт он.
+- Backend принудительно работает с `DJANGO_DEBUG=false`.
+
+Для выпуска сертификата нужен реальный домен, DNS A/AAAA на сервер и открытые 80/443. `ACME_EMAIL` должен быть реальным адресом (Let's Encrypt отклоняет `example.com`). Локально `localhost` сертификат не получит — для проверки production-схемы без ACME используйте `docker-compose.smoke.yml` (self-signed, `https://localhost:18443`).
+
+
 ## Управление контентом
 
 - **Настройки сайта**: имя, профессия, подпись, город, биография, вступление, форматы работы, образование, языки, контакты, URL сайта, метаданные и коды верификации поисковых систем.
@@ -67,9 +88,15 @@ npm run test:e2e
 
 E2E требует запущенных dev-серверов и установленного Chrome. Тест входа включается через `E2E_USERNAME` и `E2E_PASSWORD`; не указывайте пароль аргументом команды. Тесты формы создают записи с email `e2e@example.com`, которые можно удалить в админке. Для изоляции используйте отдельную БД. Backend-тесты автоматически используют отдельную тестовую БД PostgreSQL.
 
+## Ветки и CI
+
+`prod` — стабильная ветка для выпусков, `dev` — интеграционная. Изменения попадают в `dev` через Pull Request. GitHub Actions (`.github/workflows/ci.yml`) на каждый push и PR в `prod`/`dev` запускает: `ruff check`, `manage.py check`, тесты Django с PostgreSQL, валидацию OpenAPI, `npm run typecheck`, `npm test` и production-сборку.
+
 ## Архитектура и безопасность
 
 Публичные страницы получают данные Django в SSR-loader. При недоступном API возвращается 503, для отсутствующих проектов/подборок — 404. Заглушки вместо backend не используются. Redux store создаётся отдельно для каждого SSR-запроса. RTK Query управляет клиентскими запросами, формами, авторизацией и кешем кабинета.
+
+Публичные страницы SSR обращаются к API по внутренней сети Docker, поэтому внешний rate limit настроен на уровне Traefik (`ratelimit@file`: 20 req/s со всплеском до 40) только для `/api/` и `/admin/` и не объединяет посещения в один лимит. Swagger (`/api/docs/`) и OpenAPI-схема (`/api/schema/`) доступны только staff-пользователю. Устаревшие эндпоинты фотогалереи помечены в схеме как `deprecated`.
 
 Access JWT живёт 10 минут и хранится только в памяти Redux. Refresh JWT находится в HttpOnly cookie с узким Path. Ротация выполняется под блокировкой строки PostgreSQL, предыдущий токен принимается 5 секунд для конкурентных запросов. Single-flight и Web Locks защищают обновление на клиенте. Logout отзывает серверную сессию, очищает cookie и кеш, уведомляет другие вкладки без передачи токенов. Backend проверяет отзыв сессии и для уже выпущенных access-токенов. CSRF включён для login/refresh/logout и контактной формы. Throttling использует общий кеш в PostgreSQL; Redis для текущего объёма задач не нужен.
 

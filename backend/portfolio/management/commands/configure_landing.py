@@ -11,7 +11,7 @@ class Command(BaseCommand):
     help = "Configure the serif landing page and its editable services and portraits."
 
     def handle(self, *args, **options):
-        site = SiteSettings.objects.get(pk=1)
+        site, _ = SiteSettings.objects.get_or_create(pk=1)
         if not site.hero_copy:
             site.hero_copy = "Помогаю создавать и развивать серверную часть приложений: от REST API и интеграций до автоматизации рабочих процессов. Python, Java и внимание к вашей задаче."
         for field, filename in [

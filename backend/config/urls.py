@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from rest_framework.permissions import IsAdminUser
 
 from portfolio import auth, views
 
@@ -24,8 +25,12 @@ urlpatterns = [
     path("api/v1/auth/refresh/", auth.RefreshView.as_view()),
     path("api/v1/auth/logout/", auth.LogoutView.as_view()),
     path("api/v1/auth/me/", auth.MeView.as_view()),
-    path("api/schema/", SpectacularAPIView.as_view(permission_classes=[auth.IsAuthenticated])),
-    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="docs"),
+    path("api/schema/", SpectacularAPIView.as_view(permission_classes=[IsAdminUser])),
+    path(
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="schema", permission_classes=[IsAdminUser]),
+        name="docs",
+    ),
 ]
 urlpatterns[-2].name = "schema"
 if settings.DEBUG:

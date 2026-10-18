@@ -1,0 +1,67 @@
+# Production overlay: Traefik terminates TLS on :80/:443 and obtains Let's Encrypt
+# certificates automatically (HTTP-01 challenge). nginx stays internal and is
+# reached only through Traefik.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml --env-file .env up -d --build
+#
+# Requires a real DOMAIN pointing at this host, a valid ACME_EMAIL and open 80/443.
+services:
+  traefik:
+    image: traefik:v3.6
+    command:
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.file.filename=/etc/traefik/dynamic.yml
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.websecure.transport.respondingtimeouts.readtimeout=30s
+      - --entrypoints.websecure.transport.respondingtimeouts.writetimeout=60s
+      - --certificatesresolvers.le.acme.email=${ACME_EMAIL}
+      - --certificatesresolvers.le.acme.storage=/certificates/acme.json
+      - --certificatesresolvers.le.acme.httpchallenge.entrypoint=web
+      - --ping=true
+    ports: ["80:80", "443:443"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./infra/traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro
+      - certificates:/certificates
+    networks: [edge]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+  backend:
+    environment:
+      DJANGO_DEBUG: "false"
+  nginx:
+    # Only Traefik publishes ports in production.
+    ports: !override []
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: portfolio-edge
+      traefik.http.routers.web.rule: Host(`${DOMAIN}`)
+      traefik.http.routers.web.entrypoints: websecure
+      traefik.http.routers.web.tls.certresolver: le
+      traefik.http.routers.web.middlewares: security@file
+      traefik.http.routers.api.rule: Host(`${DOMAIN}`) && (PathPrefix(`/api/`) || PathPrefix(`/admin/`))
+      traefik.http.routers.api.entrypoints: websecure
+      traefik.http.routers.api.tls.certresolver: le
+      traefik.http.routers.api.middlewares: security@file,private@file,ratelimit@file
+      traefik.http.routers.api.priority: "20"
+      traefik.http.routers.api.service: web
+      traefik.http.services.web.loadbalancer.server.port: "8080"
+volumes:
+  certificates:

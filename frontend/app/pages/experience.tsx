@@ -1,8 +1,16 @@
 import type { Route } from "./+types/experience";
-import { loader as homeLoader } from "./home";
+import { serverApi } from "~/shared/api/server";
+import type { Experience, Site, SkillGroup } from "~/shared/types";
 import { Career, Skills } from "~/widgets/career";
 import { seo } from "~/shared/lib/seo";
-export const loader = homeLoader;
+export async function loader() {
+  const [site, experience, skills] = await Promise.all([
+    serverApi<Site>("site/"),
+    serverApi<Experience[]>("experience/"),
+    serverApi<SkillGroup[]>("skills/"),
+  ]);
+  return { site, experience, skills };
+}
 export const meta: Route.MetaFunction = ({ loaderData: data }) =>
   data
     ? seo(

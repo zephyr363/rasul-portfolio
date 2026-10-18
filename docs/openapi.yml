@@ -232,11 +232,14 @@ paths:
   /api/v1/collections/:
     get:
       operationId: v1_collections_list
+      description: Legacy photo gallery. Removed from the public UI; kept read-only
+        for data preservation.
       tags:
       - v1
       security:
       - jwtAuth: []
       - {}
+      deprecated: true
       responses:
         '200':
           content:
@@ -249,6 +252,8 @@ paths:
   /api/v1/collections/{slug}/:
     get:
       operationId: v1_collections_retrieve
+      description: Legacy photo gallery detail. Removed from the public UI; kept for
+        data preservation.
       parameters:
       - in: path
         name: slug
@@ -260,6 +265,7 @@ paths:
       security:
       - jwtAuth: []
       - {}
+      deprecated: true
       responses:
         '200':
           content:

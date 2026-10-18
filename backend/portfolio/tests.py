@@ -194,6 +194,15 @@ class ApiTests(TestCase):
     def test_production_cookie_secure(self):
         self.assertTrue(self.login().cookies[COOKIE]["secure"])
 
+    def test_api_docs_are_restricted_to_staff(self):
+        anonymous = APIClient()
+        self.assertEqual(anonymous.get("/api/schema/").status_code, 401)
+        self.assertEqual(anonymous.get("/api/docs/").status_code, 401)
+        access = self.login().json()["access"]
+        self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {access}")
+        self.assertEqual(self.client.get("/api/schema/").status_code, 200)
+        self.assertEqual(self.client.get("/api/docs/").status_code, 200)
+
     def test_login_throttle(self):
         token = self.csrf()
         for _ in range(10):
