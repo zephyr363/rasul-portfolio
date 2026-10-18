@@ -51,3 +51,4 @@
 - `/experience` получил отдельный loader и больше не запрашивает проекты и услуги.
 - Traefik: middleware `ratelimit` для внешних `/api/`, `/admin/`, `/static/`. Контейнеры получили ротацию логов и лимиты памяти.
 - Устаревшие эндпоинты фотогалереи помечены `deprecated` в OpenAPI; данные сохранены.
+- Добавлен вариант запуска за nginx (`docker-compose.nginx.yml` + `infra/nginx-gateway.conf`): SSR, `/api/`, `/admin/`, `/static/` и `/media/` через один шлюз.

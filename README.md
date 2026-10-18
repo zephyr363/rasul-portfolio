@@ -36,6 +36,18 @@ npm ci
 
 В текущей рабочей среде создан локальный суперпользователь `owner`. Сгенерированный пароль находится в `.runtime/admin-credentials.txt` (не входит в Git). Для другой среды создавайте собственную учётную запись через `createsuperuser`. Автоматической публичной регистрации нет.
 
+### Локальный запуск за nginx (без TLS)
+
+Полная топология, где роль шлюза выполняет обычный nginx вместо Traefik (Traefik и отдельный media-сервис отключены profiles):
+
+```powershell
+docker compose -p portfolio-nginx -f docker-compose.yml -f docker-compose.nginx.yml --env-file .env up -d --build
+docker compose -p portfolio-nginx -f docker-compose.yml -f docker-compose.nginx.yml --env-file .env exec backend python manage.py migrate
+```
+
+Сайт: http://localhost:8080 · Админка: http://localhost:8080/admin/ · Кабинет: http://localhost:8080/studio. Профиль намеренно включает `DJANGO_DEBUG=true`, потому что трафик идёт по HTTP. Чтобы переиспользовать уже наполненную базу, укажите тот же `-p`, что и раньше.
+
+
 ## Управление контентом
 
 - **Настройки сайта**: имя, профессия, подпись, город, биография, вступление, форматы работы, образование, языки, контакты, URL сайта, метаданные и коды верификации поисковых систем.
