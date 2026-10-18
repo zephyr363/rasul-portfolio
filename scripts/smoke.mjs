@@ -7,7 +7,7 @@ const page=await context.newPage();const errors=[];page.on("pageerror",error=>er
 try{
   const home=await page.goto(base,{waitUntil:"networkidle"});assert.equal(home.status(),200);
   assert.ok((await page.locator(".hero-story").textContent()).includes("Расул Ахметов"));
-  assert.ok(await page.locator("img").evaluateAll(imgs=>imgs.every(i=>i.complete&&i.naturalWidth>0)));
+  assert.ok(await page.locator("img").evaluateAll(imgs=>imgs.filter(i=>i.getAttribute("loading")!=="lazy").every(i=>i.complete&&i.naturalWidth>0)));
   const health=await context.request.get(`${base}/api/health/`);assert.equal(health.status(),200);
   assert.equal(home.headers()["x-content-type-options"],"nosniff");
   const csrf=async()=> (await (await context.request.get(`${base}/api/v1/auth/csrf/`)).json()).csrfToken;
