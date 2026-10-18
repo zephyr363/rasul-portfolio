@@ -1,0 +1,828 @@
+openapi: 3.0.3
+info:
+  title: Portfolio API
+  version: 1.0.0
+paths:
+  /api/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - ht
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/auth/csrf/:
+    get:
+      operationId: v1_auth_csrf_retrieve
+      tags:
+      - v1
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  csrfToken:
+                    type: string
+          description: ''
+  /api/v1/auth/login/:
+    post:
+      operationId: v1_auth_login_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Login'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+          description: ''
+  /api/v1/auth/logout/:
+    post:
+      operationId: v1_auth_logout_create
+      tags:
+      - v1
+      security:
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/v1/auth/me/:
+    get:
+      operationId: v1_auth_me_retrieve
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/v1/auth/refresh/:
+    post:
+      operationId: v1_auth_refresh_create
+      tags:
+      - v1
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+          description: ''
+  /api/v1/collections/:
+    get:
+      operationId: v1_collections_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collection'
+          description: ''
+  /api/v1/collections/{slug}/:
+    get:
+      operationId: v1_collections_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+          description: ''
+  /api/v1/contact/:
+    post:
+      operationId: v1_contact_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contact'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Contact'
+        required: true
+      security:
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+          description: ''
+  /api/v1/experience/:
+    get:
+      operationId: v1_experience_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Experience'
+          description: ''
+  /api/v1/inbox/:
+    get:
+      operationId: v1_inbox_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedContactList'
+          description: ''
+  /api/v1/projects/:
+    get:
+      operationId: v1_projects_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+          description: ''
+  /api/v1/projects/{slug}/:
+    get:
+      operationId: v1_projects_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+  /api/v1/services/:
+    get:
+      operationId: v1_services_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+          description: ''
+  /api/v1/site/:
+    get:
+      operationId: v1_site_retrieve
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+          description: ''
+  /api/v1/skills/:
+    get:
+      operationId: v1_skills_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Skill'
+          description: ''
+components:
+  schemas:
+    Collection:
+      type: object
+      properties:
+        slug:
+          type: string
+          maxLength: 50
+          pattern: ^[-a-zA-Z0-9_]+$
+        title:
+          type: string
+          title: Название
+          maxLength: 100
+        description:
+          type: string
+          title: Описание
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - photos
+      - slug
+      - title
+      - updated_at
+    Contact:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Имя
+          maxLength: 120
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        project_type:
+          type: string
+          title: Тип проекта
+          maxLength: 80
+        message:
+          type: string
+          title: Сообщение
+          maxLength: 4000
+        consent:
+          type: boolean
+          title: Согласие
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          readOnly: true
+          title: Статус
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Получено
+      required:
+      - created_at
+      - email
+      - id
+      - message
+      - name
+      - project_type
+      - status
+    Experience:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        company:
+          type: string
+          title: Компания
+          maxLength: 180
+        role:
+          type: string
+          title: Должность
+          maxLength: 140
+        city:
+          type: string
+          title: Город
+          maxLength: 100
+        start:
+          type: string
+          format: date
+          title: Начало
+        end:
+          type: string
+          format: date
+          nullable: true
+          title: Окончание
+        description:
+          type: string
+          title: Обязанности и результаты
+      required:
+      - company
+      - description
+      - id
+      - role
+      - start
+    Login:
+      type: object
+      properties:
+        username:
+          type: string
+          maxLength: 150
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 200
+      required:
+      - password
+      - username
+    PaginatedContactList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+    Photo:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        image:
+          type: string
+          format: uri
+          nullable: true
+          readOnly: true
+        alt:
+          type: string
+          title: Описание для доступности
+          maxLength: 240
+        featured:
+          type: boolean
+          title: На главной
+        order:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          title: Порядок
+      required:
+      - alt
+      - id
+      - image
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        cover:
+          type: string
+          format: uri
+          nullable: true
+          readOnly: true
+        slug:
+          type: string
+          maxLength: 50
+          pattern: ^[-a-zA-Z0-9_]+$
+        title:
+          type: string
+          title: Название
+          maxLength: 150
+        summary:
+          type: string
+          title: Краткое описание
+          maxLength: 300
+        description:
+          type: string
+          title: Задача, решение и результат
+        stack:
+          type: string
+          title: Стек
+          maxLength: 300
+        url:
+          title: Сайт проекта
+          oneOf:
+          - type: string
+            format: uri
+            maxLength: 200
+          - type: string
+            maxLength: 0
+        repository:
+          title: Репозиторий
+          oneOf:
+          - type: string
+            format: uri
+            maxLength: 200
+          - type: string
+            maxLength: 0
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - cover
+      - description
+      - id
+      - slug
+      - stack
+      - summary
+      - title
+      - updated_at
+    Service:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          title: Направление работы
+          maxLength: 120
+        description:
+          type: string
+          title: Польза для клиента
+        technologies:
+          type: string
+          title: Технологии через запятую
+          maxLength: 250
+      required:
+      - description
+      - id
+      - technologies
+      - title
+    Site:
+      type: object
+      properties:
+        portrait_main:
+          type: string
+          format: uri
+          nullable: true
+          readOnly: true
+        portrait_detail:
+          type: string
+          format: uri
+          nullable: true
+          readOnly: true
+        hero_title:
+          type: string
+          title: Заголовок лендинга
+          maxLength: 180
+        hero_copy:
+          type: string
+          title: Предложение клиенту
+        portrait_alt:
+          type: string
+          title: Описание портрета
+          maxLength: 220
+        profession:
+          type: string
+          title: Профессия
+          maxLength: 120
+        phone:
+          type: string
+          title: Телефон
+          maxLength: 40
+        work_format:
+          type: string
+          title: Формат работы
+          maxLength: 160
+        education:
+          type: string
+          title: Образование
+        languages:
+          type: string
+          title: Языки
+          maxLength: 200
+        name:
+          type: string
+          title: Имя
+          maxLength: 120
+        tagline:
+          type: string
+          title: Подпись
+          maxLength: 160
+        city:
+          type: string
+          title: Город
+          maxLength: 120
+        intro:
+          type: string
+          title: Вступление
+        biography:
+          type: string
+          title: Биография
+        email:
+          oneOf:
+          - type: string
+            format: email
+            maxLength: 254
+          - type: string
+            maxLength: 0
+        instagram:
+          title: Социальная сеть
+          oneOf:
+          - type: string
+            format: uri
+            maxLength: 200
+          - type: string
+            maxLength: 0
+        seo_title:
+          type: string
+          title: SEO заголовок
+          maxLength: 120
+        seo_description:
+          type: string
+          title: SEO описание
+          maxLength: 300
+        site_url:
+          type: string
+          format: uri
+          title: Основной адрес сайта
+          maxLength: 200
+        demo_mode:
+          type: boolean
+          title: Предпросмотр (noindex)
+        google_verification:
+          type: string
+          maxLength: 160
+        bing_verification:
+          type: string
+          maxLength: 160
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - portrait_detail
+      - portrait_main
+      - updated_at
+    Skill:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          title: Категория
+          maxLength: 100
+        skills:
+          type: string
+          title: Навыки через запятую
+      required:
+      - id
+      - skills
+      - title
+    StatusEnum:
+      enum:
+      - new
+      - read
+      - closed
+      type: string
+      description: |-
+        * `new` - Новая
+        * `read` - Прочитана
+        * `closed` - Закрыта
+    Token:
+      type: object
+      properties:
+        access:
+          type: string
+      required:
+      - access
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        is_staff:
+          type: boolean
+      required:
+      - is_staff
+      - username
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

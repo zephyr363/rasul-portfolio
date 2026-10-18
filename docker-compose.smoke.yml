@@ -1,0 +1,36 @@
+# Local verification of the production topology; no public ports or ACME requests.
+# docker compose -p portfolio-smoke -f docker-compose.yml -f docker-compose.smoke.yml ...
+services:
+  traefik:
+    command:
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.constraints=Label(`com.docker.compose.project`,`portfolio-smoke`)
+      - --providers.file.filename=/etc/traefik/dynamic.yml
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=:18443
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.websecure.address=:443
+      - --ping=true
+    ports: !override ["127.0.0.1:18080:80", "127.0.0.1:18443:443"]
+  backend:
+    environment:
+      DJANGO_DEBUG: "false"
+      DJANGO_ALLOWED_HOSTS: localhost,backend,127.0.0.1
+      CSRF_TRUSTED_ORIGINS: https://localhost:18443
+    labels:
+      traefik.docker.network: portfolio-smoke-edge
+      traefik.http.routers.api.tls.certresolver: ""
+      traefik.http.routers.api.tls: "true"
+  frontend:
+    labels:
+      traefik.docker.network: portfolio-smoke-edge
+      traefik.http.routers.frontend.tls.certresolver: ""
+      traefik.http.routers.frontend.tls: "true"
+  media:
+    labels:
+      traefik.docker.network: portfolio-smoke-edge
+      traefik.http.routers.media.tls.certresolver: ""
+      traefik.http.routers.media.tls: "true"
+networks:
+  edge: {name: portfolio-smoke-edge}
