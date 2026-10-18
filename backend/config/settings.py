@@ -1,9 +1,22 @@
 import os
 from pathlib import Path
 
+from django.core.exceptions import ImproperlyConfigured
+
+
+def required_env(name):
+    value = os.getenv(name)
+    if not value:
+        raise ImproperlyConfigured(
+            f"Environment variable {name} is required. "
+            "Copy .env.example to .env and set a strong value before starting the project."
+        )
+    return value
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = os.getenv("DJANGO_DEBUG", "false").lower() == "true"
-SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
+SECRET_KEY = required_env("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,backend,testserver").split(
     ","
 )
@@ -49,7 +62,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("POSTGRES_DB", "portfolio"),
         "USER": os.getenv("POSTGRES_USER", "portfolio"),
-        "PASSWORD": os.environ["POSTGRES_PASSWORD"],
+        "PASSWORD": required_env("POSTGRES_PASSWORD"),
         "HOST": os.getenv("POSTGRES_HOST", "localhost"),
         "PORT": os.getenv("POSTGRES_PORT", "55432"),
         "CONN_MAX_AGE": 60,
@@ -119,6 +132,7 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
 SECURE_HSTS_PRELOAD = not DEBUG
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
 X_FRAME_OPTIONS = "DENY"
 DATA_UPLOAD_MAX_MEMORY_SIZE = 2 * 1024 * 1024
 ACCESS_SECONDS = int(os.getenv("ACCESS_SECONDS", "600"))

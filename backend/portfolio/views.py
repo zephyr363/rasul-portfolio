@@ -81,7 +81,10 @@ class SiteView(APIView):
         return Response(SiteSerializer(site).data)
 
 
+@extend_schema(deprecated=True)
 class CollectionList(generics.ListAPIView):
+    """Legacy photo gallery. Removed from the public UI; kept read-only for data preservation."""
+
     throttle_classes = ()
     serializer_class = CollectionSerializer
     pagination_class = None
@@ -90,7 +93,10 @@ class CollectionList(generics.ListAPIView):
     )
 
 
+@extend_schema(deprecated=True)
 class CollectionDetail(generics.RetrieveAPIView):
+    """Legacy photo gallery detail. Removed from the public UI; kept for data preservation."""
+
     throttle_classes = ()
     serializer_class = CollectionSerializer
     lookup_field = "slug"
