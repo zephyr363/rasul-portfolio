@@ -2,6 +2,14 @@
 
 Нужны Linux VPS, Docker Engine/Compose, домен и DNS A/AAAA, направленные на сервер. Разрешите 80/443 и SSH; базу данных наружу не открывайте. Текущая локальная `.env` предназначена для разработки, не переносите её в production.
 
+Все команды ниже выполняются с production-overlay. Чтобы не повторять `-f`, задайте переменную (Linux/macOS):
+
+```sh
+export COMPOSE_FILE=docker-compose.yml:docker-compose.prod.yml
+```
+
+или в PowerShell: `$env:COMPOSE_FILE='docker-compose.yml;docker-compose.prod.yml'`. Тогда `docker compose ...` автоматически использует оба файла.
+
 ## Первая установка
 
 1. Скопируйте проект на сервер. Создайте `.env` из `.env.example`, задайте криптографически случайные секреты, реальный DOMAIN и ACME_EMAIL. Установите DJANGO_DEBUG=false, DJANGO_ALLOWED_HOSTS=`ваш-домен,backend,localhost`, CSRF_TRUSTED_ORIGINS=`https://ваш-домен`. Не сохраняйте `.env` в Git. Traefik выпускает сертификат через HTTP-01: домен должен резолвиться в этот сервер, а порты 80 и 443 — быть открыты. ACME_EMAIL должен быть реальным адресом (Let's Encrypt отклоняет example.com и одноразовые домены).

@@ -36,16 +36,25 @@ npm ci
 
 В текущей рабочей среде создан локальный суперпользователь `owner`. Сгенерированный пароль находится в `.runtime/admin-credentials.txt` (не входит в Git). Для другой среды создавайте собственную учётную запись через `createsuperuser`. Автоматической публичной регистрации нет.
 
-### Production-топология (Traefik + nginx)
+### Запуск (nginx)
 
-`docker compose up -d` поднимает полный контур:
+`docker compose up -d --build` собирает и поднимает локальный контур: PostgreSQL, Django (Gunicorn), React Router SSR и nginx. nginx — единственная точка входа: он отдаёт `/static/` и `/media/` из read-only volumes и проксирует `/api/`, `/admin/` в Django, остальное — в SSR. Backend при старте выполняет `collectstatic` в общий volume.
+
+Сайт: http://localhost · Админка: http://localhost/admin/ · Кабинет: http://localhost/studio. Локально используется HTTP, поэтому `DJANGO_DEBUG` по умолчанию `true` (secure-cookies выключены).
+
+### Production (Traefik + Let's Encrypt)
+
+Для деплоя добавляется overlay `docker-compose.prod.yml`:
+
+```sh
+docker compose -f docker-compose.yml -f docker-compose.prod.yml --env-file .env up -d --build
+```
 
 - **Traefik** слушает 80/443, перенаправляет HTTP→HTTPS и автоматически выпускает сертификаты Let's Encrypt (HTTP-01) для `DOMAIN`.
-- **nginx** (`nginxinc/nginx-unprivileged`) отдаёт `/static/` и `/media/` из read-only volumes и проксирует `/api/`, `/admin/` в Django, остальное — в SSR.
-- **backend** при старте выполняет `collectstatic` в общий volume, затем запускает Gunicorn.
-- **frontend** — React Router SSR, **postgres** — база.
+- **nginx** остаётся внутренним и доступен только через Traefik; статику и медиа по-прежнему отдаёт он.
+- Backend принудительно работает с `DJANGO_DEBUG=false`.
 
-Для выпуска сертификата нужен реальный домен, DNS A/AAAA на сервер и открытые 80/443. Локально (`DOMAIN=localhost`) Let's Encrypt сертификат не выдаст — Traefik покажет self-signed. Для проверки без ACME используйте `docker-compose.smoke.yml` (`https://localhost:18443`).
+Для выпуска сертификата нужен реальный домен, DNS A/AAAA на сервер и открытые 80/443. `ACME_EMAIL` должен быть реальным адресом (Let's Encrypt отклоняет `example.com`). Локально `localhost` сертификат не получит — для проверки production-схемы без ACME используйте `docker-compose.smoke.yml` (self-signed, `https://localhost:18443`).
 
 
 ## Управление контентом

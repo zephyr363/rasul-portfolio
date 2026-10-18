@@ -34,6 +34,6 @@ SSR обеспечивает содержимое без JavaScript; canonical �
 
 ## Инфраструктура
 
-Traefik завершает TLS, автоматически выпускает сертификаты Let's Encrypt (HTTP-01) и направляет весь трафик на nginx-шлюз. Nginx отдаёт Django static и медиа из read-only volumes, проксирует `/api/` и `/admin/` в Gunicorn, остальное — в SSR. Django работает через Gunicorn WSGI; `collectstatic` выполняется при старте backend в общий volume. PostgreSQL не имеет внешнего порта в production. Секреты только в env. Контейнеры приложений работают без root. Сборки многоэтапные; lock-файлы включены. Docker socket доступен только Traefik в read-only режиме; dashboard не публикуется.
+В production Traefik завершает TLS, автоматически выпускает сертификаты Let's Encrypt (HTTP-01) и направляет весь трафик на nginx-шлюз; локально nginx публикуется напрямую на :80. Nginx отдаёт Django static и медиа из read-only volumes, проксирует `/api/` и `/admin/` в Gunicorn, остальное — в SSR. Django работает через Gunicorn WSGI; `collectstatic` выполняется при старте backend в общий volume. PostgreSQL не имеет внешнего порта в production. Секреты только в env. Контейнеры приложений работают без root. Сборки многоэтапные; lock-файлы включены. Docker socket доступен только Traefik в read-only режиме; dashboard не публикуется.
 
 Редизайн и новые модели лендинга: см. serif-redesign.md. SiteSettings хранит hero_title, hero_copy и два портрета; Service хранит направления работы. В sitemap фотогалереи нет.

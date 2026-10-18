@@ -1,5 +1,5 @@
-# Local verification of the production topology; no public ports or ACME requests.
-# docker compose -p portfolio-smoke -f docker-compose.yml -f docker-compose.smoke.yml --env-file .env up -d
+# Local verification of the Traefik production topology; self-signed, no ACME.
+# docker compose -p portfolio-smoke -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.smoke.yml --env-file .env up -d
 #
 # Uses Traefik's built-in self-signed certificate on https://localhost:18443.
 services:

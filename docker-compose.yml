@@ -1,43 +1,4 @@
 services:
-  # Edge proxy: terminates TLS, redirects HTTP->HTTPS and obtains Let's Encrypt
-  # certificates automatically (HTTP-01 challenge on port 80).
-  traefik:
-    image: traefik:v3.6
-    command:
-      - --providers.docker=true
-      - --providers.docker.exposedbydefault=false
-      - --providers.file.filename=/etc/traefik/dynamic.yml
-      - --entrypoints.web.address=:80
-      - --entrypoints.web.http.redirections.entrypoint.to=websecure
-      - --entrypoints.web.http.redirections.entrypoint.scheme=https
-      - --entrypoints.websecure.address=:443
-      - --entrypoints.websecure.transport.respondingtimeouts.readtimeout=30s
-      - --entrypoints.websecure.transport.respondingtimeouts.writetimeout=60s
-      - --certificatesresolvers.le.acme.email=${ACME_EMAIL}
-      - --certificatesresolvers.le.acme.storage=/certificates/acme.json
-      - --certificatesresolvers.le.acme.httpchallenge.entrypoint=web
-      - --ping=true
-    ports: ["80:80", "443:443"]
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./infra/traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro
-      - certificates:/certificates
-    networks: [edge]
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "traefik", "healthcheck", "--ping"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "3"
-    deploy:
-      resources:
-        limits:
-          memory: 256M
   postgres:
     image: postgres:17-alpine
     environment:
@@ -65,7 +26,9 @@ services:
     build: ./backend
     env_file: .env
     environment:
-      DJANGO_DEBUG: ${DJANGO_DEBUG:-false}
+      # Local stack is served over plain HTTP by nginx, so DEBUG defaults to true.
+      # docker-compose.prod.yml forces DEBUG=false for the Traefik/TLS deployment.
+      DJANGO_DEBUG: ${DJANGO_DEBUG:-true}
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
     volumes:
@@ -121,25 +84,12 @@ services:
       - staticfiles:/srv/static:ro
       - media:/srv/media:ro
       - ./infra/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports: ["80:8080"]
     depends_on:
       backend: {condition: service_healthy}
       frontend: {condition: service_healthy}
     networks: [edge]
     restart: unless-stopped
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: portfolio-edge
-      traefik.http.routers.web.rule: Host(`${DOMAIN}`)
-      traefik.http.routers.web.entrypoints: websecure
-      traefik.http.routers.web.tls.certresolver: le
-      traefik.http.routers.web.middlewares: security@file
-      traefik.http.routers.api.rule: Host(`${DOMAIN}`) && (PathPrefix(`/api/`) || PathPrefix(`/admin/`))
-      traefik.http.routers.api.entrypoints: websecure
-      traefik.http.routers.api.tls.certresolver: le
-      traefik.http.routers.api.middlewares: security@file,private@file,ratelimit@file
-      traefik.http.routers.api.priority: "20"
-      traefik.http.routers.api.service: web
-      traefik.http.services.web.loadbalancer.server.port: "8080"
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8080/health"]
       interval: 30s
@@ -161,4 +111,3 @@ volumes:
   database:
   media:
   staticfiles:
-  certificates:
