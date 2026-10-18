@@ -51,4 +51,4 @@
 - `/experience` получил отдельный loader и больше не запрашивает проекты и услуги.
 - Traefik: middleware `ratelimit` для внешних `/api/`, `/admin/`, `/static/`. Контейнеры получили ротацию логов и лимиты памяти.
 - Устаревшие эндпоинты фотогалереи помечены `deprecated` в OpenAPI; данные сохранены.
-- Добавлен вариант запуска за nginx (`docker-compose.nginx.yml` + `infra/nginx-gateway.conf`): SSR, `/api/`, `/admin/`, `/static/` и `/media/` через один шлюз.
+- Топология переведена на Traefik (80/443, ACME HTTP-01) → nginx-шлюз: `/static/` и `/media/` отдаёт nginx, `/api/` и `/admin/` проксируются в Gunicorn, остальное — в SSR. Статика собирается в общий volume при старте backend.

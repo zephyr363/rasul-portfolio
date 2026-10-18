@@ -4,7 +4,7 @@
 
 ## Первая установка
 
-1. Скопируйте проект на сервер. Создайте `.env` из `.env.example`, задайте криптографически случайные секреты, реальный DOMAIN и ACME_EMAIL. Установите DJANGO_DEBUG=false, DJANGO_ALLOWED_HOSTS=`ваш-домен,backend,localhost`, CSRF_TRUSTED_ORIGINS=`https://ваш-домен`. Не сохраняйте `.env` в Git.
+1. Скопируйте проект на сервер. Создайте `.env` из `.env.example`, задайте криптографически случайные секреты, реальный DOMAIN и ACME_EMAIL. Установите DJANGO_DEBUG=false, DJANGO_ALLOWED_HOSTS=`ваш-домен,backend,localhost`, CSRF_TRUSTED_ORIGINS=`https://ваш-домен`. Не сохраняйте `.env` в Git. Traefik выпускает сертификат через HTTP-01: домен должен резолвиться в этот сервер, а порты 80 и 443 — быть открыты. ACME_EMAIL должен быть реальным адресом (Let's Encrypt отклоняет example.com и одноразовые домены).
 2. Соберите образы и запустите БД:
 
 ```sh
@@ -21,7 +21,7 @@ docker compose ps
 docker compose logs --tail=100 backend frontend traefik
 ```
 
-Static files собираются при сборке backend-образа; медиа живут в persistent volume. Команды миграций выполняются отдельно, а не параллельно в каждом worker. Gunicorn использует три worker, timeout 45 сек. и graceful timeout 30 сек.; настройте число workers по памяти VPS.
+Статика собирается в общий volume `staticfiles` при старте backend (`collectstatic` в entrypoint), медиа живут в persistent volume `media`; nginx отдаёт оба. Команды миграций выполняются отдельно, а не параллельно в каждом worker. Gunicorn использует три worker, timeout 45 сек. и graceful timeout 30 сек.; настройте число workers по памяти VPS.
 
 3. Откройте `https://ваш-домен/admin/`. В настройках сайта задайте `site_url=https://ваш-домен`, проверьте профиль и контакты, утвердите условия обработки данных, затем выключите «Предпросмотр (noindex)». Добавьте только реальные проекты. При необходимости заполните коды верификации Google/Bing.
 4. Проверьте TLS, перенаправление HTTP→HTTPS, `/api/health/`, фото, форму, вход/выход, `/robots.txt`, `/sitemap.xml`, canonical и 404. Let's Encrypt требует доступного DNS и порта 80. Без реального домена выпуск сертификата нельзя считать проверенным.
@@ -32,7 +32,7 @@ Static files собираются при сборке backend-образа; ме
 
 1. Сохраните резервную копию базы и медиа. Запишите текущий git commit и идентификаторы работающих образов (`docker compose images`). Сохраните прежние образы под отдельными тегами; не запускайте prune до проверки обновления.
 2. Подготовьте новый checkout, выполните тесты и `docker compose build`. Проверьте совместимость миграций. На время несовместимых изменений остановите приём заявок.
-3. Выполните миграции отдельным `docker compose run --rm backend python manage.py migrate`, затем `docker compose up -d --no-deps backend frontend media`.
+3. Выполните миграции отдельным `docker compose run --rm backend python manage.py migrate`, затем `docker compose up -d --no-deps backend frontend nginx`.
 4. Проверьте healthchecks и основные сценарии. При ошибке верните предыдущий checkout и образ. Если миграция несовместима с предыдущим кодом, восстановите согласованную копию БД и медиа. Не откатывайте БД поверх новых заявок без их предварительного сохранения.
 
 ## Резервное копирование

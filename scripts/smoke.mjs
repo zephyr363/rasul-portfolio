@@ -1,6 +1,6 @@
 import {chromium} from "../frontend/node_modules/playwright-core/index.mjs";
 import assert from "node:assert/strict";
-const base="https://localhost:18443";
+const base=process.env.E2E_BASE_URL||"https://localhost:18443";
 const browser=await chromium.launch({channel:"chrome",headless:true});
 const context=await browser.newContext({ignoreHTTPSErrors:true,viewport:{width:1440,height:1000}});
 const page=await context.newPage();const errors=[];page.on("pageerror",error=>errors.push(error.message));

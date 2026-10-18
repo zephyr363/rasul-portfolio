@@ -36,16 +36,16 @@ npm ci
 
 В текущей рабочей среде создан локальный суперпользователь `owner`. Сгенерированный пароль находится в `.runtime/admin-credentials.txt` (не входит в Git). Для другой среды создавайте собственную учётную запись через `createsuperuser`. Автоматической публичной регистрации нет.
 
-### Локальный запуск за nginx (без TLS)
+### Production-топология (Traefik + nginx)
 
-Полная топология, где роль шлюза выполняет обычный nginx вместо Traefik (Traefik и отдельный media-сервис отключены profiles):
+`docker compose up -d` поднимает полный контур:
 
-```powershell
-docker compose -p portfolio-nginx -f docker-compose.yml -f docker-compose.nginx.yml --env-file .env up -d --build
-docker compose -p portfolio-nginx -f docker-compose.yml -f docker-compose.nginx.yml --env-file .env exec backend python manage.py migrate
-```
+- **Traefik** слушает 80/443, перенаправляет HTTP→HTTPS и автоматически выпускает сертификаты Let's Encrypt (HTTP-01) для `DOMAIN`.
+- **nginx** (`nginxinc/nginx-unprivileged`) отдаёт `/static/` и `/media/` из read-only volumes и проксирует `/api/`, `/admin/` в Django, остальное — в SSR.
+- **backend** при старте выполняет `collectstatic` в общий volume, затем запускает Gunicorn.
+- **frontend** — React Router SSR, **postgres** — база.
 
-Сайт: http://localhost:8080 · Админка: http://localhost:8080/admin/ · Кабинет: http://localhost:8080/studio. Профиль намеренно включает `DJANGO_DEBUG=true`, потому что трафик идёт по HTTP. Чтобы переиспользовать уже наполненную базу, укажите тот же `-p`, что и раньше.
+Для выпуска сертификата нужен реальный домен, DNS A/AAAA на сервер и открытые 80/443. Локально (`DOMAIN=localhost`) Let's Encrypt сертификат не выдаст — Traefik покажет self-signed. Для проверки без ACME используйте `docker-compose.smoke.yml` (`https://localhost:18443`).
 
 
 ## Управление контентом
@@ -87,7 +87,7 @@ E2E требует запущенных dev-серверов и установл
 
 Публичные страницы получают данные Django в SSR-loader. При недоступном API возвращается 503, для отсутствующих проектов/подборок — 404. Заглушки вместо backend не используются. Redux store создаётся отдельно для каждого SSR-запроса. RTK Query управляет клиентскими запросами, формами, авторизацией и кешем кабинета.
 
-Публичные страницы SSR обращаются к API по внутренней сети Docker, поэтому внешний rate limit настроен на уровне Traefik (`ratelimit@file`: 20 req/s со всплеском до 40) и не объединяет посещения в один лимит. Swagger (`/api/docs/`) и OpenAPI-схема (`/api/schema/`) доступны только staff-пользователю. Устаревшие эндпоинты фотогалереи помечены в схеме как `deprecated`.
+Публичные страницы SSR обращаются к API по внутренней сети Docker, поэтому внешний rate limit настроен на уровне Traefik (`ratelimit@file`: 20 req/s со всплеском до 40) только для `/api/` и `/admin/` и не объединяет посещения в один лимит. Swagger (`/api/docs/`) и OpenAPI-схема (`/api/schema/`) доступны только staff-пользователю. Устаревшие эндпоинты фотогалереи помечены в схеме как `deprecated`.
 
 Access JWT живёт 10 минут и хранится только в памяти Redux. Refresh JWT находится в HttpOnly cookie с узким Path. Ротация выполняется под блокировкой строки PostgreSQL, предыдущий токен принимается 5 секунд для конкурентных запросов. Single-flight и Web Locks защищают обновление на клиенте. Logout отзывает серверную сессию, очищает cookie и кеш, уведомляет другие вкладки без передачи токенов. Backend проверяет отзыв сессии и для уже выпущенных access-токенов. CSRF включён для login/refresh/logout и контактной формы. Throttling использует общий кеш в PostgreSQL; Redis для текущего объёма задач не нужен.
 

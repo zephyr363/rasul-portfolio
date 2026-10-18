@@ -1,5 +1,7 @@
 # Local verification of the production topology; no public ports or ACME requests.
-# docker compose -p portfolio-smoke -f docker-compose.yml -f docker-compose.smoke.yml ...
+# docker compose -p portfolio-smoke -f docker-compose.yml -f docker-compose.smoke.yml --env-file .env up -d
+#
+# Uses Traefik's built-in self-signed certificate on https://localhost:18443.
 services:
   traefik:
     command:
@@ -18,19 +20,12 @@ services:
       DJANGO_DEBUG: "false"
       DJANGO_ALLOWED_HOSTS: localhost,backend,127.0.0.1
       CSRF_TRUSTED_ORIGINS: https://localhost:18443
+  nginx:
     labels:
       traefik.docker.network: portfolio-smoke-edge
+      traefik.http.routers.web.tls.certresolver: ""
+      traefik.http.routers.web.tls: "true"
       traefik.http.routers.api.tls.certresolver: ""
       traefik.http.routers.api.tls: "true"
-  frontend:
-    labels:
-      traefik.docker.network: portfolio-smoke-edge
-      traefik.http.routers.frontend.tls.certresolver: ""
-      traefik.http.routers.frontend.tls: "true"
-  media:
-    labels:
-      traefik.docker.network: portfolio-smoke-edge
-      traefik.http.routers.media.tls.certresolver: ""
-      traefik.http.routers.media.tls: "true"
 networks:
   edge: {name: portfolio-smoke-edge}
