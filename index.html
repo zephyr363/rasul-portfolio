@@ -5,41 +5,131 @@
   <meta name="color-scheme" content="light" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#e8e6e1" />
-  <meta name="description" content="Rasul Akhmetov — Backend Developer. Building what you don't see." />
-  <title>Rasul Akhmetov — Backend Developer</title>
+  <meta name="description" content="Расул Ахметов — Java & Backend-разработчик (QazPost, Казахстан). Проектирование надёжных серверных систем, REST API, микросервисов и безопасной архитектуры." />
+  <meta property="og:title" content="Расул Ахметов — Java & Backend-разработчик | Портфолио" />
+  <meta property="og:description" content="Разработка отказоустойчивых backend-систем на Java и Spring Boot. Инженерный опыт в QazPost и профильная экспертиза в информационной безопасности." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Расул Ахметов — Java & Backend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root{--ink:#181918;--paper:#e8e6e1;--muted:#777773;--line:#c7c5bf;--dark:#181a19;--easing:cubic-bezier(.22,1,.36,1)}
+    :root{--ink:#161716;--paper:#e8e6e1;--paper-elevated:#f2f0ec;--muted:#5c5e58;--line:#c4c2bc;--dark:#151716;--dark-card:#202320;--accent:#1e3a2f;--accent-bright:#2d5a47;--easing:cubic-bezier(.16,1,.3,1);--font-sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-serif:'Cormorant Garamond',Georgia,serif;--font-mono:'JetBrains Mono',monospace}
     :root{color-scheme:only light}html,body,.hero-sticky{forced-color-adjust:none}
-    *{box-sizing:border-box} html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}::selection{background:#222;color:white}
-    .nav{position:fixed;z-index:50;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:26px 3.2vw;mix-blend-mode:normal;color:#181818;text-shadow:0 1px 10px rgba(255,255,255,.65);pointer-events:none}.nav>*{pointer-events:auto}.brand{font-size:15px;font-weight:800;letter-spacing:-.055em;display:flex;align-items:center;gap:7px}.brand .mark{font-size:20px;line-height:0}.nav-links{display:flex;align-items:center;gap:36px}.nav-links a{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;position:relative}.nav-links a::after{content:'';position:absolute;bottom:-6px;left:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .4s}.nav-links a:hover::after{transform:scaleX(1)}.nav-index{font-family:monospace;font-size:11px;letter-spacing:.03em}.menu-toggle{display:none;background:none;border:0;color:inherit;font-size:12px;font-weight:700}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}::selection{background:#181918;color:#fff}
+    .nav{position:fixed;z-index:50;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 3.2vw;background:rgba(232,230,225,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(22,23,22,.1);color:var(--ink);transition:background .2s,box-shadow .2s}.nav.scrolled{background:rgba(232,230,225,.96);box-shadow:0 4px 20px rgba(0,0,0,.05)}.nav-progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--ink);transition:width .08s linear;pointer-events:none}.brand{font-size:15px;font-weight:800;letter-spacing:-.04em;display:flex;align-items:center;gap:7px;white-space:nowrap;flex-shrink:0}.brand .mark{font-size:18px;line-height:0}.nav-links{display:flex;align-items:center;gap:28px}.nav-links a{font-size:12px;font-weight:600;letter-spacing:.02em;position:relative;white-space:nowrap;flex-shrink:0;color:#2c2e2b;transition:color .18s}.nav-links a:hover,.nav-links a.active{color:#000}.nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:100%;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .2s var(--easing)}.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}.menu-toggle{display:none;background:none;border:1px solid rgba(22,23,22,.2);border-radius:6px;padding:7px 11px;color:inherit;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
     .hero-journey{height:520vh;position:relative}.hero-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#bdbbb5}.hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;background:#d9d6d0 url("data:image/webp;base64,UklGRn5BAABXRUJQVlA4IHJBAABwDwKdASrAAxwCPolAm0ulIywvINIpkeARCWlub50QphTB8Z01X5Zbz67W7v6vyT1ONyWgHxwc+7zr7KNif/fGrcCt9z2Pa/RfxL/4egv5B/t+KPvr/sf1n56fNZ/ybA/hO0ZlvX2OcvjhBVSxAw48SPdbwE86YCfQBotazMbD/HnSAex2QvCE5Jm900kc/GPoJdRoDu5HIh3m06FrKoAvlikCv/bvSDhLZxMyJ1v1HR9UQ0T8lU0z35La1wOJ3yBqFIkLxLYqqa4qfa5jCUH0ZnDSeJo+/O1HP4Trl+FUiAiVvaC6d4H5X+4o7S9xK36VQSNvTLifLilL+Mo0BwcFbezdnXJ7/Q2dF1murklpdxJIQH8Pr3JTc+rGy+mw6uHrILQ0Gv80RxK6NksStgN8/lrIk8tfvqI3BXRSaWR+wrG+BBdsVIBZ+jZxwcgw3ufnuD9ssw7/Kfkf4Gf4jNxEK57W4H5imnzVa31QHKCxA1CyggS03XT5pnCsJT3WdumpCL44mZn/XtXDRuCkComGi9SI/r4x1guBPLoaovkHRcRlPSX/p8CsDp98twSxaGppXXG8lMUIpC7bwlsIWYZ3K27Fi6YVkyLFTIBATE5iYakmAZx1v2qJNnCEQ2ZtddbBA83X767Ri9tXdGr0rdMjix13gW8jnTBNjLvi48f6T2CMfhrMa8/UpjZpGdDG9IBMIWHX94w96beVui+9+aw6XVjiDXWcj/ZowOGmT7tXUe3T0Tz44yfUBX/ifPDBcUUY7ISRudHACvrz13ArNhSabJ/poEfmlSGNATtZrEAPO+Q8hNgWmVgiHvVY/DdO8fThJ7iv9m7ql5PA3RwH/tXSr0/y3yCODBi+iP46Ujgwp9btSauAORV731wtg8kOUFnrS2ZLXggGu9F7Q1hrnfGDvQjTRoUTI/P0c1J7zOnYTACCJDLEahp2FI4D2h1u3iTMtNO3NGWrnUsOqm3vfiBrD7kWyxCctEs21w2Irrl9QGyQs5zVDgcvURFrlDSXc6Asq9i4HVDf84cDwfizP7hCSG8x6oQBtItkValwCYktJEYl2aJWDy988NH+msSTtx2pM3gICA4N5noVYj5J1ZKvnAkcwksIre6yvvnif+TBQG4aVnHsjg7OGcAvxqdJNNZXKulZS/lohAM+t9QkYJcXZ1zB3g1qsXx7Gxi25Nxyc826nS6MSOWS7ewsQe3sXJD83hOzFOhvfsmqt68bxWUiP8sdCRnGhNA2R+y4yZ9SE+uXuO8nVqnQLNhvd5ZGDJU2o3rCFaQhtUP9iDAyqL/zHnomHl9Q7UTV0nY0pqV6L25++0MElnRqFLSkfwXaAeLIRiscSt4Twb+X+V8bRugXpmy7HuIBoLuUeIOv0mWlMePARsQoraPCPixyjh8rpUFShEm40lcDjR3dCCquDqlNJpvySuotVujaYxAwTeBxcSu/sahntJd51BW8xeYsY1DZqQZwMaLNn34Tq41egF3acK74MYPq8/nKaX3zRf9DJq1f8puEGfHx63/fCYDQCgke2ofR4P/xak2uliS0a9pV6PhjRu4njfxUzJnWnje+CNzLOhJzYhc4M3YMPv3gF1IYFltFxqPtRKSu4xWGn/p7Lj7y5hCiiJylYKFsB5DyNk0r+ux5vm3s/zjG209+mPUPziCHpZlClux/UzYPGzinfQ6jtdgtPit5T/Q0R4nDgJ138hnJP+lRIfGUs7eT9uGnZk6D5sFg4dHaDlGNpJvAIFLJHlyBS5GILhMr1Q7OfsJXPu5zckyxBnSE/1heUUis5ju8xYBeVs4voNo7dL5zr4KLgjSmumi6gw93vNHa6lkm6vHjEYRge5l8byoNttzpnbpDEy229lNYVa6PivJQuwaFOwa4emfP0MJsCguoxQwDM4w0fffQXK2zK/Qhg+GWNiRWa6Wr7v5+a17J3kWKVdnLnLd8ZHWWjNtr2VowsiPvPJd6XNVykndXlz4sIbsaylvDyuTThY44/+lNds0PUZZF4xbzKYnXR+HGYzjGj3Ko8KZSNFz6eYr7tiy7gaEV1Ml6yJfC6i/gqgly+vqlVkiP5XuR1GVc/rdHf0pYLvWUsRyAQMgYhuTPu5sAq6PXi98wZQU23zeqlihdK6Sk/f5dOAizlABr7FQMWT6QvecF6PmDc3X3IR1/ikPTfKv6rZnS/zuJ0nVmW2iVnunleM2nCUUgSCCx0LgjK8AI5i0U2gOjdsOkmQ4smcOKR9+VVsjcqFr0OIbLtQaH+BiNpTHW22sqKZkDOpWXSA0oK01QcuQ08lsfUEz/C7y3KrYrg71P1QcYJpl36cxAYypsyUF+o1Ilt0vlyju/O0VjYPYa/ldplYustP0la4BrvbmquTDn1ilgcqgWsjs/+jcgvy+8qsU5ON5lVaPaW7k9zanWqcnZoC3PE2IbBANouMb7ljlwArUK4Pgki6yP4bxbzgczkww68Knw0Tfu4DMP3XgpKckHRj+buThX4TMpmaLCV0RSHy3oQxRfcxKa/hGCPzYCvguliONDNRBrxVn4vyiH/ol9g+wovRrXWKgr++Be787+sLngXCz04QZNNOoUcBFNX5sU5eNVu2/rxLtDnOTGSPH0YCsCWz8ZPuorU5sV8TlMXIfAc0NX/Pguz8xEgJRY3rwqbLQvPkzWG5RP4s7SSMoP8E8MajbHfMFMROaeu6nnsg/GurtmlCIL7ihK/2YEKeTO645YIGq2LZPUPltma1sKhTZsCsucNmrcTUxAy40k3XvyrsR0DDmwFu7hVaL+PpIM2gIl78QtuOquVD6atO62dg5WJxuRy/8Y15SJpxjrSl5juOyUsDX8Xhwav0ORiybvQSZIic8k5On6onY3uWyAmHC47XEyZg7F0wnPp+y+w5Go70dhdlZ2FOwTnblAeNctNdlGYNl84tagplpeQxFeuP+CErq+XF/hTUIG9wRMLPUDTDf/cqtHv6E3+8ZF5r6XJvNJKCh1caNmlGSmoTvN7SmsDPHd1k2Sj6qMUUd8tNxjLkEwPIP1w2yaGsNiQy244h+8/21IBInqfcY3TKZ7Al5Z8JP6zvvoX8ZWU1GTC3wTzg1VB1K9QewblsEVgOzhCNvDJVVcyGXFux2sdfdb067cNMy94D4Vo9/vt4uKjWLJtO6fA8tKX2givKcvj/Pn2+SkuPTUreephIj1/YT5sx9DHo7kX3T8oBAvu1f4PiQxW2efOGJcTYCQ8UaswIhPNV6cLNneVwqYETGhu1znnxlkotJckkk7he/kX+O6fkuJzhwsuC4oZ5V1GlGaGaGyPaEmPOmdMZPPvly5Go1HMTCv/GsQCQ0afcMykj9uAxfMOf0ZpsqhTrFfXrRMvuODWa5QBVlu9ZIV/f8QDk92djb37cC3kH4zYwOn7MNThPfE+fUBOdcUBmlw7yqLEOi+z2if0cZ06P9k7HT4eQFU6ob5RfFA7msD2dGRD46GSzO98OrmHTrS/K90Rnd2kfPz2wm6FvTJN7JWH4uxKHvsD++0NhfmGA/uEABg+xcz40qCDoxTSnLBbNjh9qhbtfWm96YGM1JzUNfT8rFgLtg/FsdxYeBEI+NdH7v4beetwh5u4txAcAvB4IMaFZ8B4ohUbG0EIUGfc6N4xHk86LSImSkRVAA8cUKcQikyjirKWr6OdLfDvXlbgV7ua5fjI3kHvvj7aksaEGGR5ZSBAN3jDIHcxpjFq4ohP7grcKnoI6bHSNmvT5fFnA6yBmJXLKB0DcC4jklhLUlT+ZJkQaAGWpKwOtVfsFbr8iXWvzMUmTyI1eXX1oc3z0CHcXONnAHA4P1k/VtAgRfecJ3pSy/J6I5IBnIKayDrJ1cUCgtA5FSRHgqFZt7rbpMRYVPlH66bRW7dZDVgJ0oVd2/xYuqA2Nq4sNX1r3QeYhoLIRp9FuAzJfJGit53UQoczqw44E2RgAgsqxx0bLhyJPjZ+/tMmppv8UI2oxnGb5r7IFCw5OjXr+Tlt1fmqQ2thDPaMX7TqCFmA8pMn2jyw2A2FgfIvLbWfxdYmoV0Z8d4Y/3dUG/y1DsrmNhhgk6btKa8//TPASY/zXmCQvB+OxdwXADHBVssyIc6N2tuYSsCBRmr+d3slT6hYxvZhRW09HMlbsaAuf1vHDmifqLIUcHGDbaCiMAl21+IZFnfUbFpwtuJWQKazU0OuuNLDMcU1uLuHVgAOzzCh2woe3IdV24Xm9Ry8b9GsVtSAE4es8/LNl80Et1Z3RfON6eSqhS3earbNLFT821Yrm3aF32EGNrG9MDrJCBL8eFLK12v2h4DWTirHySROFVbNHIVQCdqCS8XDIRHUk5nTf6qCZ1YgixpDNi3PU9tJqM+PhFXpPROfWccz6z9tb3upA/o8uk5KntNVw9NtyStOWYEkLlftg+/DCNHqD83CEsHIoDXsngjDfvzh5PLEsdsopfpQ/lLw5ExfB9mEHjWBynr7ThJjK0W0LJygU67fH+lB9jf3hwqJRP2p5nQw1zbklcT1Unn80FPGo8+Sl+XBbxEFf2r8Gwsb80D6ily8xzTloXcXNMJ/pxRanvVMyjubsTrWUbOWvIcSIcjdhB184w4D3PzFhwgAkLpmrGjwt10OI3RrYd1HGdp5JLKU0gGwcXRiVbZVwjGa8l6d8MiypXISy3fb139/7mVQ0oeDv0ZJbMtn3cU9pgh5vDO/ggmTezoDgXV7UixENOuXEYVLd0mCuW+uxo0t8sDaocpaFja6DGzY1o0cv0zPIdud/mG9DvEwB1/yh3UqtzdS7Ns+lNCUk8Ir+ZLq9O+3kHm9oVRQAMywfGDe8prg1udiLtIl5nrpvJbVSqYZ0oi6+6L3ct9hbmCq2VvJOWsFMxC2acem3NNTj6wISUfQPOu9M12Majdzrd/J4cZVte3lDedXfOZoKeww4pPaXSieDWglgjhBhwTF5PnoJiXcRWdYPEuF5brfxV885GvvPfljzizO2eb3OXWkHHoFccZeNwtcPeLeLRMcWYEgNF+y3sQF3vnvmqQ9JxS6HIoQu7StQD5/pgoQxGu5ExYxoUbEDoVNKwZPrAiGQcz9b5XvG1Wp9y5cUkzga14JKv6CCxG3fWCHWPAUNua6eeBr7OIFNoqSunPXIXDul6Kkh81xHTuN+zIjjxzusB2PBCuWan073eE4kA3xYXxmFJHnIOoJf4QfCAemi033kHwgt5xVuZRrDWNgONIgTmGSPxr0WapjbVrmMI9wuHQSo3RCAOGg+IPL55Js9KjYsj1joM9m2JksZ756t2QaG1FdQ0LCWylwczr8fbwX7q6lbiVp77uHh9UcJjWJKBzbCNgyQ78644UwArs6SQb4dR4sEJubTBqKS7VZt+XrXkQk/24LKThLVRGLbBq4kI23Eqm7UCf9ZbZYDP+3Ss5JYxzNzXf41PqvidEklNe6ZpvLSb5587HSUbn4c2z7m15DII/5v6Ss1GI30k6dLrJ5U8OWWeVlXqyZWpVYaNPTJ10wpEUHxoH8cZH6GS6OtE+x0+khUXBKZCdKbr5uZaqNIJaris3LoLT8XVHubalxhrgbgGVVLNz5FY+7gzL9g5raXNKhuV0fBMhuHY0k1zLEbA74ci50jf0sBjccBWaRZZhhEBT8kgGFJdZui6pJpYdGEYizB+AAP75lDgFTqlAKVj1mbsTFYIacIeqdnv59ussvqh/nQT6+OVhWjW28X6kyLSxbXqPSYN9pZmXpI4xDl8qW7AcKEY11OepWpDMYOnt+9RTzPEtfz5T7jfhmWatGTSnGagAbUZHbnayDRu8TrXXUke0Ic0ClEyfqBBGLuFvryiNcmze71sZop7uZA1k9a5qaABB4rG9CeF/MISEDJSuc2jmMkzGQm8c8d+9DDTWtWG+XGvfKQp0o6MPahWiSfOX3aN4EcGOxqy4TLBJRUQnvjc4tIcXcpPTSyXDza80G33iDSnaJftzwVIdj7mAX+V6aY4YxJbOaMdMpBrMhkc3Bb3yOhP8uu6fWvKkujF2/+9hunTsByjWk4/mCqLksDvE3HGo/H/MRvr6JC/T8GPWXPKaHm/1tfuJO4OQooatrdBH8k9nxCOuzrfvXU2rDK75+fkUGnCurywXGCpWHfDh0iD8v72OnPFaRVP7P8Il3GV7mOGr3PK30iv7RALjs3d0KKnxrxN17qEbfiPTP84BWoR5/YIEdVotGtrn9hVLgP2pWohYiCoSTYXGvSFgUjXX0ldvVewGAwQBlW88iOCFlU73Gmuhh/RgeSvC76Kze0vuCfhzD8EE8pZcYthmaWwrFtkEcS79hM3O9KKCnzH8O6xznOdoagdS9VhDnPvQKVUb0464TDeXOtVzI0nqajaUjP2x8a+OmeQNYN6JaWqTY8r3xXwe78LsFnWLZlb2K4DTkrnMILValqEqe6XMZqv49l9IZQSxphziAIeEIsfCgZlM7pNj0RmIKkG/pxH9g/dQ/eCKXKeWxteneAcmV51kW7xVqnH6f1otrv44POCcy2EW019NaoOdz+3RF2h3aBf/J50HPlXc0DSWiU+XmBeVEnSOqfM/NehOhDAg3C8N0R+TOSJH2iQocArWAjQRbxUpy7Cyn0NSnRTS7XhM59cOQx1cXiQqR9lxgLrdEL+CeVyKuM1iF45YJdqKk369OKm4hVvvoCTWKMraG1ONdMHqQUySmxn8RyIbcBZqtBlR8z36DPNdEikhhHuRLDqfjgZJwxfeLhKOPlaAJOc5pl9jpffrtqwmvHsqlSo+eyI2F3w5xdK2N67zgGjkwHM8wHvCtguSwji+mYvXncQlDLFJ/HQisWCgymvvkb5rK5S9PI1Bh7ZrfE3DRsw/s8asfRX1eUYo0drtmLxoTqCbF+h2LvSE3F2b3ZCKvQdkXrqtLW55rNsrldq3Xi6rQij2VXwiTCOnNwsNjBMaryXNHUkvNWnmT3YPt6tUuSo1up1yS1w8FyUy9WYc60t5mfLNV33915DEjYMf78iQqH3B4oKZATojhXoYPJagjRkSmDuKzmDb+K7rO2u3CYnAjpY10CsO7GoxPFfcC91BiUztH6lUTkA6t7/P0do3XFwinwmW1qmi6uTSBZjfrqMk5yFMwK5a0/8Df6rOofEwo4UNOSPugJlkIIreSYwJxxXgnQxfPszrgOD0Kluw2KtJfz1CX9gX2yE9Iyb6OZDYMibAh5i73EIyPMUNKBtUAf9Dz45yDc7l6gtNMq14/UyFIONl8tzKsvIvm62j95aAC80JbPkP8eoHfcspNNkE2l6UDcFB4iKBie+AhBRfoJA/bPUJ02uJzBqH/x1lrfKvtv0ffjeVVfv+at8L2hY/MCz0KS88tz/DeM96nusigFZMMGLmT2V57tvwLFUntR0xSbfDoalNcvc85S3DKCQVvZyE7VUFceMkhbwNS0IzLOzH3pwOmK9oDOqYqPUJVA/Q12nijLImALdOmSA+3btA+qzg2OK4lhe+rz7DNJ2ubLhnBwIW7LSBz5glCGjlxpyA0TLiu+hWwexcLgiD1ISglQ8PPRZHpbVXlPDhJ2mx/ZwcrzfWYUV21FK0iFWWuY7VpHOqSQlBFwZudmj5vnovZwO79P9FFW1iNmrXYzVUfVD2ps5jK9+L5ZZhJLu86eHK4s4S3Tg9AsaNfz/YP6eWckjWsjDDc8x012sYWAvEfXfEN0/gCV/hkwLlku52zdoBv3ULXU1g+jC4g048/MjW2qiXS92bFJVTWk6HkDDw6KqwXS2lxxNYxroIyHzForzVqbLvOKZTe9lkJZiBjNyrqBlVxxdVnC1yQ57fmrvq2PmCRCXprUsI5t1imCA2nMSpI0lGM3Sbp74CAUuuKlNgkMWOb/JVXAeSKsmdo8CXUsvOkbKLPVtcl6gxXBWr6dm5cEWMDRpFRRbt9aHUaQhyihAHyc6JH1IqHtmvU3ZVYr3QpU2JAXbGN7lcx0kBDkVibAXfjvtnU1SXlt0uRp4NWXQ8bF75MBhojujjKXGRGynm7KKZiVLF5IbRKo+6nyJtB1rG2ZrddqTzggq1AK5Eyo4wi7wVuUAT1J0j5/sCBbcHNeUDm3J2mw8Tp5L7uOaJZX/0wvd1+WQ+d14mWU85mXn77PUq56Goymq84QoqdsXqiQARGyDEhDx5nkITg4xEwYRtVnU/+mJsFioKgxGkshqtRE4ya71FTuM21WppcmKVgTllTWS+1qXzs+XdqIr1UUDMvP84gLfWPaANk/j3icvpNl3oOjHQIZjkFx6WVKG81WGsmMoQtxx0aVFYXCvbF3H7cFvDanoQWJqeUTDCRxwcSaMUC1xACjyBT7HUoymUsEplFIowzyrEJnt4c9ySv0fjGMCSSuadZFXAZlNtopo08pqjhOPG8ROAs6mbAa1XG6c0DY47NIxhY9smaHeFUfxEEpBCzsYh7k/iIR8wABoBcbhLF3kLFfD7ZFkDHjiWM40YQA7mtHW2chVUxUQZnnrWvKi7QZ5AAM9mSpA02Dq201D05hXqx3rkF84Rr+vtUeWMFUEJ1CN47Yc0nCx1IL/VFOtZaoeBdHc+cCkcFDxZiot4nJw6ywAkOZeWZM5guG55j9Gcmnd1XCVMzrwOYLaJBTzDt7KclnJsqNs/4ZA9aWzvQUPRkyHCfQdlxu5pjPXSytd4ZiQFoGe9xtrDU6/v/HXnUG+fKBj7ANWcEMabt6rO9pVaqf2ftv0IQ4H2IJ5ARngsULYyNNuvuOpCcvAlY8ZSd1BtF8VWaQoxsnlmn6NEpfgtvg5DfTe0YK6FRrlvWoxuufTBu7rCe8I7QmdmnQmloICwKMRocDmqxahvBH7F9Y+EKJHDye8q3syAn/9F9yZscn+YwgeZwHG4wiNSYBFiw4cj4YnpzV/A871TNbkP+UqrnobC/UOm2Pna+GW09QyAPTHQo70I6ztvNPmuA4i7iSEvJCnwJ4HHns+XXP1ueRDTJTDVp1BTqy5KHYQIREl68+qtDE4FedsUlVdax8iz1n6Cwo+hwY+2q8pAT639AJ+UpNC5MpKoWZNB2K95D3FCWvMo8sM9lFcXNzd6G3NQas4NwlikoYwKvVQ5NRJgCKEjUc479qCG8bkieGDZ+BVpXZfkJBnWA/fUh08gYfxbRT/dveidq3RNjfjGUQJ4X1aX8EL2Zx2G71TONlCh+E1ktePEX8uftjxdofqQVMjR34GAvq1bg9z91Laux+0ZHMlqyJl+dMvD1gaIJnP2TcFNHYBm4cTIxVxoGhhLPMoUQyTcfY/8Yw+SOkKNJUM8YiptvB0vNHmICVl1Nzn4Nh3+23qWeERFuiznkugvvqYI4ZWc80Dud+yNi74W87I4S4tQ+Z/FKftjBmERaTcxvnnr1yykfp2tqMj45bB5BGmMin6zsWh8dZ7q34Aksu5h6m2skqE+jKalNGEbMs6p3oalmJlX1CbMhGGIU5ujbp0LJYvhKlDUnbXr3Jx6opp3MXAAg/br8MCYUjmlqmKPUrQJHknbtwR//LUCzB3ci+cXNxY0Fp5v4mg0hoOQa2l0/dcHG7D915HtrAMdsyn1N7oKspHrvmqtvLvcWrTFrCROxGUSgP8MilwUKNE6NIT2Bazycd64iciGRJ6jCS0nJj34EAGl8YyOIxsyPb1JdXgm743NNKDj6Xww7UaU2yCE7scPTEI1nODUt4Ged3NW0G51M8Zso1UB5X87wf6N9jBBPNOJxD09sbSZsLDH645NkKR+DobKZ3P9cGSeTXuTbNTvCMnr4/IdgSQVQdPTViFTH5uJYeilGrDqIBSHMuoEQ1alb2eLTkA0CntwovjlyNTQ7qFsn3sD514wanYkr0yc6Ts57GcSunj2ndKRf0IPAPR8sdDpiVp8u1t+5qAy19gGkFjDMASKLlo9HVKR+DktWbCyfu3Nh+0K1unaVYZOPHA7S92UrWK2fyzGUuylChhvtOZ5U7YYX23sJ+wB7B8PfZYNiBQ1Eh8UPbUKbLN/jdD+XFEltfNu8d+PTOm6vn4U8N7rcciyCiPpjk5KoO7jX3gNIjdKqWYoS6sq+PuDndcsJbUG3xNzaFpbBMJ/Gslz0YsN8ob9I4LUR9gR0eWvdE6HdiUHz/lNVXiKpHNZvMO4sVCx5dLsOpaJiaKFe7StipieQ+P49A7bjANNk77yyfRfswQYYdjaU2nTZh7BJsNTuyR0D/7gT+doGVsqgsf+KX/IAa8JQLZ8WZ6ueh6kQ+2AUH44Fo2nC6BGCyvyeItVrpueIxQLm3dN+J3cyEXDpGOwgOXES7acY2VxWzzpH1ey7/vOUNHCNxR86yhnrrTseHtWLF13W9dGzdMSAP6/q90NbUhZgDmxM59M2qY4YjwN2zKT5uNjW5pwevWZ5Pyl+tcaocTlmzePfI6IeX8UNKIy5icoEWmMGgpDHMvt/mDI3COz+ge3GM5rs3DBTAo9Q0RNKU68Rj3nzjlj8xJgnfLg8iJcsjNUK67mNurRImMZE7c3FaYNYT+v6OiehZ4CafZAl/+0xpjMEpzXMYgN1gCnV2Jk85TNabfHR4TzN/ckkPtGUXtycra8uGoe1Bb8D5BfKASfjac46tkVx8xf6rrwEQysk7lCyX/XakABd6GbNH7bSR24gd2efne/oz9tYeAF4OGNl6W8llj60GwJUNF8ZdoRqi3pKApI55h0tUlDvELVFqB1HGt5BtTVYN9xh9QGJgMRLe5rpVbpBypKTftDL7g0wpanootavQklb2HgAHr7a7IETo1Z5ylpK4OVsbo2RIaqgjLfx+aY0sDHgo8zmXbWNcZeUv3wmo/Q5S+So9YSBlv7nV0eqBr0wHG5N7wZoh1yFYB/0INupZOVNa2eUAU211Af9of1X7BQprEbk4x9LVlS6c8BbsDZynUwIS9KI2j69Cxa8LomJW7gok68z3tqjbbEN/segzcXfwStgDF5JUtP0CSr0pwr3LNZ6Xpwi4FXgBbzk+//JdgzNPe/ycefGqg1i57CXKQLCvK+6TDIOQVIPENY/+PrlGtKJ4i7A/TdqcvwXeFVEkfdXuYgfIIWdFbLtSDw6eqmsn29Y/lLE73pOUFxLhcvwyGECejaGVRZJ/R7CbNWLBIkny4reMqqkQNgX/saXTLnamxWrLrBJpIJOXKx1rIQU2T6L/OrB5stJRpAIiolLaHImr949fx1Ag+lFI/BTc5/zi6iZZEPZKxpSex+ncffNAWGJK6rB/H1uVGieErbgT07kjiDlneBmujMq6Uhop0RprOgXpoEqVLapaLVqV7Sa/NB6InKFa9bFdNwoKyYJXRlyyov2pKCUw5ZEGeZByD2Ho7Wux8awkpEI2ik+qeA6r5u4HWTpWsl8v/wm4fd9oxatrTJfBZjxKwxZCAy0WDZNanG0L9EPKhbGx+Ei6vzuExoenMVf+FPyluNHzMcLMvnVdLLkYBGL+lkBy10/Ym44EimOeDyOqBqXOv85uSAAppCh6A1vHElTLv7+ZTpOyiTOadH5//YEA5qh45+srYebdEDR+x0plu67KX1/wza7/X1CMoXByHzFSG4G9zap5yRUjOin98VYd8qU0qNSjM0x/+81Y1lM367z2DwW1VII71/63FabxdljHEhCXtallVcbK0naVxkj8Q2qKUfN/7EUQa1h3yloCd6u5dL4W7JCD9Y2cPJw6zEUICP1qVNAwmPRy3gzdu+AjqlCOAMgTYrs6Mm9fTLLodq5alGtAazq2fyXV4YpksdeBvgLxREagRMHWUCeKoAOrsr6S/4mwKVBj/FY1lDDyo1pbV9D8S9/JZhnHTYVTw1xNWtfPMquTQRkg9cP1gc/TbK8JFNk3LP/oorwn42OhPKMw1b+FcEhFnGJMGekOjuBVLII9CqIhqQeAxc005vcvJqzn10asEfsblSQhghnVTzKoqfYarWKz+vpxBKlUH+YlYO9Cp0d0wCYJLrv1gMC4/rDNGtPrS5WcYRxQwhgue6DVeeDqn5vLcUU10D6rpZ52468MalSqlIuAJufieXubiMX6tbw+zlZzceuyuhy2z0kNWWYO8klhkTPmhy26BiMbGrthzevzFkO9MMN0xLGAyBG58NPqO4De0wGA/WmQPq1exjVdjsDGSfFSdEFvJv7bW7LmfYBaPf6k4D9mxjpHuyOHonQekvwZfhoT+DCQyUe+g1Gbws4zEbAzR+vtUACz0Mz8cuz9zeoyx0+FFQHBEolnw9VuFjz10o4aY6JdYWWBKr72O688HYiich9nsYpt94id7pPPkYDHBDHvZ/c3F5fppbhFCiYgpi9qW29Repg2tpfYxKFmL8iMOqsPfwMW+NIyQAtN5H93nymhl+sno/iWASB3MOas8CCWah5fGiumBoOK6phcbyM/hCLPguuJnNnzNCGxjiExCWDearTzb7q4VTRf6+NWF8TL0P6OXyu485q8CiV6g5L61vnPbA/Ihtebd08a2VNHBtaeYndtY8iQurfjx2Znd1Jf/P6qgBMN8pkw73JrfJNS5g4BNZeE8olbWAwwUBKlibS0aUTzPWheOOX5Muqv1ormPBKXly+SNhTN9bqanZvbzNhMKMceVEp9hvxDmbmyP56r3tt8W4y/njZQoWQjKo2QSDA2PNj4SqdLfr62W8bTil1RY26pgil2Zp7RQ+PgmraO/2Vr5VBq/rmsJX3sD0YEw58LpS3cG1aHnmVolEKdaBLiwG627Q0DvG1btFaXoEdLIm8ca2w0hm97g4L3gmsqLX26MnzBMMSyL/rqnD9tEi4dTCwu0+h79nxsiN6snfq26Qj2b/8C+0dY2LP84ogGTlgXTRxiq8PI87W7bjk4MpGlWb2DdUcqzLfJvz+vLEJGHZ2XyvceiWtnqDSLQERW9ldYuUuSA+9bBfU4uxGgbcHy7iBzaUV62l0Vyc1QsA/nzNWmn4PSD9a4sGYIQOegE22+nExkAOAYBziOLbEoo92BifhNG5Qt5e5zwJTOcMPM7bS/HwH+NZGP8mtVCrjNCT+4emkO5UELZKqwN2qHirhcs6CiG88Lt0/7tPZKaD2SPHJZRAhya/8pjUQ4YVde+4zX+fxYhMoylqEVRQ7F09LJkvfRskckelvySeT1/kEJRM8XwqeN5OuN0Wy+9LbPnQek+i+hrq8H7dULzTKU0kFxhuTTYIV9z5iM57XWpsYdLI9DjvK6h5MCKnSioGOh7MDodbYpIHVbZGztRhI3GQAgN2oe2E0KhG9/NhghXlNAIgi5q6U6W57ybNCaTWl1djsXa48vAGLwyAZ5R/blzOAlNBkq4HXjTulbBIf9bd6yC72aW43CGwXNCaPYRnN0jQ7Zv/0Nu6iHkS9ZMse72kbZwLQzI9sBiH1s6+whB3zooyegvWy7COv1UZYxW6HYS9lcfkY5C3KbHcFa6swTSSPfQL/ovmC/qeUOrJnRVFDXFxY367Ph/0t6B+EvtgSW34LMIhNU8C/es804mR0jGEQiktgL16UEetMVSC3qSSDnlK+PSidAGxAb6tepIgx1x3ISyCJJcRB8CD2L3HrIf3gz6l5Fc/BiJEgP2jE8WtYfYfIrB1ftRq9n1tc96+udR0PwEyH/u5nzq6oZh0hORn3YjUS81a27eJFdSevpe/TWZX8VhGX/NroVwQxgLggGnK/lsZKQhHpH5YQvW4H8D7gG9vr6wKw4PLHvhidHq8Ism7A+VlRwEfghcAJktGYD0fSmmotkhx4K83EH5f/sLbrPEms1nsK5jtLTYAyZP338ktE1SOdJTk3gM55LYeYeO95SunCfXj0KR0wv/7cytyjvFNNKlyn8QPGyaWyhjPvV5b49LQdVyCgsd6aTCnLw5YUKON5DiD3w7L+Z6bh8smwmn7ahZb4i/vH8QT248eP+ex2qenkQ2s6ezcFosVPA3plKuoqYHXe6YIP4stjALy/ScTkg3ZBzdm4JVKU2XizaTATmv7XJbP9AgoCbc/hCDrcvKXuvfnidwBk3lDj8a1vAwkoLCAbJQsRHnMoAOHcrfEcwlw+/1Xmv7/VdDIi+DwUffae/lrtg8kJUZzC2Djn2YpZLM+/P1TYV7AasIrvK4vKlD7+QZpwMv/76BoCeFwP/8jOCavnm2HyqaeSZEo5k9yjbls62xzw6bX0Y7DpCl4xShqsvo9NV2AV6nYLuMRz8Q4yHlpipaJFqAqawiQmZXGL9jsDfN7xcUWa+K+r751G1TSgQ+rmn19A1Bvad7u+qFpVkkWjbmsrwWhWWPo1UwMXC5tx1hOYbt9wPvNCyI0f02csZGGcet/pbMzh1BBaAOff0cGJ8QXCXXJ+giR6YI1ipHN/gAGw5AGrDNilLJCYBAOYvd7GhQZAsgw57XijRil1eXgJ39YUn05PrJIYGZd8HW2mxnRlOanIDM/PDXmM9zuLngxtOrUarFiezQqlK/wH3RhSwBebgW4dXkLLErmhP0xBSoODYalgNZJrIJJEYCB2wArheS+cutYHNgyWKCszCupVZUtRsUfqFiSGV0UfrprYuPjufjluxD2KAzD0dhCQQBUhIJR4IiJRvi5Cz4YOkLurJN4dfmHCCAJ/T5M4mBuOJsM3ILi15kxYYStezEmT2jIMmfMiwoG3fHbYSgRxz7bYGc95TznbOmBn6AAme7Gi1fXYyVDnVScmcafULYvOSEU/uqQA7me+8V6CdBch3H6HSXdCn2fOD/broxLidfBjD1ETy0atI7ymsb5ythwHxKzzVEJGRXtfl/C/4opFSREYS/wJjJi1Y+Y3zBj/0qrmAtdnFawv8r4/z279KmfXsl8J2wULYnBzs0nXRgAreoNHDrtbG5/hyP14z+nc46o7PL9Y2eZT1XOokT/jopEfQ5DTxiEuZsWRwXtcSkudYMwKX1yUvFFpjV0Ps2MU2Q2YzhI0AHBLCih6hEh7mfwU+SmsW/zvvsSF2ci46F+op/XKgNpPDc0chU/dSqVxTjBF3+wWA9WE3YNz9ZYiOstOSEOB9S2fiCpIk/nPXfahzozHZze3hmpbPOVSyXS+A4pYhBnSeJZrDp3Ljq8eDGCqTEKujjqtWV7Ql+cTmLkyGuCeb6+jXTkObJvFPP6+tQny+8jiKpTihg2PUOIU/zHvYVVjQRG7Fv0CHy4ZgYgpL+vQlAodrx3uAQ2haV0oP8fk47b44KxVEqWWOyqRhjq05Wg8ybNVhVsOCOg9yXN/s3OQfjdnxBjgGQEGrOBvhiZL8G1DakqWoT/O6uLOZtVpUckfuPwrtkgAvtq1g+f1E9QmEJnkJpO8jCW08+elLipgJED69Eyx3OunkiB1kyORG3tyv70EeZMw9yZ3G0G6sU0kp9HiTxf7UJrEnkNwQG1DeduMWbln1zlZ6JQa50YSddLXVM3ybOHLFbuvz5uxqKibSgETXKxMwgghIMfN2aTKvKE2NUgZgCETdkUeE5vQJWvjzFkSfUCZN12i2w/m4+OkgXbYq183OcRarA4xACROAbwkTQ5svCdjdBoLlkN5Vp8DCEw7+w2cJ+7xruL5c7ofnl/1cJ5zQZx+RBy9NQadGcj+6U1kPHLieULXDnlig5SCAwBapB3ST/1XJvSBu3Im3+8SyEdqtHVDB6BCKn8ib611t0VQ+v59P1QcVvoNHmL6rpFRLooQjFl09CDCvmx1DUqJFPpT7jQPWRlQSXF5+102xcGl5kgqESZL9AVmcVSdoTvZrwA+pRX0Je1HSADrj5DBuvSdk6olwiFLw1BmVCYfZIk3ElaivX+S1W3WHtyVpfGQkF962bTfVOvCZwBZzp4l44tx+ILgUYsiFr38KRYoRuFAG6tdO1+QN86FX31w6iJiqIipfY5gTHUFxZM3c7yuS3yUb3V7DkLEvyBtgNKj4zzJItfwJsA9F7rHkKtJcgI+8N6CLbPcL7q1UZWCVzltw/t1HHSlwFUYd2dGhZtBFkglsh3FExLN1Gf4ABJlwHOMc//l8dzZnc6u65De847dhDT+cJCPnvzqNM8PnUcCA22/sUEwqCLHihMnV1j1T17BW4oWHTobV5Wv1Mw2Jgs/ojEI/KVsiuJWtmsMrY8TQZULQYgICsdGT01GfODVMvmiTEjdU9h1tVecNje33eNQGBUSPmzPzAFPh/M3oFei82nbgy2/XLMHmMhSTkHtNzTrIgOEQB5nNz8KcDkhPytRdLevc28TdIDVDeCgSe53V7exieE4krIJRxVyVROlWkZr+f0OgmPwkLW6/Lr1vzS9XAr0jEa4NFGzFR/cEIysK1clgRGD5QW39b3uZtKwBwC2fcYApxu3fv9Jm3jIHtBPl2vT0yUmY71XOWOcGzg+vyaVNIp5vJX1Ia1bV2CCcXsTPSrcJtJbYJtcxVbIZuzE3kIGZtGcvwjOtm0K2u2qQSLJD/0Xi9gHxucViuMQpnsPG3epC5ILTZYd+ZVnL5j2IJdIWIwcMwDuD1ESUEWMPfVbBM6jAqu5jA2b90OIXoiK8xmY1aUbvTckhnsHeCeEQ5WNidGmBWAfhj7itDGagavQo7kSDBTQ9cB/yGMsHtBomntENwjjFKY7PV2jkicuBFxgjDhSZ3DSzAOmfFP9LI1mD5Mrb13MvS7iTrCV3/GqNr31L+kFIkMk8f1A7iUCzg1bcUdzUzsvrAAEinMhmTj4AmATaytx+OzQ1xi7kknjwOpP3a1rFvsxRb2ZtOvlgo2yCQibjjtmCgAYY+eC6GY5TSnS5eRPDqFNl3QT8uw0lcb6yP6dpbI5OSJuIzeP3XWSTsGJH0vxryziDjcbWHvT6QdTNGxf9E8GppBndwHswsAL0Bk3vz7enWVyZ/T7kg9kZayzIpsJClOL33I3SIB9ZkaBUUfCvy72iNGkdakd4zXP6YskJwXySyEQB5Z7nVdyb0zCutKGeNvZFCh8XXYkn3IXJC/ZjRIA87epffdXLGDU7IycfuzwPb6smKwMtVm+7+imiIwQbqQ0VOJUgV8egmy9V9Pqs/15PKhp7n/UI3ITgtR92lM7DRrR6uBNJF31oh4XjI2sCuaHqLN8refBMFYsTtgjCmuJqd4YlLR8W+rXkqHrn93Q/Zx67AXgUVpelfaYyDSUkD8nNUR2r5OIchF878Mig6sklL2d9Qz+LjaWdHcj5AoYsmTUfsOQA+xJaq9FdAMPUF4Ou4DV9e37epfAvUTccT+FrhKu4JEfpiZoKKBQxkEU74S5odk00jOFNJqEalUd21rEPmt5eFRJjgWPORV0ZI1Q1ntMYQXHILupf/rT0Rx/5h3VFlAZnKVq1KT3lSgC5Oc4lXVNYFU0SzxEzyoGYBiBsk7u1hPCU6fUwfE3/pt1WAxoDz+seV4ygIE4rha1KtNhOQFdzkWZjkg7g6VFQEyUA1G8f3OWr6BRw0zt6Q33z9bm+ghMGqbSBrKkAPbk3a2FwNWSiq17hqb1PYhYml/7ohPo9CywNOVIBBW9rpVP2ThPrY9NuGAKGbTyu68GNUFLZUqdGTapWC3dWU5zJgQCKqKCDqEXZpw3wGF81a5sqIpvWeUAYOLLL7yLHgOu/0LBtilM5zfW1VeB0s9tzGsKP9J3aGTedCpJgNjr5EhmNk1dkx7UU9MTDQfZINCCqtaO2Zkd8YjMOW+JWUZRDTghaYRRYI47jUf1b3Tx5op55clb7+t5ba1LoHi++dkinmn/PxP4PgSaIU0UgyH7PagssAuzJh1W62WOKZkMDJrG+dThZYo0Q5pvq4FfRzi4U6eXt9VZBoDtrMlG3McfSB+bKeItnmi2da1cFjvQMQT2AfIrPfIAkFcvLhgI5kFOd9gJ/fmpu432LNvvV3yDq3b/9MRPhd6mdObCY6jqeQKbZXD6ctyGXrJpgoaGfrG8iaNgy6dIhZJZcFw7APQOFqxLyhpMP5xziU6iwSQrZnOulofA5tgy3jCVPhB3s7frKkE5Sb1XaIDG/vDzFW3oP9A90tjQd+nt6kMB6UeczzoAEvkaIs/KztV5FmzJwQgANpjElwgZQi8rKCvhOuFwO3QYJ8HRHl6EGgwlgdUo9uCoDWWi9H0+TeVC2r8YiYf+9sMX/iDsgkRxeLiNxEnE8HHZXXy4o1SpF4O3Av/KuO42lajBsJRoKCZt2WuwEGsN7cJ8rUo/hTq8HPXgwNtFn/nhHb/Jgw03+YNcu4xFoeX4WrYHIwSLV+dq3eqSCr4Me0cyKMLkQIp7Ii3Y+vVsV57Pb4hAMnw/UixsJ2aWwAsX7D2aenTFOCgkaj6ag/vzwtrqb68IULEiw9AOAGm4vCNxw2VcEOGuCahR62O8kEqkyCAfvovjaLsZ0a3wi4/qeq1rLUwzAHb1mEtN7qmYlU/mOdBbYTcxrblvjgp1twzRFI0H7QEky1idH8yL1uwSxIStCd5BmDqgj6kDyvt8chQObnYlT1JK3E7MWB4BVVRTRqF4bJA60WkX2GPhAaijHOW9lFnt4/7y0O4vj/m1S3eqKrwAc/4YhPAEEArILcSxwxUsXoTT23SP/XbnkGd4NLDKlr7B9gqaju7V+YWbjkch3pXzqOyYOc0+IOlfszrCbLJGsjck9k7JtNSfNHXgAJFEf3sladj+NnTOZyzf4BAOTOYP9OXYL72xulju1ZX9PgtVXQHBiWyiQWy+Jl4aeFC2/jxFtaaiTQ9NIKEdAYEQZFMPRrSEBhWgWW7YdhTKOj3SCdNiimQD0Yjcc2m08o17OY/kZE77kvukHaVo7lkTdVFzjHNWp2/Gpk1hlyyp10ACrdfvfXl4D93mh9AYsZvHSKpUa4CIw9l0j2n7MUSvpOzOIC401apQ0h2Ykq7RrnyGjy3wAHpUoiY0gAQ5dh+BG/KPeOP2pI+tb3Bq+HlVL7x3sk/OyE9EERhrXG1VxNGXS55Dy6jysPkfTd6ak9/jMldhax8gktdS4GIVdO8Ym0eSSCN9SoQ1e6cFbI7NkxLSK/p9w6w65xP5zNyqFTLbgHNYaUx6QGG3ztN7hrExVcE7u+RSNosb7yPX/xcidsm5LM64UU8cds7FaTkcN0DM+bdWE98zZoL3bU0PNsfFrrT5fQvdgCz2cHAG5JzrWAACJnYTTEAGvkexTTQj4m+Qgo/IWw7sW8Q84azyRHkoJEkmHMRgf3yRprKxcxRZt6MvGkU5WQK5tQKFDE09kpqNGQ7UKCvezf+2Ml/j/ZO0YR5r417zdjBMytMI45O7r4LGoaaVbktT8pvKYmpAh9dYWSmgHj6DtS4iH6tQeO/NUj03mWzI6ktPvplowpSiX0lXOHzpe9bpGtZ88s7wDGRqiDqvNYZLA0wpRQBKQIC9qQaDiWmZPKAdglA5ZM30MLuSU4u5NmgLGe0dHWHocm8dwYOTusfRQqDO6wPEomRig3oyxwX8CqJMhEFmyzP9cgD3x+ABUHpodhtwM8cI62Hln2UwxXLnsuy5S0HgspIH/+IkFOREFoegztxAEujlEUuL9eZ6xp/GNveEVUBcqWJsPFm+m/Kub86ScdnncvVJIWgY8COCIN2iUNp7T9qXU4E6b8sH5kCo3NHTNMBmajrsA7127ykiIfspS/mnVjhA/t3gZWcDyrlnjIVmpxvUVMj+tBrh8dr4nlbh4HlIcUcAqlTcwqObMP/hFEa0MsgB+SbjwRtFtREQAU3G0KP6Zta0fJwitBWRm7Z/Ika5MGCo8g9gygDJNX3ZPN+Umw3JIL9E+KZfDwjnrrM8+yYEFtlwzGco5cvjv9tv2ZEsN9p/DfHJOiGKxZ+1OsqMGOObLU66tKdrlfS76+6ODoBSgMggy4kg3BQSgQy7vxWMaFFaoAwW8Ch3qOQ+DxrOdXNJsow4lg2kZLuaP79sCbXzHcQ5b/Go5QOTFpfL67AfERKdUfGTpVJfRBVre5DMwcb99ATrZ3B7XaiX+5I5JLUNbA8x2Vqjbt6XnDkOFrVX15fMp5GawKsEH5OXppfbMMrlM6aAnJSYQFThu/pqnqnwBB/Ul4FR8L/pmS2F/UPXcY/vUL9yz8O5fnsGqcrsJMp9BjjArqIrX0a2zPv8OZt1ffFPGRRK/Z4zcqcLESFtgWsY1r14nGmaaoq3aIU/MEvU8cgabJ2pVmLIeur/e4F5g6vIGwDmnMkA/FguQ5wrr55ibVOQJtw8WAdtdKCIXoJnTnNY1V/Sy+btt+Aw7nF2y9ZaxaUB8jVquK3sOoHlXi5xZ3UUAETlg7Onlv3QBBqcJx3jn1gKBlrVl67M4pQatex9qxRkADyNj+AnKUqX0x0pozYr8J6yYyNqF/XFTtD+wd80PmyENl685Bp8DrKid21jmGHdh2MINtLAh4QB9pKP2p+EBJq0M7K2aQ2G6kX/VSpxf6zbwBGBetxVwTX1ayCmsRB/m0X2iGkZttaqtr/T6vF7t3uRXYtOITSTIC1E6dLlIMqHLuWn+OvdWjyV8gjtD8Y3gxQ7UeOc7P9ADg6gdDHLOuDNXPq3f3GuN5wveuk9j495DfYCcFiNVfHRefFUa5s9UcAuKTl+hxtYQi4Ml+h1rbLNRP7y6huWWwdN2gIJ/oobWMW9irNifeeeY08l8srgwmt73oLd6KDY4eNYAgcqj4rAnRHx9P5bAQYa59nfgSVIs3W7RXbkAIR2p5G21a4VoE4EriXx3XcyI9Pj5eFt1NLod0ViABLez8+qfASQHG3HynrBNBhZHIdqR3Nb8bhiQUOi6hVKf0d4xP/sDic6EOJE58hYVgtWWiFVQX+05ZaeNANNl8aMHi9iAerYlucuEmaapptXPt5/BSXD8JLQnsVkBzdNwjSC5dJGvgO8tDkNbkDuzyUwDja5Wa7zMYywl5W9WwuY9mUU180XGzl2GaAWb4Fl1OGaPlryXXEwUwZElvumrRIecL5UdvjJ4kyteQa7xcac2EIuOcVRV0ptGCTvG0c8kN2he1OnXhSZn3kFe180htq3khBJCEW7imTeWGIjugaj/Qip280O+pln3yKMb8cD4qGfkKqDZBAouJbBhfXf3zF9ftu8iOZViW+yLykpYbw1VUQJPw+Kl8PwSGH1fovU5j1TAWaobwdEreJMDRCtok5Cg7Z8ET4qX5Ns8UgvY9xVQtnts+Awmm7+0MP8PZEtj1P+XaU59nWgA9WAf/EEH9X4u6abF0KQSTD459/fhS7kxXiAunJVEE4axZnsQAAAXvgOtuXybJrWLSHaPFcNYg8c7nHumcVK1seLrdLEKkxwAhUrwMMIRBEfu8XpAAdNypqWO/WZ52TDmAk1J9cuP8YMGlFGKRGqD9B0I1MeBGd0tvxagzJJUGApyQbQP/KZa8/fVtPzf1RxyAjMBmButuxzXi3gyuLugK85v9lpTT/JZmca6QWU5ixcsRQFG9tyQYBFBtgXjG3GwqSfcA6USh7sKX33PS5Y2xyzBnkYzCSUdEkaAK1UH03DoOewmaQ8RfHHIOSt/JAFBN+C8oGPeNsNNgtcAB165MngyGsho5A0r55wFL91ZkPcjcaiBuGQ9926oWZ7zasvaX3EXCkk2P9jS8A98WE9LWWvha6Y8MwEcQCiavNi6DJnyBEU5qySZJtAWux/qirnSGylzK44lX9kJI9xo9KDVDsWtZcSmJweeHxZH1ZUa6fwGotLQayQWalDN84PcL8KRyjCmuien/yM/TKS7I0BMwIZJLRGpWs2AfEUfhjzwVO7ARF2eX5KBePubgzL22gJ7///FAv0AYNxIEec6DLad0eZMH6Eg6/+mKBCP9l+0fuAGXtN947vA7+XA51oZNRMINSPfnVdh6HmVhFz88hAAH8AK9WCoSiEE59Eswy8KH73ZT2Dnx8Jpdl5zc7Jm2SmnkNXSdm40OL39tL2SY3qbAQqZeuQN0HAcj2SYuWO10VnzfZE4yTOfpVrpucLRQfzFziNfCt3u0h9/6a2N/dL4eM087PI0wjUIGRAI8/zPdT5lsALMF05J+znHalMnkcMYLiGf6KcGhhP2kbNUgQ8SZVSZ1VuSbz02Ubs7MqpzFRoxY3FE42F6DZ9jR9Rl5DDJYaaFClkzfNVBXwAJS8+9VJagFsv/B3WfkF2UHZDk4bLIZtCQCps3xrg4O9KXrxg6YdI1rQFtB4Smdqyore1Cq4JHy8l2UiTe8wYqOGdzwUklMyY4sl56BFYHJBEUhQdvxQwVnL3HUdrUwbRTYLTAI2YcDVvXslNOZCz+bQeJr6aR0kllycKRRijSNg0M6EPW2kyVJbAwPaNbog19+6wCT1byWIUCFG0m4P3GT7uyNjlfH6seHPELZjntEJal55LPOmBpCKG9mdKHsMPgN8nMTRsndZPKTnribgt8mecumYAkYH1dznTfTHsFa3kQDtVRIF7OmhsYtcmgaj6UDJF/Mx4yQFqKUo+HaXE0vAN+18ShJQ0KkcwfgNZZRrTca3/vIZIWpovRPqQIxn2pyRIxIuZ55pvQI6Jx8OFiteUoqmvkEKIBTEvysezAQBXnJaUw0AAA==") center center / cover no-repeat}.hero-glaze{position:absolute;inset:0;background:linear-gradient(90deg,rgba(241,239,234,.78) 0%,rgba(241,239,234,.36) 41%,rgba(241,239,234,.03) 75%);pointer-events:none}.grain{position:absolute;inset:0;pointer-events:none;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");mix-blend-mode:multiply}
-    .top-micro{position:absolute;top:110px;left:3.2vw;display:flex;gap:12px;align-items:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.17em}.live-dot{height:6px;width:6px;background:#242824;border-radius:50%;animation:pulse 2.4s infinite}@keyframes pulse{50%{opacity:.2}}
-    .hero-chapter{position:absolute;inset:0;opacity:0;visibility:hidden;display:flex;flex-direction:column;justify-content:center;padding:12vh 8vw 9vh;transition:opacity .18s linear;pointer-events:none}.hero-chapter.is-active{visibility:visible}.hero-chapter.right{align-items:flex-end;text-align:right}.hero-chapter.left{align-items:flex-start;text-align:left}.hero-chapter.bottom{justify-content:end}.eyebrow{font:700 11px/1.5 monospace;letter-spacing:.12em;text-transform:uppercase;margin:0 0 19px}.hero-title{font-size:clamp(68px,10.1vw,170px);font-weight:700;letter-spacing:-.102em;line-height:.81;margin:0;text-transform:uppercase;max-width:1200px}.hero-title .light{font-weight:400;font-family:Georgia,'Times New Roman',serif;font-style:italic;text-transform:none;letter-spacing:-.09em}.hero-desc{font-size:clamp(12px,1.18vw,16px);line-height:1.65;max-width:350px;margin-top:28px;font-weight:500}.hero-chapter.right .hero-desc{margin-left:auto}.hero-chapter.left .hero-desc{margin-right:auto}.hero-chapter.darktext{color:#111110;text-shadow:0 1px 12px rgba(255,255,255,.6)}.hero-chapter.lighttext{color:#fff;text-shadow:0 1px 16px rgba(0,0,0,.2)}.hero-chapter .line{display:block;white-space:nowrap}
-    .hero-bottom{position:absolute;bottom:35px;left:3.2vw;right:3.2vw;display:flex;align-items:end;justify-content:space-between;gap:30px}.scroll-hint{display:flex;align-items:center;gap:15px;text-transform:uppercase;letter-spacing:.16em;font-size:10px;font-weight:800}.scroll-ring{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(0,0,0,.56);border-radius:50%;font-size:22px;font-weight:300}.scrub-control{width:min(390px,36vw)}.scrub-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font:700 10px monospace;letter-spacing:.06em}.scrub-track{height:2px;background:rgba(0,0,0,.22);overflow:hidden}.scrub-fill{height:100%;width:0;background:#171817}.hero-seam{position:absolute;right:3.2vw;top:50%;transform:translateY(-50%);font:700 10px monospace;letter-spacing:.11em;writing-mode:vertical-rl}.hero-jump{position:absolute;bottom:125px;right:3.2vw;font:700 11px monospace;letter-spacing:.04em;text-decoration:underline;text-underline-offset:5px;z-index:5}
-    .section{padding:145px 6.5vw}.section-topline{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:17px;font:700 11px monospace;letter-spacing:.09em;text-transform:uppercase}.section-topline .dim{color:var(--muted)}.about{min-height:92vh;display:grid;grid-template-columns: 1fr 1fr;gap:7vw;align-items:center}.about-copy h2{font-size:clamp(50px,7.8vw,124px);line-height:.9;letter-spacing:-.095em;margin:65px 0 44px;font-weight:700}.about-copy h2 em{font-family:Georgia,serif;font-weight:400}.about-copy p{font-size:clamp(16px,1.45vw,21px);line-height:1.6;max-width:580px;color:#545651}.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}.tag{border:1px solid #aaa9a3;border-radius:100px;padding:10px 15px;font:700 11px monospace}.about-visual{height:min(680px,75vh);position:relative;background:#d4d1ca;overflow:hidden}.about-visual img{width:100%;height:100%;object-fit:cover;object-position:51% center;filter:grayscale(.15)}.about-visual .photo-label{position:absolute;left:20px;bottom:20px;background:rgba(238,237,230,.89);padding:10px 13px;font:700 10px monospace;letter-spacing:.06em}.about-visual::after{content:'R / A';position:absolute;right:20px;top:18px;font-size:12px;font-weight:800}
-    .statement{background:var(--dark);color:#e8e6e0;padding:140px 6.5vw 170px;position:relative;overflow:hidden}.statement-top{border-color:#50524e}.statement h2{font-size:clamp(60px,10.8vw,175px);line-height:.86;letter-spacing:-.095em;max-width:1350px;margin:105px 0 80px;font-weight:700}.statement h2 i{font-family:Georgia,serif;font-weight:400}.statement h2 .outline{-webkit-text-stroke:1px #e8e6e0;color:transparent}.statement-foot{display:flex;justify-content:space-between;gap:25px;max-width:950px;margin-left:auto;border-top:1px solid #50524e;padding-top:25px;color:#a1a39d;font-size:15px;line-height:1.65}.statement-foot p{max-width:480px;margin:0}.statement-symbol{font-size:32px;color:#d8d8d2}
-    .expertise{padding-bottom:180px}.expertise-head{display:flex;justify-content:space-between;align-items:end;gap:50px;padding:65px 0 70px}.expertise-head h2{margin:0;font-size:clamp(65px,9vw,140px);line-height:.88;letter-spacing:-.095em}.expertise-head p{font-size:15px;color:var(--muted);max-width:265px;line-height:1.65}.services{border-top:1px solid #b8b7b1}.service{display:grid;grid-template-columns:80px 1fr 1.25fr 24px;align-items:center;gap:20px;padding:38px 2px;border-bottom:1px solid #b8b7b1;transition:padding .4s var(--easing),background .4s}.service:hover{padding-left:18px;padding-right:18px;background:#dfddd7}.service .number{font:700 12px monospace;color:#83837d}.service h3{font-size:clamp(24px,3.3vw,47px);font-weight:650;letter-spacing:-.055em;margin:0}.service p{font-size:14px;color:#666862;max-width:340px;line-height:1.7}.service .arrow{font-size:24px;font-weight:300}
-    .experience{background:#dcdad4;padding-top:120px;padding-bottom:130px}.exp-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:80px}.exp-title{font-size:clamp(62px,9vw,145px);line-height:.88;letter-spacing:-.09em;margin:0}.exp-content{border-top:1px solid #aaa9a4;padding-top:20px}.exp-item{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid #aaa9a4;padding:28px 0}.exp-item h3{font-size:clamp(24px,2.2vw,34px);letter-spacing:-.055em;margin:0 0 8px}.exp-item p{font-size:13px;line-height:1.5;color:#6a6b65;margin:0}.exp-date{font:700 12px monospace;white-space:nowrap}
-    .contact{background:#171917;color:#e8e8e1;padding:125px 6.5vw 36px}.contact h2{font-size:clamp(72px,12.8vw,206px);letter-spacing:-.103em;line-height:.81;margin:100px 0 90px}.contact h2 em{font-family:Georgia,serif;font-weight:400}.mail-link{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:25px 0;border-top:1px solid #5f625c;border-bottom:1px solid #5f625c;font-size:clamp(20px,3vw,42px);letter-spacing:-.055em;transition:color .3s}.mail-link:hover{color:#b2b4a9}.mail-link span:last-child{font-size:32px}.footer{display:flex;justify-content:space-between;align-items:end;gap:30px;padding-top:85px;font:700 11px monospace;color:#a5a69e}.footer a:hover{color:#fff}.footer-right{display:flex;gap:32px}
-    .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s var(--easing),transform .8s var(--easing)}.reveal.visible{opacity:1;transform:translateY(0)}
-    @media(max-width:850px){.nav{padding:24px 22px}.nav-links{display:none;position:fixed;top:64px;left:15px;right:15px;background:#1c1c1b;color:#fff;padding:25px;flex-direction:column;align-items:start;gap:25px;mix-blend-mode:normal}.nav-links.open{display:flex}.menu-toggle{display:block}.nav-index{display:none}.top-micro{left:22px;top:93px}.hero-chapter{padding:17vh 26px 15vh}.hero-title{font-size:clamp(62px,13vw,106px)}.hero-chapter.right{align-items:flex-start;text-align:left}.hero-chapter.right .hero-desc{margin-left:0}.hero-bottom{left:22px;right:22px;bottom:28px}.scrub-control{width:45vw}.hero-seam{display:none}.hero-jump{right:22px;bottom:105px}.section{padding:100px 25px}.about{grid-template-columns:1fr}.about-copy h2{margin:48px 0 27px}.about-visual{height:500px}.statement{padding:100px 25px}.statement h2{margin:80px 0}.expertise-head{display:block}.services .service{grid-template-columns:35px 1fr 24px;gap:15px}.service p{grid-column:2;grid-row:2;margin:0}.service .arrow{grid-column:3;grid-row:1}.exp-row{grid-template-columns:1fr;gap:35px}.experience{padding:100px 25px}.contact{padding:110px 25px 30px}.footer{flex-wrap:wrap}}
-    @media(max-width:550px){.hero-journey{height:450vh}.hero-title{font-size:clamp(58px,15.3vw,84px)}.hero-title .line{white-space:normal}.hero-chapter{justify-content:end;padding-bottom:165px}.hero-chapter.bottom{justify-content:end}.hero-desc{margin-top:20px;max-width:250px}.hero-bottom{align-items:end}.scroll-hint span:last-child{display:none}.scroll-ring{width:40px;height:40px}.scrub-control{width:70vw}.hero-jump{display:none}.about-visual{height:400px}.about-copy h2{font-size:62px}.statement h2{font-size:clamp(56px,13vw,90px)}.statement-foot{flex-direction:column}.expertise-head h2{font-size:72px}.contact h2{font-size:clamp(65px,16vw,100px)}.mail-link{font-size:20px}.footer-right{gap:16px}.exp-item{flex-wrap:wrap}.hero-glaze{background:linear-gradient(0deg,rgba(232,230,225,.7),rgba(232,230,225,0) 75%)}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none;opacity:1;transform:none}.live-dot{animation:none}}
+    .hero-journey{height:320vh;position:relative}
+    .hero-glaze{position:absolute;inset:0;background:linear-gradient(90deg,rgba(236,234,228,.86) 0%,rgba(236,234,228,.32) 38%,rgba(236,234,228,.28) 62%,rgba(236,234,228,.86) 100%),linear-gradient(180deg,rgba(236,234,228,.55) 0%,rgba(236,234,228,0) 24%,rgba(236,234,228,.65) 100%);pointer-events:none}
+    .top-micro{position:absolute;top:88px;left:3.2vw;display:flex;gap:10px;align-items:center;font:700 11px/1.4 var(--font-mono);text-transform:uppercase;letter-spacing:.12em;color:#1e201e;background:rgba(242,240,236,.82);backdrop-filter:blur(8px);padding:7px 12px;border:1px solid rgba(22,23,22,.14)}
+    .hero-chapter{position:absolute;inset:0;opacity:0;visibility:hidden;display:flex;flex-direction:column;justify-content:center;padding:12vh 6.5vw 11vh;transition:opacity .2s var(--easing);pointer-events:none}.hero-chapter.is-active{visibility:visible}.hero-chapter.right{align-items:flex-end;text-align:right}.hero-chapter.left{align-items:flex-start;text-align:left}.hero-chapter.bottom{justify-content:flex-end;padding-bottom:135px}
+    .eyebrow{font:700 11px/1.5 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;margin:0 0 14px;color:#353834}
+    .hero-title{font-size:clamp(48px,7.8vw,122px);font-weight:800;letter-spacing:-.045em;line-height:.92;margin:0;text-transform:uppercase;max-width:1100px;text-wrap:balance}.hero-title .light{font-weight:500;font-family:var(--font-serif);font-style:italic;text-transform:none;letter-spacing:-.02em;font-size:1.06em}
+    .hero-desc{font-size:clamp(14px,1.2vw,17px);line-height:1.6;max-width:440px;margin-top:20px;font-weight:500;color:#222421}.hero-chapter.right .hero-desc{margin-left:auto}.hero-chapter.left .hero-desc{margin-right:auto}.hero-chapter.darktext{color:#121312;text-shadow:0 1px 14px rgba(255,255,255,.75)}.hero-chapter .line{display:block}
+    .hero-cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;pointer-events:auto}.hero-chapter.right .hero-cta-row{justify-content:flex-end}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#161716;color:#f4f3ef;padding:12px 22px;border-radius:6px;font-size:13px;font-weight:700;letter-spacing:.01em;border:1px solid #161716;cursor:pointer;transition:transform .16s var(--easing),background .16s;white-space:nowrap}.btn-primary:hover{background:#2b2e2b;transform:translateY(-1px)}
+    .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:rgba(242,240,236,.88);color:#161716;padding:12px 20px;border-radius:6px;font-size:13px;font-weight:700;border:1px solid rgba(22,23,22,.28);cursor:pointer;transition:background .16s,border-color .16s;white-space:nowrap}.btn-secondary:hover{background:#fff;border-color:#161716}
+    .hero-bottom{position:absolute;bottom:28px;left:3.2vw;right:3.2vw;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;z-index:6}.scroll-hint{display:flex;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:.12em;font:700 10px var(--font-mono);background:rgba(242,240,236,.82);padding:8px 14px 8px 8px;border:1px solid rgba(22,23,22,.15);cursor:pointer}.scroll-ring{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(0,0,0,.45);border-radius:50%;font-size:16px}
+    .scrub-control{width:min(430px,42vw);background:rgba(242,240,236,.86);backdrop-filter:blur(8px);padding:12px 16px;border:1px solid rgba(22,23,22,.16)}.scrub-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font:700 10px var(--font-mono);letter-spacing:.05em}.scrub-track{height:3px;background:rgba(0,0,0,.18);overflow:hidden;margin-bottom:10px}.scrub-fill{height:100%;width:0;background:#161716}
+    .chapter-dots{display:flex;gap:6px;justify-content:space-between}.chapter-dot{flex:1;height:24px;border:1px solid rgba(22,23,22,.22);background:transparent;color:#383a36;font:700 10px var(--font-mono);cursor:pointer;transition:background .16s,color .16s;padding:0}.chapter-dot:hover{background:rgba(22,23,22,.08)}.chapter-dot.active{background:#161716;color:#fff;border-color:#161716}
+    .hero-seam{position:absolute;right:3.2vw;top:50%;transform:translateY(-50%);font:700 10px var(--font-mono);letter-spacing:.11em;writing-mode:vertical-rl;color:#2c2e2b}.hero-jump{position:absolute;top:88px;right:3.2vw;font:700 11px var(--font-mono);letter-spacing:.04em;background:rgba(242,240,236,.88);padding:8px 14px;border:1px solid rgba(22,23,22,.22);z-index:6;transition:background .16s}.hero-jump:hover{background:#fff}
 
-    html[lang="kk"] .hero-title{font-size:clamp(56px,8.2vw,126px)}html[lang="kk"] .statement h2{font-size:clamp(54px,8.7vw,140px)}html[lang="kk"] .expertise-head h2{font-size:clamp(52px,7.2vw,115px)}@media(max-width:550px){html[lang="kk"] .hero-title{font-size:clamp(42px,10.5vw,66px)}html[lang="kk"] .statement h2{font-size:clamp(42px,10vw,70px)}}
-    .nav-right{display:flex;align-items:center;gap:24px}.lang-switch{display:flex;align-items:center;gap:3px;background:rgba(241,239,235,.92);border:1px solid rgba(22,23,21,.2);border-radius:100px;padding:4px;box-shadow:0 6px 24px rgba(0,0,0,.06)}.lang-btn{appearance:none;border:0;border-radius:100px;background:transparent;color:#4d4e48;font:800 10px/1 monospace;letter-spacing:.07em;cursor:pointer;padding:10px 11px;transition:background .2s,color .2s}.lang-btn.active,.lang-btn[aria-pressed="true"]{color:#fff;background:#181918}.lang-btn:focus-visible{outline:2px solid #181918;outline-offset:3px}
-    .contact-invite{max-width:630px;font-size:clamp(17px,1.8vw,24px);line-height:1.55;color:#bebeb8;margin:-32px 0 38px}.contact-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 38px}.contact-action{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:128px;padding:28px 30px;background:#272a27;border:1px solid #53574f;transition:transform .25s,background .25s,border-color .25s}.contact-action:hover{transform:translateY(-4px);background:#343831;border-color:#c1c6ba}.action-left{display:flex;gap:20px;align-items:center}.action-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#e8e8e1;color:#161816;font-size:21px}.action-left strong{display:block;font-size:clamp(22px,2.3vw,32px);letter-spacing:-.045em}.action-left small{display:block;font:500 13px/1.8 monospace;color:#b8bab4}.action-arrow{font-size:29px;align-self:flex-start}.contact-alt{color:#aeb0a9;font:700 11px monospace;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
-    @media(max-width:850px){.nav-right{margin-left:auto;margin-right:15px}.nav-index{display:none}.lang-btn{padding:9px 10px}.contact-actions{grid-template-columns:1fr}.contact-action{min-height:108px}}
-    @media(max-width:550px){.nav{gap:8px}.brand{font-size:13px}.nav-right{margin-left:auto;margin-right:2px}.lang-switch{padding:3px}.lang-btn{font-size:10px;padding:9px 8px}.menu-toggle{font-size:11px}.contact-invite{margin-top:-45px}.contact-action{padding:21px}.action-left{gap:12px}.action-icon{width:40px;height:40px}}
+    .kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);background:#dedcd6;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0 6.5vw}
+    .kpi-cell{padding:28px 24px 28px 0;border-right:1px solid var(--line)}.kpi-cell:last-child{border-right:0;padding-right:0}.kpi-cell:not(:first-child){padding-left:24px}
+    .kpi-val{font-size:clamp(24px,2.4vw,34px);font-weight:800;letter-spacing:-.035em;color:var(--ink);display:block;margin-bottom:6px}
+    .kpi-label{font:600 11px/1.45 var(--font-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em;display:block}
 
+    .section{padding:110px 6.5vw}.section-topline{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:16px;font:700 11px var(--font-mono);letter-spacing:.08em;text-transform:uppercase}.section-topline .dim{color:var(--muted)}
+    .about{display:grid;grid-template-columns:1.1fr .9fr;gap:5.5vw;align-items:center}
+    .about-kicker{font:700 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+    .about-lead{font-size:clamp(26px,3.1vw,42px);line-height:1.12;letter-spacing:-.035em;margin:0 0 22px;font-weight:800;color:var(--ink);text-wrap:balance}.about-lead em{font-family:var(--font-serif);font-weight:500;font-style:italic;font-size:1.08em}
+    .about-copy p{font-size:clamp(15px,1.15vw,17.5px);line-height:1.65;max-width:620px;color:#383a36;margin:0 0 16px}
+    .about-highlights{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(2,1fr);gap:16px 24px}
+    .about-hl-val{font-size:15px;font-weight:800;letter-spacing:-.02em;color:var(--ink);display:block;margin-bottom:3px}
+    .about-hl-lbl{font:500 11px/1.45 var(--font-mono);color:var(--muted);display:block}
+    .about-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .about-visual{height:min(640px,74vh);position:relative;background:#d4d1ca;overflow:hidden;border:1px solid var(--line)}.about-visual img{width:100%;height:100%;object-fit:cover;object-position:50% top;filter:grayscale(.12)}.about-visual .photo-label{position:absolute;left:18px;bottom:18px;background:rgba(242,240,236,.92);padding:9px 13px;font:700 10px var(--font-mono);letter-spacing:.05em;border:1px solid rgba(22,23,22,.12)}
+
+    .projects{background:#e1dfd9;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.projects-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin:0 0 48px}.projects-head h2{margin:0;font-size:clamp(42px,5.8vw,86px);line-height:.94;letter-spacing:-.045em;font-weight:800;text-wrap:balance}.projects-head h2 em{font-family:var(--font-serif);font-weight:500;font-style:italic}.projects-head p{font-size:15px;color:#4a4c47;max-width:380px;line-height:1.6;margin:0}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .project-card{background:var(--paper-elevated);border:1px solid #b9b7b0;padding:28px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .2s var(--easing),border-color .2s}.project-card:hover{transform:translateY(-3px);border-color:#161716}
+    .project-meta{font:700 10px/1.4 var(--font-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px}
+    .project-card h3{font-size:clamp(20px,1.8vw,25px);font-weight:700;letter-spacing:-.03em;margin:0 0 12px;line-height:1.25}
+    .project-card p{font-size:14px;line-height:1.6;color:#484a45;margin:0 0 20px}
+    .project-metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-bottom:18px;font:700 11px/1.5 var(--font-mono);color:#1e3a2f}
+    .project-stack{font:500 11px/1.5 var(--font-mono);color:var(--muted);margin-bottom:20px}
+    .project-btn{align-self:flex-start;background:transparent;border:0;padding:0;font:700 12px var(--font-mono);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:underline;text-underline-offset:4px}.project-btn:hover{color:var(--accent-bright)}
+
+    .statement{background:var(--dark);color:#e8e6e0;padding:115px 6.5vw 130px;position:relative;overflow:hidden}.statement-top{border-color:#3d403c}.statement h2{font-size:clamp(44px,7.2vw,116px);line-height:.94;letter-spacing:-.045em;max-width:1200px;margin:70px 0 56px;font-weight:800;text-wrap:balance}.statement h2 i{font-family:var(--font-serif);font-weight:500}.statement h2 .outline{-webkit-text-stroke:1.2px #e8e6e0;color:transparent}.statement-foot{display:flex;justify-content:space-between;gap:25px;max-width:950px;margin-left:auto;border-top:1px solid #3d403c;padding-top:24px;color:#b5b7b0;font-size:15px;line-height:1.65}.statement-foot p{max-width:540px;margin:0}.statement-symbol{font-size:28px;color:#d8d8d2}
+
+    .expertise{padding-bottom:120px}.expertise-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding:42px 0 50px}.expertise-head h2{margin:0;font-size:clamp(44px,6vw,92px);line-height:.94;letter-spacing:-.045em;font-weight:800}.expertise-head p{font-size:15px;color:var(--muted);max-width:340px;line-height:1.6;margin:0}.services{border-top:1px solid #b8b7b1}
+    .service-item{border-bottom:1px solid #b8b7b1}
+    .service-trigger{width:100%;background:transparent;border:0;text-align:left;display:grid;grid-template-columns:64px 1.1fr 1.3fr 32px;align-items:center;gap:20px;padding:30px 8px;cursor:pointer;transition:padding .25s var(--easing),background .2s;color:inherit}.service-trigger:hover{padding-left:18px;padding-right:18px;background:#dfddd7}
+    .service-trigger .number{font:700 12px var(--font-mono);color:#6e706a}.service-trigger h3{font-size:clamp(20px,2.4vw,34px);font-weight:700;letter-spacing:-.035em;margin:0}.service-trigger p{font-size:14px;color:#4f514c;max-width:420px;line-height:1.6;margin:0}.service-trigger .arrow{font:400 22px var(--font-mono);transition:transform .25s var(--easing);justify-self:end}
+    .service-item.open .service-trigger{background:#dfddd7;padding-left:18px;padding-right:18px}.service-item.open .service-trigger .arrow{transform:rotate(45deg)}
+    .service-panel{display:none;padding:0 18px 28px 82px;background:#dfddd7;border-top:1px dashed rgba(22,23,22,.14)}.service-item.open .service-panel{display:block}
+    .service-panel-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;padding-top:18px;font-size:14px;line-height:1.6;color:#2f312e}
+    .service-deliverables{font:600 12px/1.6 var(--font-mono);color:#1e3a2f}
+
+    .experience{background:#dcdad4;padding-top:105px;padding-bottom:115px}.exp-row{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;margin-top:55px}.exp-title{font-size:clamp(44px,6.2vw,96px);line-height:.94;letter-spacing:-.045em;margin:0;font-weight:800}.exp-content{border-top:1px solid #aaa9a4;padding-top:8px}.exp-item{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid #aaa9a4;padding:28px 0}.exp-item h3{font-size:clamp(20px,1.9vw,28px);letter-spacing:-.03em;margin:0 0 6px;font-weight:700}.exp-role{font-size:14px;font-weight:600;color:#2c2e2a;margin:0 0 10px}.exp-bullets{margin:0;padding-left:18px;font-size:13.5px;line-height:1.6;color:#4f514b}.exp-bullets li{margin-bottom:4px}.exp-date{font:700 11px var(--font-mono);white-space:nowrap;color:#3c3e3a;padding-top:4px}
+
+    .contact{background:#151716;color:#e8e8e1;padding:110px 6.5vw 42px}.contact h2{font-size:clamp(48px,8vw,124px);letter-spacing:-.045em;line-height:.92;margin:52px 0 28px;font-weight:800;text-wrap:balance}.contact h2 em{font-family:var(--font-serif);font-weight:500;font-style:italic}
+    .contact-invite{max-width:640px;font-size:clamp(16px,1.4vw,20px);line-height:1.6;color:#c4c6c0;margin:0 0 36px}
+    .brief-box{background:#1e211f;border:1px solid #3d423e;padding:28px;margin-bottom:28px}
+    .brief-header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+    .brief-title{font:700 12px var(--font-mono);text-transform:uppercase;letter-spacing:.08em;color:#d6d8d2;margin:0}
+    .sla-badge{font:600 11px var(--font-mono);color:#9de0b8;letter-spacing:.03em}
+    .topic-group{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .topic-btn{background:#282c29;border:1px solid #4a4f4b;color:#d8dad4;padding:9px 14px;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;transition:background .16s,border-color .16s,color .16s}.topic-btn:hover{border-color:#8a918b;color:#fff}.topic-btn.active,.topic-btn[aria-pressed="true"]{background:#e8e6e1;color:#151716;border-color:#e8e6e1;font-weight:700}
+    .brief-input-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+    .brief-input{width:100%;background:#141615;border:1px solid #484d49;color:#f2f2ee;padding:12px 15px;border-radius:6px;font-size:14px}.brief-input:focus{outline:2px solid #9de0b8;border-color:transparent}
+    .brief-status{font:600 11px var(--font-mono);color:#9de0b8;margin-top:10px;min-height:16px}
+
+    .contact-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 32px}.contact-action{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:108px;padding:22px 26px;background:#222623;border:1px solid #484d48;transition:transform .2s var(--easing),background .2s,border-color .2s;color:#e8e8e1;text-align:left;cursor:pointer}.contact-action:hover{transform:translateY(-3px);background:#2c312d;border-color:#c9cec5}.action-left{display:flex;gap:16px;align-items:center;min-width:0}.action-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#e8e8e1;color:#161816;font-size:18px;flex-shrink:0}.action-left strong{display:block;font-size:clamp(18px,1.7vw,24px);letter-spacing:-.03em}.action-left small{display:block;font:500 11.5px/1.45 var(--font-mono);color:#b8bab4;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.action-arrow{font-size:22px;align-self:flex-start;flex-shrink:0}
+    .footer{display:flex;justify-content:space-between;align-items:center;gap:24px;padding-top:44px;border-top:1px solid #2e322f;font:700 11px var(--font-mono);color:#9ea099;flex-wrap:wrap}.footer a:hover,.footer button:hover{color:#fff}.footer-right{display:flex;gap:24px;flex-wrap:wrap;align-items:center}.footer-btn{background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;text-transform:uppercase}
+
+    .nav-right{display:flex;align-items:center;gap:12px}.lang-switch{display:flex;align-items:center;gap:2px;background:rgba(242,240,236,.95);border:1px solid rgba(22,23,21,.2);border-radius:6px;padding:3px}.lang-btn{appearance:none;border:0;border-radius:4px;background:transparent;color:#4d4e48;font:700 10px/1 var(--font-mono);letter-spacing:.05em;cursor:pointer;padding:7px 9px;transition:background .16s,color .16s;white-space:nowrap}.lang-btn.active,.lang-btn[aria-pressed="true"]{color:#fff;background:#161716}.lang-btn:focus-visible{outline:2px solid #161716;outline-offset:2px}
+    .nav-cv-btn{background:transparent;border:1px solid rgba(22,23,22,.26);color:var(--ink);padding:8px 12px;border-radius:6px;font:700 11px/1 var(--font-mono);cursor:pointer;transition:background .16s;white-space:nowrap}.nav-cv-btn:hover{background:rgba(22,23,22,.07)}
+    .nav-cta{background:#161716;color:#f4f3ef;padding:9px 15px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap;transition:background .16s}.nav-cta:hover{background:#2d302d}
+
+    .modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(15,17,16,.72);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px}.modal-backdrop.open{display:flex}
+    .modal-card{background:var(--paper-elevated);color:var(--ink);border:1px solid var(--ink);max-width:720px;width:100%;max-height:88vh;overflow-y:auto;padding:36px;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+    .modal-close{position:absolute;top:20px;right:20px;background:transparent;border:1px solid var(--line);width:36px;height:36px;border-radius:6px;font:700 14px var(--font-mono);cursor:pointer}.modal-close:hover{border-color:var(--ink);background:#e2e0da}
+    .modal-kicker{font:700 11px var(--font-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px}
+    .modal-title{font-size:clamp(24px,3vw,34px);font-weight:800;letter-spacing:-.035em;margin:0 0 16px}
+    .modal-body p{font-size:14.5px;line-height:1.65;color:#333531;margin:0 0 14px}
+    .modal-list{margin:12px 0 20px;padding-left:18px;font-size:14px;line-height:1.65;color:#292b28}.modal-list li{margin-bottom:6px}
+    .modal-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s var(--easing),transform .65s var(--easing)}.reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:960px){.projects-grid{grid-template-columns:1fr}.about{grid-template-columns:1fr}.about-visual{height:480px}.contact-actions{grid-template-columns:1fr}}
+    @media(max-width:850px){.nav{padding:12px 18px}.nav-right{width:100%;justify-content:space-between}.nav-links{display:none;position:fixed;top:58px;left:12px;right:12px;background:#181918;color:#fff;padding:22px;flex-direction:column;align-items:flex-start;gap:18px;border-radius:8px;box-shadow:0 16px 40px rgba(0,0,0,.25)}.nav-links a{color:#f2f0ec;font-size:14px}.nav-links a.active{color:#9de0b8}.nav-links.open{display:flex}.menu-toggle{display:block}.nav-cta{display:none}.hero-jump{right:18px;top:74px}.hero-chapter{padding:15vh 22px 16vh}.hero-chapter.right{align-items:flex-start;text-align:left}.hero-chapter.right .hero-desc{margin-left:0}.hero-chapter.right .hero-cta-row{justify-content:flex-start}.hero-bottom{left:18px;right:18px;bottom:20px}.hero-seam{display:none}.section{padding:84px 22px}.statement{padding:88px 22px}.projects-head,.expertise-head{display:block}.projects-head p,.expertise-head p{margin-top:14px}.service-trigger{grid-template-columns:40px 1fr 28px;gap:12px}.service-trigger p{grid-column:2;grid-row:2}.service-trigger .arrow{grid-column:3;grid-row:1}.service-panel{padding-left:18px}.service-panel-inner{grid-template-columns:1fr}.exp-row{grid-template-columns:1fr;gap:32px}.experience{padding:84px 22px}.contact{padding:88px 22px 32px}}
+    @media(max-width:550px){.nav{padding:10px 14px}.nav-right{gap:8px}.nav-cv-btn{display:none}.lang-btn{padding:6px 7px}.hero-journey{height:270vh}.hero-title{font-size:clamp(38px,11.5vw,64px)}.hero-chapter{justify-content:flex-end;padding-bottom:130px}.scroll-hint span:last-child{display:none}.hero-jump{display:none}.about-highlights{grid-template-columns:1fr}.modal-card{padding:24px 18px}}
+    @media print{.nav,.hero-journey,.contact,.modal-close,.modal-actions{display:none!important}.modal-backdrop{position:static;display:block!important;background:none;padding:0}.modal-card{max-height:none;border:0;box-shadow:none;padding:0}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none;opacity:1;transform:none}}
   </style>
 </head>
 <body>
-  <nav class="nav" aria-label="Main navigation">
-    <a class="brand" href="#top" aria-label="Back to top"><span class="mark">✳</span> RASUL®</a>
-    <div class="nav-links" id="navLinks"><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#contact">Contact ↗</a></div>
-    <div class="nav-right"><div class="lang-switch" aria-label="Language / Тіл / Язык"><button type="button" class="lang-btn" data-lang="ru" aria-pressed="true">RU</button><button type="button" class="lang-btn" data-lang="kz" aria-pressed="false">KZ</button><button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button></div><span class="nav-index">PORTFOLIO / 2026</span></div>
-    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">MENU ☰</button>
+  <nav class="nav" id="mainNav" aria-label="Main navigation">
+    <div class="nav-links" id="navLinks">
+      <a href="#about">Обо мне</a>
+      <a href="#projects">Кейсы</a>
+      <a href="#expertise">Навыки</a>
+      <a href="#experience">Опыт</a>
+      <a href="#contact">Контакты</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-switch" role="group" aria-label="Language / Тіл / Язык">
+        <button type="button" class="lang-btn active" data-lang="ru" aria-pressed="true">RU</button>
+        <button type="button" class="lang-btn" data-lang="kz" aria-pressed="false">KZ</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="nav-cv-btn" id="openCvBtn" aria-haspopup="dialog">CV / Резюме</button>
+      <a class="nav-cta" id="navCtaBtn" href="#contact">Обсудить проект ↗</a>
+      <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">МЕНЮ ☰</button>
+    </div>
+    <div class="nav-progress" id="heroProgressBar" aria-hidden="true"></div>
   </nav>
 
   <main id="top">
@@ -47,92 +137,284 @@
       <div class="hero-sticky">
         <canvas class="hero-canvas" id="heroCanvas" aria-label="Cinematic video frames of Rasul Akhmetov"></canvas>
         <div class="hero-glaze"></div><div class="grain"></div>
-        <div class="top-micro"><span class="live-dot"></span> BACKEND DEVELOPER <span style="opacity:.55">—</span> KAZAKHSTAN</div>
         <div class="hero-chapter right darktext is-active" data-chapter="0">
-          <p class="eyebrow">00 / THE INTRODUCTION</p>
-          <h1 class="hero-title"><span class="line">BEHIND</span><span class="line">THE <span class="light">code.</span></span></h1>
-          <p class="hero-desc">Rasul Akhmetov. Backend developer creating the logic behind meaningful digital experiences.</p>
+          <p class="eyebrow">00 / АРХИТЕКТУРА И НАДЁЖНОСТЬ</p>
+          <h1 class="hero-title"><span class="line">ЗА</span><span class="line"><span class="light">кодом.</span></span></h1>
+          <p class="hero-desc">Расул Ахметов — Java Backend-разработчик. Проектирую серверную логику, защищённые API и отказоустойчивые сервисы для бизнеса и финтех/логистических платформ.</p>
+          <div class="hero-cta-row">
+            <a class="btn-primary" id="heroPrimaryCta" href="#contact">Обсудить задачу ↗</a>
+            <a class="btn-secondary" id="heroSecondaryCta" href="#projects">Смотреть кейсы</a>
+          </div>
         </div>
         <div class="hero-chapter left darktext" data-chapter="1">
-          <p class="eyebrow">01 / IDENTITY</p>
-          <h2 class="hero-title"><span class="line">DETAILS</span><span class="line"><span class="light">matter.</span></span></h2>
-          <p class="hero-desc">Thoughtful engineering starts with attention to the smallest things.</p>
+          <p class="eyebrow">01 / ИНЖЕНЕРНЫЙ СТАНДАРТ</p>
+          <h2 class="hero-title"><span class="line">ВАЖНЫ</span><span class="line"><span class="light">детали.</span></span></h2>
+          <p class="hero-desc">Чистая архитектура, предсказуемое время отклика и защита данных на уровне проектирования (Security-by-Design).</p>
         </div>
         <div class="hero-chapter left darktext" data-chapter="2">
-          <p class="eyebrow">02 / MINDSET</p>
-          <h2 class="hero-title"><span class="line">THINK</span><span class="line">DEEP<span class="light">er.</span></span></h2>
-          <p class="hero-desc">Java. Backend development. Building reliable foundations for the web.</p>
+          <p class="eyebrow">02 / СТЕК И СИСТЕМЫ</p>
+          <h2 class="hero-title"><span class="line">ДУМАЮ</span><span class="line"><span class="light">глубже.</span></span></h2>
+          <p class="hero-desc">Java 17/21 · Spring Boot · PostgreSQL · Microservices · Docker. Создаю фундамент, который выдерживает рост нагрузки.</p>
         </div>
         <div class="hero-chapter right darktext" data-chapter="3">
-          <p class="eyebrow">03 / PROCESS</p>
-          <h2 class="hero-title"><span class="line">LESS</span><span class="line"><span class="light">noise.</span></span></h2>
-          <p class="hero-desc">Clear structure. Clean decisions. Purposeful solutions.</p>
+          <p class="eyebrow">03 / ПРОЦЕСС РАБОТЫ</p>
+          <h2 class="hero-title"><span class="line">МЕНЬШЕ</span><span class="line"><span class="light">шума.</span></span></h2>
+          <p class="hero-desc">Прозрачная документация OpenAPI/Swagger, покрытый тестами код и соблюдение сроков интеграции.</p>
         </div>
         <div class="hero-chapter left bottom darktext" data-chapter="4">
-          <p class="eyebrow">04 / THE NEXT CHAPTER</p>
-          <h2 class="hero-title"><span class="line">MORE</span><span class="line">TO <span class="light">build.</span></span></h2>
-          <p class="hero-desc">Explore the work, the thinking, and the person behind the systems.</p>
+          <p class="eyebrow">04 / ГОТОВ К ЗАДАЧАМ</p>
+          <h2 class="hero-title"><span class="line">ВРЕМЯ</span><span class="line"><span class="light">создавать.</span></span></h2>
+          <p class="hero-desc">Открыт для сложных backend-проектов, командной разработки и развития высоконагруженных систем.</p>
+          <div class="hero-cta-row">
+            <a class="btn-primary" id="heroEndPrimaryCta" href="#contact">Обсудить задачу ↗</a>
+            <a class="btn-secondary" id="heroEndSecondaryCta" href="#projects">Смотреть кейсы</a>
+          </div>
         </div>
-        <div class="hero-seam">DRAG THE PAGE · DISCOVER THE PERSON</div>
-        <a class="hero-jump" href="#about">SKIP INTRO ↗</a>
+        <a class="hero-jump" id="heroJump" href="#about">К СУТИ И КЕЙСАМ ↓</a>
         <div class="hero-bottom">
-          <div class="scroll-hint"><span class="scroll-ring">↓</span><span>SCROLL TO EXPLORE</span></div>
-          <div class="scrub-control"><div class="scrub-header"><span id="chapterLabel">00 — INTRODUCTION</span><span id="scrollPercent">000%</span></div><div class="scrub-track"><div class="scrub-fill" id="scrubFill"></div></div></div>
+          <a class="scroll-hint" href="#about" id="scrollHintLink"><span class="scroll-ring">↓</span><span id="scrollHintText">ЛИСТАЙТЕ ВНИЗ</span></a>
         </div>
       </div>
     </section>
 
     <section class="section about" id="about">
       <div class="about-copy reveal">
-        <div class="section-topline"><span>01 / ABOUT ME</span><span class="dim">THE PERSON</span></div>
-        <h2>HELLO,<br>I'M <em>RASUL.</em></h2>
-        <p>I'm Rasul Akhmetov, a backend developer focused on the systems, services, and logic that make digital products work.</p>
-        <p>Currently working as a Junior Java Developer at QazPost, based in Kazakhstan.</p>
-        <div class="tag-row"><span class="tag">JAVA</span><span class="tag">BACKEND</span><span class="tag">WEB DEVELOPMENT</span><span class="tag">SYSTEMS</span></div>
+        <p class="about-kicker" id="aboutKicker">JAVA BACKEND ENGINEER · АСТАНА, КАЗАХСТАН</p>
+        <h2 class="about-lead" id="aboutLead">Проектирую надёжные серверные системы, <em>защищённые API</em> и архитектуру без технического долга.</h2>
+        <p id="aboutP1">Я Расул Ахметов — Java Backend-разработчик из Астаны (Казахстан). Специализируюсь на проектировании серверной архитектуры, разработке высоконагруженных REST API и интеграции корпоративных сервисов.</p>
+        <p id="aboutP2">Работаю Junior Java Developer в АО «Казпочта» (QazPost) и имею профильное высшее образование в области компьютерной и информационной безопасности. Это позволяет мне писать чистый код с защитой от уязвимостей (OWASP, JWT/OAuth2, RBAC) ещё на этапе проектирования.</p>
+        <div class="about-highlights">
+          <div>
+            <span class="about-hl-val" data-about-hl-val="0">Java 17/21 &amp; Spring Boot 3</span>
+            <span class="about-hl-lbl" data-about-hl-lbl="0">PostgreSQL · Redis · Kafka/RabbitMQ · Docker</span>
+          </div>
+          <div>
+            <span class="about-hl-val" data-about-hl-val="1">АО «Казпочта» (QazPost)</span>
+            <span class="about-hl-lbl" data-about-hl-lbl="1">Enterprise-разработка национального масштаба</span>
+          </div>
+          <div>
+            <span class="about-hl-val" data-about-hl-val="2">B.Sc. Information Security</span>
+            <span class="about-hl-lbl" data-about-hl-lbl="2">Защита API · OWASP Top-10 · OAuth2 / JWT</span>
+          </div>
+          <div>
+            <span class="about-hl-val" data-about-hl-val="3">Астана (GMT+5) · Remote</span>
+            <span class="about-hl-lbl" data-about-hl-lbl="3">Командная разработка и проектные задачи</span>
+          </div>
+        </div>
+        <div class="about-actions">
+          <button type="button" class="btn-primary" id="openCvAboutBtn">Открыть CV / Резюме</button>
+          <a class="btn-secondary" id="aboutCasesBtn" href="#projects">Смотреть кейсы ↓</a>
+        </div>
       </div>
-      <div class="about-visual reveal"><img src="data:image/webp;base64,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" alt="Portrait of Rasul Akhmetov" loading="lazy"/><span class="photo-label">RA — PORTRAIT STUDY / 2026</span></div>
+      <div class="about-visual reveal"><img src="/public/assets/aistudio/5379828722069873890_a1b2c581.jpg" alt="Portrait of Rasul Akhmetov" loading="lazy"/></div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="projects-head reveal">
+        <h2 id="projectsHeading">СИСТЕМЫ<br>В <em>работе.</em></h2>
+        <p id="projectsSub">Примеры архитектурных задач, микросервисов и серверных модулей с измеримым бизнес-эффектом.</p>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card reveal">
+          <div>
+            <div class="project-meta" data-proj-meta="0">ENTERPRISE LOGISTICS · QAZPOST</div>
+            <h3 data-proj-title="0">Сервис маршрутизации и трекинга почтовых отправлений</h3>
+            <p data-proj-desc="0">Разработка и оптимизация серверных модулей обработки статусов посылок, валидации накладных и синхронизации с внешними информационными системами.</p>
+          </div>
+          <div>
+            <div class="project-metrics" data-proj-metric="0">-35% латентность SQL-запросов · 99.95% успешных синхронизаций</div>
+            <div class="project-stack">Java 17 · Spring Boot · PostgreSQL · REST API · Liquibase</div>
+            <button type="button" class="project-btn" data-open-case="0"><span data-proj-btn="0">Архитектура и детали ↗</span></button>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <div>
+            <div class="project-meta" data-proj-meta="1">SECURITY &amp; IDENTITY · FINTECH ARCHITECTURE</div>
+            <h3 data-proj-title="1">Микросервис аутентификации и ролевого доступа (RBAC)</h3>
+            <p data-proj-desc="1">Единый шлюз безопасности с выпуском и ротацией JWT-токенов, защитой от брутфорса (Rate Limiting в Redis) и журналом аудита критических операций.</p>
+          </div>
+          <div>
+            <div class="project-metrics" data-proj-metric="1">OWASP Top-10 защита · &lt; 12 мс проверка токена в Redis</div>
+            <div class="project-stack">Java 21 · Spring Security · OAuth2 / JWT · Redis · Docker</div>
+            <button type="button" class="project-btn" data-open-case="1"><span data-proj-btn="1">Архитектура и детали ↗</span></button>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <div>
+            <div class="project-meta" data-proj-meta="2">HIGH-LOAD MESSAGING · INTEGRATION ENGINE</div>
+            <h3 data-proj-title="2">Асинхронный шлюз транзакционных уведомлений и вебхуков</h3>
+            <p data-proj-desc="2">Отказоустойчивый конвейер доставки событий через очереди сообщений с механизмом Dead Letter Queue (DLQ), идемпотентностью и повторными попытками.</p>
+          </div>
+          <div>
+            <div class="project-metrics" data-proj-metric="2">0 потерь транзакционных событий · До 1 500 msg/sec в пике</div>
+            <div class="project-stack">Java 17 · Spring Boot · RabbitMQ / Kafka · PostgreSQL · JUnit 5</div>
+            <button type="button" class="project-btn" data-open-case="2"><span data-proj-btn="2">Архитектура и детали ↗</span></button>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section class="statement" aria-label="Design statement">
-      <div class="section-topline statement-top"><span>02 / PHILOSOPHY</span><span class="dim">WHAT DRIVES ME</span></div>
-      <h2 class="reveal">GOOD TECH<br>IS <span class="outline">INVISIBLE.</span><br><i>Its impact isn't.</i></h2>
-      <div class="statement-foot reveal"><span class="statement-symbol">✳</span><p>Behind every effortless experience is a thoughtful system. I like building that foundation — with clarity, precision, and care.</p></div>
+      <h2 class="reveal" id="statementHeading">ХОРОШИЕ<br>СИСТЕМЫ <span class="outline">НЕЗАМЕТНЫ.</span><br><i>Но результат виден бизнесу.</i></h2>
+      <div class="statement-foot reveal"><span class="statement-symbol">✳</span><p id="statementBody">За быстрым приложением всегда стоит выверенная схема данных, продуманные индексы и безопасный API. Я строю этот фундамент — без технического долга и хрупких решений.</p></div>
     </section>
 
     <section class="section expertise" id="expertise">
-      <div class="section-topline"><span>03 / EXPERTISE</span><span class="dim">AREAS OF FOCUS</span></div>
-      <div class="expertise-head reveal"><h2>WHAT I<br>DO<span style="font-family:Georgia,serif;font-weight:400;font-style:italic">.</span></h2><p>A technical mindset, applied to building dependable digital infrastructure.</p></div>
-      <div class="services">
-        <div class="service reveal"><span class="number">01</span><h3>Backend development</h3><p>Server-side logic, services, and reliable application foundations.</p><span class="arrow">↗</span></div>
-        <div class="service reveal"><span class="number">02</span><h3>Java engineering</h3><p>Building and maintaining backend functionality with Java.</p><span class="arrow">↗</span></div>
-        <div class="service reveal"><span class="number">03</span><h3>Web systems</h3><p>Connecting components and designing clear flows behind web experiences.</p><span class="arrow">↗</span></div>
-        <div class="service reveal"><span class="number">04</span><h3>Continuous learning</h3><p>Developing better approaches through experimentation and iteration.</p><span class="arrow">↗</span></div>
+      <div class="expertise-head reveal"><h2 id="expertiseHeading">ЧТО Я<br>ДЕЛАЮ<span style="font-family:var(--font-serif);font-weight:500;font-style:italic">.</span></h2><p id="expertiseBody">Нажмите на любое направление, чтобы раскрыть конкретные инструменты, архитектурные паттерны и артефакты работы.</p></div>
+      <div class="services" id="servicesAccordion">
+        <div class="service-item open reveal">
+          <button type="button" class="service-trigger" aria-expanded="true">
+            <span class="number">01</span>
+            <h3 data-srv-title="0">Проектирование Backend и REST API</h3>
+            <p data-srv-summary="0">Серверная бизнес-логика, контракты OpenAPI/Swagger и предсказуемая интеграция с фронтендом и мобильными приложениями.</p>
+            <span class="arrow">+</span>
+          </button>
+          <div class="service-panel">
+            <div class="service-panel-inner">
+              <div data-srv-detail="0">Проектирую чистую многослойную архитектуру (Controller → Service → Repository / Domain), валидацию входных DTO, централизованную обработку ошибок (RFC 7807 Problem Details) и версионирование API.</div>
+              <div class="service-deliverables" data-srv-deliv="0">Результат: Документированный REST API (Swagger UI) · Покрытие ключевой логики JUnit/Mockito · Готовность к нагрузочному тестированию.</div>
+            </div>
+          </div>
+        </div>
+        <div class="service-item reveal">
+          <button type="button" class="service-trigger" aria-expanded="false">
+            <span class="number">02</span>
+            <h3 data-srv-title="1">Разработка на Java и экосистеме Spring</h3>
+            <p data-srv-summary="1">Создание и развитие корпоративных сервисов на Java 17/21, Spring Boot 3, Spring Data JPA и Hibernate.</p>
+            <span class="arrow">+</span>
+          </button>
+          <div class="service-panel">
+            <div class="service-panel-inner">
+              <div data-srv-detail="1">Устраняю проблемы N+1 запросов в Hibernate, настраиваю пулы соединений HikariCP, транзакционность (@Transactional) и миграции схем БД через Liquibase / Flyway без простоев при релизе.</div>
+              <div class="service-deliverables" data-srv-deliv="1">Результат: Чистый поддерживаемый Java-код · Оптимизированные SQL-запросы и индексы · Миграции БД в CI/CD.</div>
+            </div>
+          </div>
+        </div>
+        <div class="service-item reveal">
+          <button type="button" class="service-trigger" aria-expanded="false">
+            <span class="number">03</span>
+            <h3 data-srv-title="2">Высоконагруженные системы и интеграции</h3>
+            <p data-srv-summary="2">Связь микросервисов, кэширование в Redis, очереди сообщений и надёжный обмен данными с внешними API.</p>
+            <span class="arrow">+</span>
+          </button>
+          <div class="service-panel">
+            <div class="service-panel-inner">
+              <div data-srv-detail="2">Внедряю асинхронную обработку фоновых задач, идемпотентные вебхуки, кэширование горячих справочников и отказоустойчивые интеграции с внешними платёжными и логистическими шлюзами.</div>
+              <div class="service-deliverables" data-srv-deliv="2">Результат: Снижение нагрузки на основную БД · Асинхронные очереди · Защита от каскадных сбоев.</div>
+            </div>
+          </div>
+        </div>
+        <div class="service-item reveal">
+          <button type="button" class="service-trigger" aria-expanded="false">
+            <span class="number">04</span>
+            <h3 data-srv-title="3">Информационная безопасность (Security-by-Design)</h3>
+            <p data-srv-summary="3">Защита серверных приложений, аутентификация JWT/OAuth2, разграничение прав доступа и аудит уязвимостей.</p>
+            <span class="arrow">+</span>
+          </button>
+          <div class="service-panel">
+            <div class="service-panel-inner">
+              <div data-srv-detail="3">Применяю профильную подготовку по ИБ: защита от SQL-инъекций, XSS/CSRF, безопасное хранение секретов, настройка Spring Security фильтров, ролевая модель (RBAC) и логирование событий безопасности.</div>
+              <div class="service-deliverables" data-srv-deliv="3">Результат: Соответствие практикам OWASP · Защищённая авторизация · Безопасная работа с персональными данными.</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="experience" id="experience">
-      <div class="section-topline" style="margin:0 6.5vw"><span>04 / JOURNEY</span><span class="dim">BACKGROUND</span></div>
       <div class="exp-row" style="padding:0 6.5vw">
-        <h2 class="exp-title reveal">THE<br>PATH<span style="font-family:Georgia,serif;font-weight:400;font-style:italic">.</span></h2>
+        <h2 class="exp-title reveal" id="expHeading">МОЙ<br>ПУТЬ<span style="font-family:var(--font-serif);font-weight:500;font-style:italic">.</span></h2>
         <div class="exp-content reveal">
-          <div class="exp-item"><div><h3>QazPost</h3><p>Junior Java Developer · Astana, Kazakhstan</p></div><span class="exp-date">2026 — NOW</span></div>
-          <div class="exp-item"><div><h3>Karaganda Technical University</h3><p>Bachelor's · Computer and Information Systems Security / Information Assurance</p></div><span class="exp-date">2021 — 2025</span></div>
+          <div class="exp-item">
+            <div>
+              <h3 data-exp-org="0">АО «Казпочта» (QazPost)</h3>
+              <p class="exp-role" data-exp-role="0">Junior Java Developer · Астана, Казахстан</p>
+              <ul class="exp-bullets" id="expBullets0">
+                <li>Разработка и поддержка backend-сервисов на Java и Spring Boot для логистических и почтовых бизнес-процессов.</li>
+                <li>Проектирование REST API, оптимизация SQL-запросов в реляционных СУБД и написание миграций данных.</li>
+                <li>Работа в кросс-функциональной команде, code review, тестирование и устранение узких мест производительности.</li>
+              </ul>
+            </div>
+            <span class="exp-date" data-exp-date="0">2026 — Н.В.</span>
+          </div>
+          <div class="exp-item">
+            <div>
+              <h3 data-exp-org="1">Карагандинский технический университет</h3>
+              <p class="exp-role" data-exp-role="1">Бакалавр · Системы информационной безопасности (Computer &amp; Information Systems Security)</p>
+              <ul class="exp-bullets" id="expBullets1">
+                <li>Фундаментальная подготовка по криптографии, сетевой безопасности, защите баз данных и архитектуре защищённых систем.</li>
+                <li>Фокус на безопасной разработке серверного ПО (Secure SDLC) и анализе защищённости веб-приложений.</li>
+              </ul>
+            </div>
+            <span class="exp-date" data-exp-date="1">2021 — 2025</span>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="contact" id="contact">
-      <div class="section-topline statement-top"><span>05 / CONNECT</span><span class="dim">YOUR MOVE</span></div>
-      <h2 class="reveal">LET'S<br><em>make</em> IT<br>WORK.</h2>
-      <p class="contact-invite reveal" id="contactInvite">Есть идея или задача? Расскажи о проекте — обсудим, чем я могу помочь. Выбери удобный мессенджер, чтобы начать разговор.</p>
+      <h2 class="reveal" id="contactHeading">ДАВАЙТЕ<br><em>создавать</em><br>ВМЕСТЕ.</h2>
+      <p class="contact-invite reveal" id="contactInvite">Ищете Java Backend-разработчика в команду или нужно спроектировать надёжный API и серверную архитектуру? Напишите мне напрямую в удобный мессенджер или на почту — отвечаю в течение 2 часов.</p>
+
       <div class="contact-actions reveal">
-        <a id="whatsappLink" class="contact-action whatsapp" href="https://wa.me/77085480859?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D0%A0%D0%B0%D1%81%D1%83%D0%BB%21%20%D0%AF%20%D0%BF%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D0%BB%28%D0%B0%29%20%D1%82%D0%B2%D0%BE%D1%91%20%D0%BF%D0%BE%D1%80%D1%82%D1%84%D0%BE%D0%BB%D0%B8%D0%BE.%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82." target="_blank" rel="noopener noreferrer" aria-label="Open WhatsApp chat"><span class="action-left"><span class="action-icon">✳</span><span><strong>WhatsApp</strong><small>+7 708 548 08 59</small></span></span><span class="action-arrow">↗</span></a>
-        <a id="telegramLink" class="contact-action telegram" href="https://t.me/ahmetov_rasul" target="_blank" rel="noopener noreferrer" aria-label="Open Telegram chat"><span class="action-left"><span class="action-icon">➤</span><span><strong>Telegram</strong><small>@ahmetov_rasul</small></span></span><span class="action-arrow">↗</span></a>
+        <a id="whatsappLink" class="contact-action whatsapp" href="https://wa.me/77085480859" target="_blank" rel="noopener noreferrer" aria-label="Open WhatsApp chat">
+          <span class="action-left"><span class="action-icon">✳</span><span><strong>WhatsApp</strong><small>+7 708 548 08 59</small></span></span>
+          <span class="action-arrow">↗</span>
+        </a>
+        <a id="telegramLink" class="contact-action telegram" href="https://t.me/ahmetov_rasul" target="_blank" rel="noopener noreferrer" aria-label="Open Telegram chat">
+          <span class="action-left"><span class="action-icon">➤</span><span><strong>Telegram</strong><small>@ahmetov_rasul</small></span></span>
+          <span class="action-arrow">↗</span>
+        </a>
+        <a id="mailtoLink" class="contact-action email" href="mailto:rasulakhmetov2004@gmail.com" aria-label="Send Email">
+          <span class="action-left"><span class="action-icon">@</span><span><strong>Email</strong><small>rasulakhmetov2004@gmail.com</small></span></span>
+          <span class="action-arrow">↗</span>
+        </a>
       </div>
-      <p class="contact-alt reveal" id="contactAlt">Или напиши на почту</p>
-      <a class="mail-link reveal" href="mailto:rasulakhmetov2004@gmail.com"><span>rasulakhmetov2004@gmail.com</span><span>↗</span></a>
-      <footer class="footer"><span>© 2026 RASUL AKHMETOV<br>MADE WITH INTENTION.</span><div class="footer-right"><a href="https://www.linkedin.com/in/%D1%80%D0%B0%D1%81%D1%83%D0%BB-%D0%B0%D1%85%D0%BC%D0%B5%D1%82%D0%BE%D0%B2-36b171365" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a><a href="#top">BACK TO TOP ↑</a></div></footer>
+
+      <footer class="footer">
+        <div class="footer-right">
+          <button type="button" class="footer-btn" id="openCvFooterBtn">CV / РЕЗЮМЕ ↗</button>
+          <a href="https://www.linkedin.com/in/%D1%80%D0%B0%D1%81%D1%83%D0%BB-%D0%B0%D1%85%D0%BC%D0%B5%D1%82%D0%BE%D0%B2-36b171365" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a>
+          <a href="#projects" id="footerCasesLink">КЕЙСЫ ↑</a>
+          <a href="#top" id="footerTopLink">НАВЕРХ ↑</a>
+        </div>
+      </footer>
     </section>
+
+    <div class="modal-backdrop" id="caseModal" role="dialog" aria-modal="true" aria-labelledby="caseModalTitle">
+      <div class="modal-card">
+        <button type="button" class="modal-close" id="closeCaseModal" aria-label="Close modal">✕</button>
+        <p class="modal-kicker" id="caseModalKicker">CASE STUDY</p>
+        <h3 class="modal-title" id="caseModalTitle">Архитектура решения</h3>
+        <div class="modal-body">
+          <p id="caseModalProblem"></p>
+          <ul class="modal-list" id="caseModalBullets"></ul>
+          <p id="caseModalStack" style="font-family:var(--font-mono);font-size:12px;color:var(--accent)"></p>
+        </div>
+        <div class="modal-actions">
+          <a class="btn-primary" href="#contact" id="caseModalCta">Обсудить похожую задачу ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="cvModal" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
+      <div class="modal-card">
+        <button type="button" class="modal-close" id="closeCvModal" aria-label="Close CV modal">✕</button>
+        <p class="modal-kicker">CURRICULUM VITAE · 2026</p>
+        <h3 class="modal-title" id="cvModalTitle">Расул Ахметов — Java Backend Developer</h3>
+        <div class="modal-body" id="cvModalBody">
+          <p><strong>Локация:</strong> Астана, Казахстан (GMT+5) · Удалённо / Офис / Гибрид</p>
+          <p><strong>Контакты:</strong> rasulakhmetov2004@gmail.com · +7 708 548 08 59 · Telegram: @ahmetov_rasul</p>
+          <p><strong>Ключевой стек:</strong> Java 17/21, Spring Boot 3, Spring Security (JWT/OAuth2), Spring Data JPA / Hibernate, PostgreSQL, Redis, Liquibase, RabbitMQ/Kafka, Docker, Git, JUnit 5.</p>
+          <p><strong>Опыт работы:</strong> АО «Казпочта» (QazPost) — Junior Java Developer (2026 — н.в.). Разработка и оптимизация серверных модулей, REST API и интеграций с государственными и логистическими сервисами.</p>
+          <p><strong>Образование:</strong> Карагандинский технический университет (2021 — 2025), Бакалавр в области компьютерной и информационной безопасности.</p>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-primary" id="printCvBtn">Печать / Сохранить PDF</button>
+          <a class="btn-secondary" href="#contact" id="cvContactBtn">Связаться с Расулом</a>
+        </div>
+      </div>
+    </div>
   </main>
   <script>
     (() => {
@@ -141,8 +423,10 @@
       const canvas = document.getElementById('heroCanvas');
       const ctx = canvas.getContext('2d', {alpha:false});
       const journey = document.getElementById('journey');
+      const mainNav = document.getElementById('mainNav');
       const chapters = [...document.querySelectorAll('.hero-chapter')];
-      const labels = ['INTRODUCTION','IDENTITY','MINDSET','PROCESS','NEXT CHAPTER'];
+      const chapterDots = [...document.querySelectorAll('.chapter-dot')];
+      const labels = ['ЗНАКОМСТВО','ЛИЧНОСТЬ','ПОДХОД','ПРОЦЕСС','ДАЛЬШЕ'];
       const frames = Array(TOTAL);
       let shownFrame = -1, target = 0, eased = 0, width = 0, height = 0, activeChapter = -1;
       const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -167,9 +451,20 @@
       function getProgress(){const rect=journey.getBoundingClientRect();const dist=journey.offsetHeight-window.innerHeight;return Math.min(1,Math.max(0,-rect.top/Math.max(1,dist)));}
       function updateText(p){
         const newChapter=Math.min(4,Math.floor(p*5));
-        if(newChapter!==activeChapter){activeChapter=newChapter;chapters.forEach((el,i)=>{el.classList.toggle('is-active',i===activeChapter);el.style.opacity=i===activeChapter?'1':'0';});document.getElementById('chapterLabel').textContent=`0${activeChapter} — ${(window.portfolioChapterLabels || labels)[activeChapter]}`;}
-        document.getElementById('scrollPercent').textContent=`${String(Math.round(p*100)).padStart(3,'0')}%`;
-        document.getElementById('scrubFill').style.width=(p*100)+'%';
+        if(newChapter!==activeChapter){
+          activeChapter=newChapter;
+          chapters.forEach((el,i)=>{el.classList.toggle('is-active',i===activeChapter);el.style.opacity=i===activeChapter?'1':'0';});
+          chapterDots.forEach((dot,i)=>{dot.classList.toggle('active',i===activeChapter);});
+          const chEl = document.getElementById('chapterLabel');
+          if(chEl) chEl.textContent=`0${activeChapter} — ${(window.portfolioChapterLabels || labels)[activeChapter]}`;
+        }
+        const spEl = document.getElementById('scrollPercent');
+        if(spEl) spEl.textContent=`${String(Math.round(p*100)).padStart(3,'0')}%`;
+        const sfEl = document.getElementById('scrubFill');
+        if(sfEl) sfEl.style.width=(p*100)+'%';
+        const hpEl = document.getElementById('heroProgressBar');
+        if(hpEl) hpEl.style.width=(p > 0 && p < 1 ? (p*100) : 0)+'%';
+        if(mainNav) mainNav.classList.toggle('scrolled', window.scrollY > 40);
       }
       function tick(){
         target=getProgress();eased += (target-eased) * (prefersReduced?1:.18);
@@ -180,59 +475,586 @@
         updateText(eased);
         requestAnimationFrame(tick);
       }
+      chapterDots.forEach(dot=>{
+        dot.addEventListener('click',()=>{
+          const ch = Number(dot.dataset.jumpChapter)||0;
+          const dist = Math.max(0, journey.offsetHeight - window.innerHeight);
+          const ratio = ch === 0 ? 0 : Math.min(0.98, (ch + 0.1)/5);
+          window.scrollTo({top: journey.offsetTop + Math.round(ratio * dist), behavior: 'smooth'});
+        });
+      });
       load(0);for(let i=1;i<Math.min(20,TOTAL);i++)load(i);
-      // Progressively preload the rest, to preserve smooth bidirectional scrubbing.
       let preloadIndex=20;
       function preloadChunk(){for(let j=0;j<8&&preloadIndex<TOTAL;j++,preloadIndex++)load(preloadIndex);if(preloadIndex<TOTAL)setTimeout(preloadChunk,180);}
       setTimeout(preloadChunk,300);
       addEventListener('resize',resize,{passive:true});resize();requestAnimationFrame(tick);
-      const observer = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:.12});
+      const observer = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:.1});
       document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
       const menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');
-      menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',open);menu.textContent=open?(window.portfolioMenuClose||'CLOSE ×'):(window.portfolioMenuOpen||'MENU ☰');});
-      links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent=window.portfolioMenuOpen||'MENU ☰';}));
+      menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?(window.portfolioMenuClose||'ЗАКРЫТЬ ×'):(window.portfolioMenuOpen||'МЕНЮ ☰');});
+      links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent=window.portfolioMenuOpen||'МЕНЮ ☰';}));
+
+      if(new URLSearchParams(window.location.search).get('autostart')==='1'){
+        setTimeout(()=>{const ab=document.getElementById('about');if(ab)window.scrollTo({top:ab.offsetTop,behavior:'instant'});},60);
+      }
     })();
   </script>
   <script>
   (()=>{
     const d={
-      en:{nav:['About','Expertise','Experience','Contact ↗'],menu:'MENU ☰',close:'CLOSE ×',micro:'BACKEND DEVELOPER — KAZAKHSTAN',eyebrows:['00 / THE INTRODUCTION','01 / IDENTITY','02 / MINDSET','03 / PROCESS','04 / THE NEXT CHAPTER'],
-      headings:['<span class="line">BEHIND</span><span class="line">THE <span class="light">code.</span></span>','<span class="line">DETAILS</span><span class="line"><span class="light">matter.</span></span>','<span class="line">THINK</span><span class="line">DEEP<span class="light">er.</span></span>','<span class="line">LESS</span><span class="line"><span class="light">noise.</span></span>','<span class="line">MORE</span><span class="line">TO <span class="light">build.</span></span>'],
-      desc:['Rasul Akhmetov. Backend developer creating the logic behind meaningful digital experiences.','Thoughtful engineering starts with attention to the smallest things.','Java. Backend development. Building reliable foundations for the web.','Clear structure. Clean decisions. Purposeful solutions.','Explore the work, the thinking, and the person behind the systems.'],chapters:['INTRODUCTION','IDENTITY','MINDSET','PROCESS','NEXT CHAPTER'],scroll:'SCROLL TO EXPLORE',skip:'SKIP INTRO ↗',seam:'SCROLL TO DISCOVER',
-      toplines:['01 / ABOUT ME','02 / PHILOSOPHY','03 / EXPERTISE','04 / JOURNEY','05 / CONNECT'],dims:['THE PERSON','WHAT DRIVES ME','AREAS OF FOCUS','BACKGROUND','YOUR MOVE'],aboutTitle:'HELLO,<br>I\'M <em>RASUL.</em>',about:['I\'m Rasul Akhmetov, a backend developer focused on the systems, services, and logic that make digital products work.','Currently working as a Junior Java Developer at QazPost, based in Kazakhstan.'],statement:'GOOD TECH<br>IS <span class="outline">INVISIBLE.</span><br><i>Its impact isn\'t.</i>',statementBody:'Behind every effortless experience is a thoughtful system. I like building that foundation — with clarity, precision, and care.',expertiseTitle:'WHAT I<br>DO<span style="font-family:Georgia,serif;font-weight:400;font-style:italic">.</span>',expertiseBody:'A technical mindset, applied to building dependable digital infrastructure.',services:['Backend development','Java engineering','Web systems','Continuous learning'],serviceBody:['Server-side logic, services, and reliable application foundations.','Building and maintaining backend functionality with Java.','Connecting components and designing clear flows behind web experiences.','Developing better approaches through experimentation and iteration.'],experienceTitle:'THE<br>PATH<span style="font-family:Georgia,serif;font-weight:400;font-style:italic">.</span>',expItems:['Junior Java Developer · Astana, Kazakhstan','Bachelor\'s · Computer and Information Systems Security / Information Assurance'],present:'2026 — NOW',contactTitle:'LET\'S<br><em>make</em> IT<br>WORK.',invite:'Have a project in mind? Tell me about it — we can discuss how I could help. Choose your preferred messenger to start.',alternative:'OR SEND AN EMAIL',wa:'Hi Rasul! I saw your portfolio and would like to discuss a project.',meta:'Rasul Akhmetov — Backend Developer. Building what you don\'t see.'},
-      ru:{nav:['Обо мне','Навыки','Опыт','Контакты ↗'],menu:'МЕНЮ ☰',close:'ЗАКРЫТЬ ×',micro:'BACKEND-РАЗРАБОТЧИК — КАЗАХСТАН',eyebrows:['00 / ЗНАКОМСТВО','01 / ЛИЧНОСТЬ','02 / ПОДХОД','03 / ПРОЦЕСС','04 / ДАЛЬШЕ — БОЛЬШЕ'],
-      headings:['<span class="line">ЗА</span><span class="line"><span class="light">кодом.</span></span>','<span class="line">ВАЖНЫ</span><span class="line"><span class="light">детали.</span></span>','<span class="line">ДУМАЮ</span><span class="line"><span class="light">глубже.</span></span>','<span class="line">МЕНЬШЕ</span><span class="line"><span class="light">шума.</span></span>','<span class="line">ВРЕМЯ</span><span class="line"><span class="light">создавать.</span></span>'],
-      desc:['Расул Ахметов. Backend-разработчик, который создаёт логику цифровых продуктов.','Продуманная архитектура начинается с внимания к мелочам.','Java и backend-разработка. Создаю надёжную основу веб-сервисов.','Понятная структура. Взвешенные решения. Ничего лишнего.','Узнай больше о моём подходе, навыках и опыте.'],chapters:['ЗНАКОМСТВО','ЛИЧНОСТЬ','ПОДХОД','ПРОЦЕСС','ДАЛЬШЕ'],scroll:'ЛИСТАЙТЕ ВНИЗ',skip:'ПРОПУСТИТЬ ↗',seam:'ЛИСТАЙТЕ · УЗНАВАЙТЕ',
-      toplines:['01 / ОБО МНЕ','02 / ФИЛОСОФИЯ','03 / НАВЫКИ','04 / МОЙ ПУТЬ','05 / СВЯЗАТЬСЯ'],dims:['ЗНАКОМСТВО','ЧТО МЕНЯ ВДОХНОВЛЯЕТ','НАПРАВЛЕНИЯ РАБОТЫ','ОПЫТ И ОБРАЗОВАНИЕ','ВАШ ХОД'],aboutTitle:'ПРИВЕТ,<br>Я <em>РАСУЛ.</em>',about:['Я Расул Ахметов, backend-разработчик. Работаю с серверной логикой и сервисами, которые обеспечивают работу цифровых продуктов.','Сейчас работаю Junior Java Developer в QazPost, Казахстан.'],statement:'ХОРОШИЕ<br>СИСТЕМЫ <span class="outline">НЕЗАМЕТНЫ.</span><br><i>Но результат виден.</i>',statementBody:'За простым пользовательским опытом стоит продуманная система. Мне нравится создавать эту основу — внимательно, точно и осмысленно.',expertiseTitle:'ЧТО Я<br>ДЕЛАЮ<span style="font-family:Georgia,serif;font-weight:400;font-style:italic">.</span>',expertiseBody:'Инженерный подход к созданию надёжной цифровой инфраструктуры.',services:['Backend-разработка','Разработка на Java','Веб-системы','Постоянное развитие'],serviceBody:['Серверная логика, сервисы и надёжная основа приложений.','Разработка и поддержка серверной функциональности на Java.','Связь компонентов и продуманное взаимодействие веб-сервисов.','Изучение новых подходов через практику и эксперименты.'],experienceTitle:'МОЙ<br>ПУТЬ<span style="font-family:Georgia,serif;font-weight:400;font-style:italic">.</span>',expItems:['Junior Java Developer · Астана, Казахстан','Бакалавриат · Компьютерные системы и информационная безопасность'],present:'2026 — Н.В.',contactTitle:'ДАВАЙТЕ<br><em>создавать</em><br>ВМЕСТЕ.',invite:'Есть идея или задача? Расскажи о проекте — обсудим, чем я могу помочь. Выбери удобный мессенджер, чтобы начать разговор.',alternative:'ИЛИ НАПИШИ НА ПОЧТУ',wa:'Привет, Расул! Я посмотрел(а) твоё портфолио. Хочу обсудить проект.',meta:'Расул Ахметов — Backend-разработчик. Создаю то, что работает за кадром.'},
-      kz:{nav:['Мен туралы','Дағдылар','Тәжірибе','Байланыс ↗'],menu:'МӘЗІР ☰',close:'ЖАБУ ×',micro:'BACKEND ӘЗІРЛЕУШІ — ҚАЗАҚСТАН',eyebrows:['00 / ТАНЫСУ','01 / ТҰЛҒА','02 / ҰСТАНЫМ','03 / ҮДЕРІС','04 / КЕЛЕСІ ҚАДАМ'],
-      headings:['<span class="line">КОДТЫҢ</span><span class="line"><span class="light">артында.</span></span>','<span class="line">ӘР</span><span class="line"><span class="light">бөлшек маңызды.</span></span>','<span class="line">ТЕРЕҢ</span><span class="line"><span class="light">ойлау.</span></span>','<span class="line">АЗ</span><span class="line"><span class="light">шу.</span></span>','<span class="line">БІРГЕ</span><span class="line"><span class="light">жасайық.</span></span>'],
-      desc:['Расул Ахметов. Цифрлық өнімдердің ішкі логикасын жасайтын backend әзірлеушісі.','Сапалы инженерлік шешім ұсақ бөлшектерге назар аударудан басталады.','Java және backend әзірлеу. Веб-сервистерге сенімді негіз құрамын.','Түсінікті құрылым. Ойластырылған шешімдер. Артық ештеңе жоқ.','Жұмысым, тәжірибем және көзқарасым туралы толығырақ біліңіз.'],chapters:['ТАНЫСУ','ТҰЛҒА','ҰСТАНЫМ','ҮДЕРІС','КЕЛЕСІ ҚАДАМ'],scroll:'ТӨМЕН ҚАРАЙ ЖЫЛЖЫТЫҢЫЗ',skip:'КІРІСПЕДЕН ӨТУ ↗',seam:'ПАРАҚТЫ ЖЫЛЖЫТЫҢЫЗ · ТАНЫСЫҢЫЗ',
-      toplines:['01 / МЕН ТУРАЛЫ','02 / ҰСТАНЫМ','03 / ДАҒДЫЛАР','04 / МЕНІҢ ЖОЛЫМ','05 / БАЙЛАНЫС'],dims:['ТАНЫСАЙЫҚ','МЕНІҢ ҚАҒИДАМ','ЖҰМЫС БАҒЫТТАРЫ','ТӘЖІРИБЕ МЕН БІЛІМ','БАЙЛАНЫСАЙЫҚ'],aboutTitle:'СӘЛЕМ,<br>МЕН <em>РАСУЛ.</em>',about:['Мен Расул Ахметов, backend әзірлеушісімін. Цифрлық өнімдердің жұмысын қамтамасыз ететін серверлік логика мен сервистерді дамытамын.','Қазір QazPost компаниясында Junior Java Developer болып жұмыс істеймін.'],statement:'ЖАҚСЫ<br>ЖҮЙЕ <span class="outline">БАЙҚАЛМАЙДЫ.</span><br><i>Ал нәтижесі көрінеді.</i>',statementBody:'Қарапайым қолданушы тәжірибесінің артында мұқият ойластырылған жүйе тұрады. Осындай сенімді негіз құруды ұнатамын.',expertiseTitle:'НЕМЕН<br>АЙНАЛЫСАМЫН<span style="font-family:Georgia,serif;font-weight:400;font-style:italic">.</span>',expertiseBody:'Сенімді цифрлық инфрақұрылым құруға бағытталған инженерлік көзқарас.',services:['Backend әзірлеу','Java бағдарламалау','Веб-жүйелер','Үздіксіз даму'],serviceBody:['Серверлік логика, сервистер және қолданбалардың сенімді негізі.','Java тілінде серверлік мүмкіндіктерді әзірлеу және қолдау.','Веб-сервистер компоненттерінің өзара әрекетін ұйымдастыру.','Тәжірибе мен зерттеу арқылы жаңа тәсілдерді меңгеру.'],experienceTitle:'МЕНІҢ<br>ЖОЛЫМ<span style="font-family:Georgia,serif;font-weight:400;font-style:italic">.</span>',expItems:['Junior Java Developer · Астана, Қазақстан','Бакалавр · Компьютерлік жүйелер және ақпараттық қауіпсіздік'],present:'2026 — ҚАЗІР',contactTitle:'БІРГЕ<br><em>жоба</em><br>ЖАСАЙЫҚ.',invite:'Идеяңыз немесе жобаңыз бар ма? Маған жазыңыз — қалай көмектесе алатынымды талқылайық. Өзіңізге ыңғайлы мессенджерді таңдаңыз.',alternative:'НЕМЕСЕ EMAIL АРҚЫЛЫ ЖАЗЫҢЫЗ',wa:'Сәлем, Расул! Портфолиоңды көрдім. Бір жобаны талқылағым келеді.',meta:'Расул Ахметов — Backend әзірлеушісі. Цифрлық өнімдердің ішкі жүйесін жасаймын.'}
+      ru:{
+        nav:['Обо мне','Кейсы','Навыки','Опыт','Контакты'],
+        menu:'МЕНЮ ☰',close:'ЗАКРЫТЬ ×',cvBtn:'CV / Резюме',navCta:'Обсудить проект ↗',
+        micro:'JAVA & BACKEND ENGINEER · QAZPOST · КАЗАХСТАН',
+        heroPrimary:'Обсудить задачу ↗',heroSecondary:'Смотреть кейсы',
+        eyebrows:['00 / АРХИТЕКТУРА И НАДЁЖНОСТЬ','01 / ИНЖЕНЕРНЫЙ СТАНДАРТ','02 / СТЕК И СИСТЕМЫ','03 / ПРОЦЕСС РАБОТЫ','04 / ГОТОВ К ЗАДАЧАМ'],
+        headings:['<span class="line">ЗА</span><span class="line"><span class="light">кодом.</span></span>','<span class="line">ВАЖНЫ</span><span class="line"><span class="light">детали.</span></span>','<span class="line">ДУМАЮ</span><span class="line"><span class="light">глубже.</span></span>','<span class="line">МЕНЬШЕ</span><span class="line"><span class="light">шума.</span></span>','<span class="line">ВРЕМЯ</span><span class="line"><span class="light">создавать.</span></span>'],
+        desc:[
+          'Расул Ахметов — Java Backend-разработчик. Проектирую серверную логику, защищённые API и отказоустойчивые сервисы для бизнеса и финтех/логистических платформ.',
+          'Чистая архитектура, предсказуемое время отклика и защита данных на уровне проектирования (Security-by-Design).',
+          'Java 17/21 · Spring Boot · PostgreSQL · Microservices · Docker. Создаю фундамент, который выдерживает рост нагрузки.',
+          'Прозрачная документация OpenAPI/Swagger, покрытый тестами код и соблюдение сроков интеграции.',
+          'Открыт для сложных backend-проектов, командной разработки и развития высоконагруженных систем.'
+        ],
+        chapters:['ЗНАКОМСТВО','СТАНДАРТ','СТЕК','ПРОЦЕСС','ДАЛЬШЕ'],
+        scroll:'ЛИСТАЙТЕ ВНИЗ',skip:'К СУТИ И КЕЙСАМ ↓',seam:'JAVA · SPRING BOOT · SECURITY-BY-DESIGN',
+        kpiVals:['QazPost','Java 17/21','B.Sc. InfoSec','< 2 часов'],
+        kpiLabels:['Enterprise-разработка национального масштаба','Spring Boot 3 · REST API · Микросервисы','Профильный диплом по информационной безопасности','Среднее время ответа в рабочее время (GMT+5)'],
+        toplines:['01 / ОБО МНЕ','02 / ИНЖЕНЕРНЫЕ КЕЙСЫ','03 / ФИЛОСОФИЯ','04 / КОМПЕТЕНЦИИ','05 / ОПЫТ И ОБРАЗОВАНИЕ','06 / КОНТАКТЫ И СОТРУДНИЧЕСТВО'],
+        dims:['ПРОФИЛЬ И СТЕК','АРХИТЕКТУРА И РЕЗУЛЬТАТЫ','ИНЖЕНЕРНЫЙ ПРИНЦИП','ЧЕМ Я ПОЛЕЗЕН ПРОЕКТУ','КАРЬЕРНЫЙ ТРЕК','НАЧАТЬ ДИАЛОГ'],
+        aboutKicker:'JAVA BACKEND ENGINEER · АСТАНА, КАЗАХСТАН',
+        aboutLead:'Проектирую надёжные серверные системы, <em>защищённые API</em> и архитектуру без технического долга.',
+        aboutTitle:'ПРИВЕТ,<br>Я <em>РАСУЛ.</em>',
+        about:[
+          'Я Расул Ахметов — Java Backend-разработчик из Астаны (Казахстан). Специализируюсь на проектировании серверной архитектуры, разработке высоконагруженных REST API и интеграции корпоративных сервисов.',
+          'Работаю Junior Java Developer в АО «Казпочта» (QazPost) и имею профильное высшее образование в области компьютерной и информационной безопасности. Это позволяет мне писать чистый код с защитой от уязвимостей (OWASP, JWT/OAuth2, RBAC) ещё на этапе проектирования.'
+        ],
+        aboutHlVals:['Java 17/21 & Spring Boot 3','АО «Казпочта» (QazPost)','B.Sc. Information Security','Астана (GMT+5) · Remote'],
+        aboutHlLbls:['PostgreSQL · Redis · Kafka/RabbitMQ · Docker','Enterprise-разработка национального масштаба','Защита API · OWASP Top-10 · OAuth2 / JWT','Командная разработка и проектные задачи'],
+        aboutCasesBtn:'Смотреть кейсы ↓',
+        stackTitles:['Языки и ядро','Фреймворки и API','Базы данных и обмен','Безопасность и DevOps'],
+        photoLabel:'РАСУЛ АХМЕТОВ — АСТАНА / 2026',
+        projectsHeading:'СИСТЕМЫ<br>В <em>работе.</em>',
+        projectsSub:'Примеры архитектурных задач, микросервисов и серверных модулей с измеримым бизнес-эффектом.',
+        projMeta:['ENTERPRISE LOGISTICS · QAZPOST','SECURITY & IDENTITY · FINTECH ARCHITECTURE','HIGH-LOAD MESSAGING · INTEGRATION ENGINE'],
+        projTitles:['Сервис маршрутизации и трекинга почтовых отправлений','Микросервис аутентификации и ролевого доступа (RBAC)','Асинхронный шлюз транзакционных уведомлений и вебхуков'],
+        projDescs:[
+          'Разработка и оптимизация серверных модулей обработки статусов посылок, валидации накладных и синхронизации с внешними информационными системами.',
+          'Единый шлюз безопасности с выпуском и ротацией JWT-токенов, защитой от брутфорса (Rate Limiting в Redis) и журналом аудита критических операций.',
+          'Отказоустойчивый конвейер доставки событий через очереди сообщений с механизмом Dead Letter Queue (DLQ), идемпотентностью и повторными попытками.'
+        ],
+        projMetrics:['-35% латентность SQL-запросов · 99.95% успешных синхронизаций','OWASP Top-10 защита · < 12 мс проверка токена в Redis','0 потерь транзакционных событий · До 1 500 msg/sec в пике'],
+        projBtn:'Архитектура и детали ↗',
+        caseModals:[
+          {kicker:'КЕЙС 01 · ENTERPRISE LOGISTICS',title:'Сервис маршрутизации и трекинга отправлений',problem:'Задача: ускорить обработку статусов почтовых отправлений при пакетной синхронизации и исключить дублирование записей при повторных запросах внешних систем.',bullets:['Оптимизированы сложные JOIN-запросы и добавлены составные индексы в PostgreSQL, что снизило время отклика на 35%.','Внедрена строгая валидация DTO и идемпотентные ключи операций на уровне REST-контроллеров Spring Boot.','Настроены версионированные миграции БД через Liquibase и автоматические интеграционные тесты.'],stack:'Стек: Java 17 · Spring Boot · Spring Data JPA · PostgreSQL · Liquibase · OpenAPI'},
+          {kicker:'КЕЙС 02 · SECURITY-BY-DESIGN',title:'Микросервис аутентификации и ролевого доступа (RBAC)',problem:'Задача: централизовать управление доступом для внутренних и клиентских сервисов с защитой от компрометации сессий и перебора паролей.',bullets:['Реализована двухтокенная схема (Access + Refresh JWT) с мгновенным отзывом скомпрометированных токенов через черный список в Redis.','Настроен ролевой и атрибутный контроль доступа (Spring Security Method Security) для разграничения операций.','Внедрён Rate Limiter (алгоритм Token Bucket) и защищённое логирование критических действий пользователей.'],stack:'Стек: Java 21 · Spring Boot 3 · Spring Security · OAuth2 / JWT · Redis · Docker'},
+          {kicker:'КЕЙС 03 · ASYNC MESSAGING',title:'Асинхронный шлюз транзакционных уведомлений и вебхуков',problem:'Задача: разгрузить основной монолит от синхронных вызовов внешних SMS/Email/Webhook-провайдеров и гарантировать доставку при временной недоступности шлюзов.',bullets:['Выделен асинхронный сервис-консьюмер с очередями сообщений и автоматическим экспоненциальным повтором (Exponential Backoff).','Реализован механизм Dead Letter Queue (DLQ) и таблица статуса доставки (Outbox Pattern) для 100% сохранности событий.','Время ответа основного пользовательского API сократилось с 850 мс до 45 мс за счёт перевода отправки в фон.'],stack:'Стек: Java 17 · Spring Boot · RabbitMQ / Kafka · PostgreSQL · Outbox Pattern · JUnit 5'}
+        ],
+        caseModalCta:'Обсудить похожую задачу ↗',
+        statement:'ХОРОШИЕ<br>СИСТЕМЫ <span class="outline">НЕЗАМЕТНЫ.</span><br><i>Но результат виден бизнесу.</i>',
+        statementBody:'За быстрым приложением всегда стоит выверенная схема данных, продуманные индексы и безопасный API. Я строю этот фундамент — без технического долга и хрупких решений.',
+        expertiseTitle:'ЧТО Я<br>ДЕЛАЮ<span style="font-family:var(--font-serif);font-weight:500;font-style:italic">.</span>',
+        expertiseBody:'Нажмите на любое направление, чтобы раскрыть конкретные инструменты, архитектурные паттерны и артефакты работы.',
+        services:['Проектирование Backend и REST API','Разработка на Java и экосистеме Spring','Высоконагруженные системы и интеграции','Информационная безопасность (Security-by-Design)'],
+        serviceBody:[
+          'Серверная бизнес-логика, контракты OpenAPI/Swagger и предсказуемая интеграция с фронтендом и мобильными приложениями.',
+          'Создание и развитие корпоративных сервисов на Java 17/21, Spring Boot 3, Spring Data JPA и Hibernate.',
+          'Связь микросервисов, кэширование в Redis, очереди сообщений и надёжный обмен данными с внешними API.',
+          'Защита серверных приложений, аутентификация JWT/OAuth2, разграничение прав доступа и аудит уязвимостей.'
+        ],
+        serviceDetails:[
+          'Проектирую чистую многослойную архитектуру (Controller → Service → Repository / Domain), валидацию входных DTO, централизованную обработку ошибок (RFC 7807 Problem Details) и версионирование API.',
+          'Устраняю проблемы N+1 запросов в Hibernate, настраиваю пулы соединений HikariCP, транзакционность (@Transactional) и миграции схем БД через Liquibase / Flyway без простоев при релизе.',
+          'Внедряю асинхронную обработку фоновых задач, идемпотентные вебхуки, кэширование горячих справочников и отказоустойчивые интеграции с внешними платёжными и логистическими шлюзами.',
+          'Применяю профильную подготовку по ИБ: защита от SQL-инъекций, XSS/CSRF, безопасное хранение секретов, настройка Spring Security фильтров, ролевая модель (RBAC) и логирование событий безопасности.'
+        ],
+        serviceDeliv:[
+          'Результат: Документированный REST API (Swagger UI) · Покрытие ключевой логики JUnit/Mockito · Готовность к нагрузочному тестированию.',
+          'Результат: Чистый поддерживаемый Java-код · Оптимизированные SQL-запросы и индексы · Миграции БД в CI/CD.',
+          'Результат: Снижение нагрузки на основную БД · Асинхронные очереди · Защита от каскадных сбоев.',
+          'Результат: Соответствие практикам OWASP · Защищённая авторизация · Безопасная работа с персональными данными.'
+        ],
+        experienceTitle:'МОЙ<br>ПУТЬ<span style="font-family:var(--font-serif);font-weight:500;font-style:italic">.</span>',
+        expOrgs:['АО «Казпочта» (QazPost)','Карагандинский технический университет'],
+        expRoles:['Junior Java Developer · Астана, Казахстан','Бакалавр · Системы информационной безопасности (Computer & Information Systems Security)'],
+        expDates:['2026 — Н.В.','2021 — 2025'],
+        expBullets0:[
+          'Разработка и поддержка backend-сервисов на Java и Spring Boot для логистических и почтовых бизнес-процессов.',
+          'Проектирование REST API, оптимизация SQL-запросов в реляционных СУБД и написание миграций данных.',
+          'Работа в кросс-функциональной команде, code review, тестирование и устранение узких мест производительности.'
+        ],
+        expBullets1:[
+          'Фундаментальная подготовка по криптографии, сетевой безопасности, защите баз данных и архитектуре защищённых систем.',
+          'Фокус на безопасной разработке серверного ПО (Secure SDLC) и анализе защищённости веб-приложений.'
+        ],
+        contactTitle:'ДАВАЙТЕ<br><em>создавать</em><br>ВМЕСТЕ.',
+        invite:'Ищете Java Backend-разработчика в команду или нужно спроектировать надёжный API и серверную архитектуру? Напишите мне напрямую в удобный мессенджер или на почту — отвечаю в течение 2 часов.',
+        briefTitle:'1. Выберите формат сотрудничества и кратко опишите задачу:',
+        slaBadge:'● Открыт к предложениям · Ответ в течение 2 часов',
+        topics:['Разработка Backend / API','Java-разработчик в команду','Микросервисы и интеграция','Аудит архитектуры и ИБ'],
+        briefPlaceholder:'Кратко о проекте или вакансии (например: нужен сервис оплаты на Spring Boot)...',
+        applyBrief:'Сформировать запрос ✓',
+        briefReady:'Запрос сформирован! Выберите WhatsApp, Telegram или Email ниже для отправки.',
+        waSub:'+7 708 548 08 59 · Быстрый чат с готовым брифом',
+        tgSub:'@ahmetov_rasul · Прямая связь с разработчиком',
+        alternative:'ИЛИ ИСПОЛЬЗУЙТЕ ПРЯМУЮ ПОЧТУ И РЕЗЮМЕ',
+        copyEmail:'Скопировать Email',
+        copiedEmail:'Скопировано ✓',
+        openCvFooter:'CV / РЕЗЮМЕ ↗',
+        cvModalTitle:'Расул Ахметов — Java Backend Developer',
+        cvModalBody:'<p><strong>Локация:</strong> Астана, Казахстан (GMT+5) · Удалённо / Офис / Гибрид</p><p><strong>Контакты:</strong> rasulakhmetov2004@gmail.com · +7 708 548 08 59 · Telegram: @ahmetov_rasul</p><p><strong>Ключевой стек:</strong> Java 17/21, Spring Boot 3, Spring Security (JWT/OAuth2), Spring Data JPA / Hibernate, PostgreSQL, Redis, Liquibase, RabbitMQ/Kafka, Docker, Git, JUnit 5.</p><p><strong>Опыт работы:</strong> АО «Казпочта» (QazPost) — Junior Java Developer (2026 — н.в.). Разработка и оптимизация серверных модулей, REST API и интеграций с государственными и логистическими сервисами.</p><p><strong>Образование:</strong> Карагандинский технический университет (2021 — 2025), Бакалавр в области компьютерной и информационной безопасности.</p>',
+        printCv:'Печать / Сохранить PDF',
+        cvContact:'Связаться с Расулом',
+        footerCopy:'© 2026 РАСУЛ АХМЕТОВ · JAVA & BACKEND DEVELOPER<br>СОЗДАНО С ИНЖЕНЕРНОЙ ТОЧНОСТЬЮ.',
+        footerCases:'КЕЙСЫ ↑',footerTop:'НАВЕРХ ↑',
+        wa:'Привет, Расул! Посмотрел(а) твоё портфолио, хочу обсудить сотрудничество.',
+        meta:'Расул Ахметов — Java & Backend-разработчик (QazPost, Казахстан). Проектирование надёжных серверных систем, REST API и микросервисов.'
+      },
+      kz:{
+        nav:['Мен туралы','Кейстер','Дағдылар','Тәжірибе','Байланыс'],
+        menu:'МӘЗІР ☰',close:'ЖАБУ ×',cvBtn:'CV / Түйіндеме',navCta:'Жобаны талқылау ↗',
+        micro:'JAVA & BACKEND ENGINEER · QAZPOST · ҚАЗАҚСТАН',
+        heroPrimary:'Тапсырманы талқылау ↗',heroSecondary:'Кейстерді көру',
+        eyebrows:['00 / АРХИТЕКТУРА ЖӘНЕ СЕНІМДІЛІК','01 / ИНЖЕНЕРЛІК СТАНДАРТ','02 / СТЕК ЖӘНЕ ЖҮЙЕЛЕР','03 / ЖҰМЫС ҮДЕРІСІ','04 / ЖАҢА ЖОБАЛАРҒА ДАЙЫН'],
+        headings:['<span class="line">КОДТЫҢ</span><span class="line"><span class="light">артында.</span></span>','<span class="line">ӘР</span><span class="line"><span class="light">бөлшек маңызды.</span></span>','<span class="line">ТЕРЕҢ</span><span class="line"><span class="light">ойлау.</span></span>','<span class="line">АЗ</span><span class="line"><span class="light">шу.</span></span>','<span class="line">БІРГЕ</span><span class="line"><span class="light">жасайық.</span></span>'],
+        desc:[
+          'Расул Ахметов — Java Backend әзірлеушісі. Бизнес пен финтех/логистикалық платформалар үшін серверлік логика, қорғалған API және сенімді сервистер құрамын.',
+          'Таза архитектура, жылдам жауап беру уақыты және жобалау деңгейіндегі деректер қауіпсіздігі (Security-by-Design).',
+          'Java 17/21 · Spring Boot · PostgreSQL · Microservices · Docker. Жоғары жүктемеге төзімді іргетас.',
+          'Ашық OpenAPI/Swagger құжаттамасы, тестпен қамтылған код және интеграция мерзімдерін сақтау.',
+          'Күрделі backend-жобаларға, командалық әзірлеуге және ауқымды жүйелерді дамытуға дайынмын.'
+        ],
+        chapters:['ТАНЫСУ','СТАНДАРТ','СТЕК','ҮДЕРІС','КЕЛЕСІ ҚАДАМ'],
+        scroll:'ТӨМЕН ҚАРАЙ ЖЫЛЖЫТЫҢЫЗ',skip:'КЕЙСТЕРГЕ ӨТУ ↓',seam:'JAVA · SPRING BOOT · SECURITY-BY-DESIGN',
+        kpiVals:['QazPost','Java 17/21','B.Sc. InfoSec','< 2 сағат'],
+        kpiLabels:['Ұлттық деңгейдегі Enterprise-әзірлеу','Spring Boot 3 · REST API · Микросервистер','Ақпараттық қауіпсіздік бойынша бейінді диплом','Жұмыс уақытындағы орташа жауап уақыты (GMT+5)'],
+        toplines:['01 / МЕН ТУРАЛЫ','02 / ИНЖЕНЕРЛІК КЕЙСТЕР','03 / ҰСТАНЫМ','04 / ҚҰЗЫРЕТТЕР','05 / ТӘЖІРИБЕ МЕН БІЛІМ','06 / БАЙЛАНЫС ЖӘНЕ ЫНТЫМАҚТАСТЫҚ'],
+        dims:['ПРОФИЛЬ ЖӘНЕ СТЕК','АРХИТЕКТУРА ЖӘНЕ НӘТИЖЕ','ИНЖЕНЕРЛІК ҚАҒИДА','ЖОБАҒА ТИГІЗЕТІН ПАЙДАМ','МАНСАП ЖОЛЫ','ДИАЛОГ БАСТАУ'],
+        aboutKicker:'JAVA BACKEND ENGINEER · АСТАНА, ҚАЗАҚСТАН',
+        aboutLead:'Сенімді серверлік жүйелерді, <em>қорғалған API</em> мен техникалық қарызсыз архитектураны жобалаймын.',
+        aboutTitle:'СӘЛЕМ,<br>МЕН <em>РАСУЛ.</em>',
+        about:[
+          'Мен Расул Ахметов — Астана қаласынан (Қазақстан) Java Backend әзірлеушісімін. Серверлік архитектураны жобалауға, жоғары жүктемелі REST API әзірлеуге және корпоративтік сервистерді біріктіруге маманданғанмын.',
+          'Қазір «Қазпошта» АҚ (QazPost) компаниясында Junior Java Developer болып жұмыс істеймін және компьютерлік әрі ақпараттық қауіпсіздік саласында жоғары білімім бар. Бұл жобалау кезеңінен бастап қауіпсіз код (OWASP, JWT/OAuth2, RBAC) жазуға мүмкіндік береді.'
+        ],
+        aboutHlVals:['Java 17/21 & Spring Boot 3','«Қазпошта» АҚ (QazPost)','B.Sc. Information Security','Астана (GMT+5) · Remote'],
+        aboutHlLbls:['PostgreSQL · Redis · Kafka/RabbitMQ · Docker','Ұлттық деңгейдегі Enterprise-әзірлеу','API қорғау · OWASP Top-10 · OAuth2 / JWT','Командалық әзірлеу және жобалық тапсырмалар'],
+        aboutCasesBtn:'Кейстерді көру ↓',
+        stackTitles:['Тілдер және ядро','Фреймворктер және API','Дерекқорлар және алмасу','Қауіпсіздік және DevOps'],
+        photoLabel:'РАСУЛ АХМЕТОВ — АСТАНА / 2026',
+        projectsHeading:'ЖҮЙЕЛЕР<br><em>іс жүзінде.</em>',
+        projectsSub:'Өлшенетін бизнес-нәтижесі бар архитектуралық шешімдер, микросервистер мен серверлік модульдер.',
+        projMeta:['ENTERPRISE LOGISTICS · QAZPOST','SECURITY & IDENTITY · FINTECH ARCHITECTURE','HIGH-LOAD MESSAGING · INTEGRATION ENGINE'],
+        projTitles:['Пошта жөнелтілімдерін бағыттау және трекинг сервисі','Аутентификация және рөлдік қолжетімділік микросервисі (RBAC)','Транзакциялық хабарламалар мен вебхуктардың асинхронды шлюзі'],
+        projDescs:[
+          'Сәлемдеме мәртебелерін өңдеу, жүкқұжаттарды тексеру және сыртқы ақпараттық жүйелермен синхрондау серверлік модульдерін әзірлеу.',
+          'JWT-токендерді шығару және жаңарту, Redis арқылы шабуылдан қорғау (Rate Limiting) және аудит журналы бар бірыңғай қауіпсіздік шлюзі.',
+          'Dead Letter Queue (DLQ), идемпотенттілік және қайталау механизмі бар хабарламалар кезегі арқылы оқиғаларды жеткізу конвейері.'
+        ],
+        projMetrics:['-35% SQL-сұраныс кідірісі · 99.95% сәтті синхрондау','OWASP Top-10 қорғанысы · < 12 мс Redis токен тексеруі','0 транзакциялық жоғалту · Шыңында 1 500 msg/sec дейін'],
+        projBtn:'Архитектура және мәліметтер ↗',
+        caseModals:[
+          {kicker:'КЕЙС 01 · ENTERPRISE LOGISTICS',title:'Жөнелтілімдерді бағыттау және трекинг сервисі',problem:'Міндет: пакеттік синхрондау кезінде пошта мәртебелерін өңдеуді жеделдету және сыртқы жүйелердің қайталама сұраныстарында жазбалардың қосарлануын болдырмау.',bullets:['Күрделі JOIN-сұраныстар оңтайландырылып, PostgreSQL-де құрама индекстер қосылды, жауап беру уақыты 35%-ға қысқарды.','Spring Boot REST-контроллерлері деңгейінде қатаң DTO валидациясы және идемпотенттілік кілттері енгізілді.','Liquibase арқылы ДҚ миграциялары және автоматты интеграциялық тесттер бапталды.'],stack:'Стек: Java 17 · Spring Boot · Spring Data JPA · PostgreSQL · Liquibase · OpenAPI'},
+          {kicker:'КЕЙС 02 · SECURITY-BY-DESIGN',title:'Аутентификация және рөлдік қолжетімділік микросервисі (RBAC)',problem:'Міндет: сессияларды бұзудан және құпиясөзді іріктеуден қорғай отырып, ішкі және клиенттік сервистер үшін қолжетімділікті орталықтандыру.',bullets:['Redis-тегі қара тізім арқылы токендерді лезде қайтарып алу мүмкіндігі бар қос токенді (Access + Refresh JWT) схема іске асырылды.','Операцияларды шектеу үшін рөлдік және атрибуттық қолжетімділікті бақылау (Spring Security) бапталды.','Rate Limiter (Token Bucket) және маңызды әрекеттерді қауіпсіздік журналына жазу енгізілді.'],stack:'Стек: Java 21 · Spring Boot 3 · Spring Security · OAuth2 / JWT · Redis · Docker'},
+          {kicker:'КЕЙС 03 · ASYNC MESSAGING',title:'Транзакциялық хабарламалар мен вебхуктардың асинхронды шлюзі',problem:'Міндет: негізгі монолитті сыртқы SMS/Email/Webhook провайдерлеріне синхронды қоңыраулардан босату және жеткізуге кепілдік беру.',bullets:['Хабарламалар кезегі және экспоненциалды қайталау (Exponential Backoff) бар асинхронды консьюмер-сервис бөлінді.','Оқиғаларды 100% сақтау үшін Dead Letter Queue (DLQ) және Outbox Pattern механизмі іске асырылды.','Негізгі API жауап беру уақыты 850 мс-тан 45 мс-қа дейін қысқарды.'],stack:'Стек: Java 17 · Spring Boot · RabbitMQ / Kafka · PostgreSQL · Outbox Pattern · JUnit 5'}
+        ],
+        caseModalCta:'Ұқсас жобаны талқылау ↗',
+        statement:'ЖАҚСЫ<br>ЖҮЙЕ <span class="outline">БАЙҚАЛМАЙДЫ.</span><br><i>Ал нәтижесі бизнеске көрінеді.</i>',
+        statementBody:'Жылдам қосымшаның артында әрқашан нақты деректер схемасы, ойластырылған индекстер мен қауіпсіз API тұрады. Мен осы іргетасты техникалық қарызсыз құрамын.',
+        expertiseTitle:'НЕМЕН<br>АЙНАЛЫСАМЫН<span style="font-family:var(--font-serif);font-weight:500;font-style:italic">.</span>',
+        expertiseBody:'Нақты құралдарды, архитектуралық паттерндерді және жұмыс нәтижелерін көру үшін кез келген бағытты басыңыз.',
+        services:['Backend және REST API жобалау','Java және Spring экожүйесінде әзірлеу','Жоғары жүктемелі жүйелер мен интеграция','Ақпараттық қауіпсіздік (Security-by-Design)'],
+        serviceBody:[
+          'Серверлік бизнес-логика, OpenAPI/Swagger келісімшарттары және фронтенд/мобильді қосымшалармен интеграция.',
+          'Java 17/21, Spring Boot 3, Spring Data JPA және Hibernate негізінде корпоративтік сервистерді құру.',
+          'Микросервистер байланысы, Redis кэштеу, хабарламалар кезегі және сыртқы API-мен сенімді деректер алмасу.',
+          'Серверлік қосымшаларды қорғау, JWT/OAuth2 аутентификациясы, құқықтарды шектеу және осалдықтар аудиті.'
+        ],
+        serviceDetails:[
+          'Көпқабатты таза архитектураны (Controller → Service → Repository / Domain), DTO валидациясын, орталықтандырылған қате өңдеуді (RFC 7807) және API нұсқалауын жобалаймын.',
+          'Hibernate-тегі N+1 сұраныс мәселелерін шешемін, HikariCP қосылым пулдарын, транзакцияларды (@Transactional) және Liquibase / Flyway арқылы ДҚ миграцияларын баптаймын.',
+          'Фондық тапсырмаларды асинхронды өңдеуді, идемпотентті вебхуктарды, жиі қолданылатын анықтамалықтарды кэштеуді және сыртқы шлюздермен интеграцияны енгіземін.',
+          'АҚ бойынша бейінді білімімді қолданамын: SQL-инъекциялардан, XSS/CSRF-тен қорғау, Spring Security сүзгілері, рөлдік модель (RBAC) және қауіпсіздік аудиті.'
+        ],
+        serviceDeliv:[
+          'Нәтиже: Құжатталған REST API (Swagger UI) · JUnit/Mockito тесттері · Жүктемелік тестілеуге дайындық.',
+          'Нәтиже: Таза Java коды · Оңтайландырылған SQL сұраныстар мен индекстер · CI/CD-дегі ДҚ миграциялары.',
+          'Нәтиже: Негізгі ДҚ жүктемесін азайту · Асинхронды кезектер · Іркілістерден қорғау.',
+          'Нәтиже: OWASP стандарттарына сәйкестік · Қорғалған авторизация · Деректер қауіпсіздігі.'
+        ],
+        experienceTitle:'МЕНІҢ<br>ЖОЛЫМ<span style="font-family:var(--font-serif);font-weight:500;font-style:italic">.</span>',
+        expOrgs:['«Қазпошта» АҚ (QazPost)','Қарағанды техникалық университеті'],
+        expRoles:['Junior Java Developer · Астана, Қазақстан','Бакалавр · Ақпараттық қауіпсіздік жүйелері (Computer & Information Systems Security)'],
+        expDates:['2026 — ҚАЗІР','2021 — 2025'],
+        expBullets0:[
+          'Логистикалық және пошталық бизнес-үдерістер үшін Java және Spring Boot негізінде backend-сервистерді әзірлеу және қолдау.',
+          'REST API жобалау, реляциялық ДҚБЖ-де SQL-сұраныстарды оңтайландыру және деректер миграциясын жазу.',
+          'Кросс-функционалды командада жұмыс, code review, тестілеу және өнімділікті арттыру.'
+        ],
+        expBullets1:[
+          'Криптография, желілік қауіпсіздік, дерекқорларды қорғау және қорғалған жүйелер архитектурасы бойынша іргелі дайындық.',
+          'Серверлік БҚ қауіпсіз әзірлеуге (Secure SDLC) және веб-қосымшалардың қорғалуын талдауға басымдық.'
+        ],
+        contactTitle:'БІРГЕ<br><em>жоба</em><br>ЖАСАЙЫҚ.',
+        invite:'Командаға Java Backend-әзірлеуші іздеп жүрсіз бе немесе өнімге сенімді API мен серверлік архитектура керек пе? Маған тікелей мессенджерге немесе поштаға жазыңыз — 2 сағат ішінде жауап беремін.',
+        briefTitle:'1. Ынтымақтастық форматын таңдап, тапсырманы қысқаша сипаттаңыз:',
+        slaBadge:'● Ұсыныстарға ашықпын · 2 сағат ішінде жауап беремін',
+        topics:['Backend / API әзірлеу','Командаға Java-әзірлеуші','Микросервистер және интеграция','Архитектура және АҚ аудиті'],
+        briefPlaceholder:'Жоба немесе бос орын туралы қысқаша (мысалы: Spring Boot-та төлем сервисі керек)...',
+        applyBrief:'Сұранысты дайындау ✓',
+        briefReady:'Сұраныс дайын! Жіберу үшін төмендегі WhatsApp, Telegram немесе Email таңдаңыз.',
+        waSub:'+7 708 548 08 59 · Дайын брифпен жылдам чат',
+        tgSub:'@ahmetov_rasul · Әзірлеушімен тікелей байланыс',
+        alternative:'НЕМЕСЕ ТІКЕЛЕЙ ПОШТА МЕН ТҮЙІНДЕМЕНІ ПАЙДАЛАНЫҢЫЗ',
+        copyEmail:'Email көшіру',
+        copiedEmail:'Көшірілді ✓',
+        openCvFooter:'CV / ТҮЙІНДЕМЕ ↗',
+        cvModalTitle:'Расул Ахметов — Java Backend әзірлеушісі',
+        cvModalBody:'<p><strong>Орналасқан жері:</strong> Астана, Қазақстан (GMT+5) · Қашықтан / Кеңсе / Гибрид</p><p><strong>Байланыс:</strong> rasulakhmetov2004@gmail.com · +7 708 548 08 59 · Telegram: @ahmetov_rasul</p><p><strong>Негізгі стек:</strong> Java 17/21, Spring Boot 3, Spring Security (JWT/OAuth2), Spring Data JPA / Hibernate, PostgreSQL, Redis, Liquibase, RabbitMQ/Kafka, Docker, Git, JUnit 5.</p><p><strong>Жұмыс тәжірибесі:</strong> «Қазпошта» АҚ (QazPost) — Junior Java Developer (2026 — қазіргі уақыт). Серверлік модульдерді, REST API және мемлекеттік/логистикалық сервистермен интеграцияларды әзірлеу және оңтайландыру.</p><p><strong>Білімі:</strong> Қарағанды техникалық университеті (2021 — 2025), Компьютерлік және ақпараттық қауіпсіздік бакалавры.</p>',
+        printCv:'Басып шығару / PDF сақтау',
+        cvContact:'Расулмен байланысу',
+        footerCopy:'© 2026 РАСУЛ АХМЕТОВ · JAVA & BACKEND DEVELOPER<br>ИНЖЕНЕРЛІК ДӘЛДІКПЕН ЖАСАЛҒАН.',
+        footerCases:'КЕЙСТЕР ↑',footerTop:'ЖОҒАРЫҒА ↑',
+        wa:'Сәлем, Расул! Портфолиоңды көрдім, жоба бойынша байланысқым келеді.',
+        meta:'Расул Ахметов — Java & Backend әзірлеушісі (QazPost, Қазақстан). Сенімді серверлік жүйелер, REST API және микросервистер.'
+      },
+      en:{
+        nav:['About','Case Studies','Expertise','Experience','Contact'],
+        menu:'MENU ☰',close:'CLOSE ×',cvBtn:'CV / Resume',navCta:'Discuss Project ↗',
+        micro:'JAVA & BACKEND ENGINEER · QAZPOST · KAZAKHSTAN',
+        heroPrimary:'Start a Project ↗',heroSecondary:'View Case Studies',
+        eyebrows:['00 / ARCHITECTURE & RELIABILITY','01 / ENGINEERING STANDARD','02 / STACK & SYSTEMS','03 / WORKFLOW','04 / READY FOR CHALLENGES'],
+        headings:['<span class="line">BEHIND</span><span class="line">THE <span class="light">code.</span></span>','<span class="line">DETAILS</span><span class="line"><span class="light">matter.</span></span>','<span class="line">THINK</span><span class="line">DEEP<span class="light">er.</span></span>','<span class="line">LESS</span><span class="line"><span class="light">noise.</span></span>','<span class="line">MORE</span><span class="line">TO <span class="light">build.</span></span>'],
+        desc:[
+          'Rasul Akhmetov — Java Backend Developer. Designing server-side logic, secure APIs, and fault-tolerant services for enterprise, fintech, and logistics platforms.',
+          'Clean architecture, predictable latency, and data protection built right into the design phase (Security-by-Design).',
+          'Java 17/21 · Spring Boot · PostgreSQL · Microservices · Docker. Engineering foundations that scale under load.',
+          'Clear OpenAPI/Swagger documentation, unit-tested business logic, and dependable integration delivery.',
+          'Available for backend engineering roles, dedicated team augmentation, and high-load service development.'
+        ],
+        chapters:['INTRODUCTION','STANDARD','STACK','PROCESS','NEXT CHAPTER'],
+        scroll:'SCROLL TO EXPLORE',skip:'SKIP TO CASE STUDIES ↓',seam:'JAVA · SPRING BOOT · SECURITY-BY-DESIGN',
+        kpiVals:['QazPost','Java 17/21','B.Sc. InfoSec','< 2 Hours'],
+        kpiLabels:['National-scale enterprise backend engineering','Spring Boot 3 · REST API · Microservices','Degree in Computer & Information Security','Average response time during business hours (GMT+5)'],
+        toplines:['01 / ABOUT ME','02 / CASE STUDIES','03 / PHILOSOPHY','04 / EXPERTISE','05 / EXPERIENCE & EDUCATION','06 / CONTACT & COOPERATION'],
+        dims:['PROFILE & STACK','ARCHITECTURE & OUTCOMES','ENGINEERING PRINCIPLE','HOW I ADD VALUE','CAREER PATH','START A CONVERSATION'],
+        aboutKicker:'JAVA BACKEND ENGINEER · ASTANA, KAZAKHSTAN',
+        aboutLead:'Engineering resilient backend systems, <em>hardened APIs</em>, and clean architecture without technical debt.',
+        aboutTitle:'HELLO,<br>I\'M <em>RASUL.</em>',
+        about:[
+          'I\'m Rasul Akhmetov, a Java Backend Developer based in Astana, Kazakhstan. I specialize in server-side architecture, high-throughput REST APIs, and enterprise system integrations.',
+          'Currently working as a Junior Java Developer at QazPost (the national postal & fintech operator of Kazakhstan) with a Bachelor\'s degree in Information Security. This combination lets me build resilient systems with OWASP, JWT/OAuth2, and RBAC security baked in from day one.'
+        ],
+        aboutHlVals:['Java 17/21 & Spring Boot 3','QazPost Enterprise','B.Sc. Information Security','Astana (GMT+5) · Remote'],
+        aboutHlLbls:['PostgreSQL · Redis · Kafka/RabbitMQ · Docker','National-scale postal & fintech infrastructure','API Hardening · OWASP Top-10 · OAuth2 / JWT','Team augmentation & dedicated backend engineering'],
+        aboutCasesBtn:'View Case Studies ↓',
+        stackTitles:['Languages & Core','Frameworks & API','Databases & Messaging','Security & DevOps'],
+        photoLabel:'RASUL AKHMETOV — ASTANA / 2026',
+        projectsHeading:'SYSTEMS<br>IN <em>production.</em>',
+        projectsSub:'Selected architectural tasks, microservices, and backend modules delivering measurable technical impact.',
+        projMeta:['ENTERPRISE LOGISTICS · QAZPOST','SECURITY & IDENTITY · FINTECH ARCHITECTURE','HIGH-LOAD MESSAGING · INTEGRATION ENGINE'],
+        projTitles:['Postal Shipment Routing & Status Tracking Service','Authentication & Role-Based Access Microservice (RBAC)','Asynchronous Transactional Notification & Webhook Gateway'],
+        projDescs:[
+          'Development and optimization of backend modules processing parcel lifecycle states, waybill validation, and synchronization with external enterprise registries.',
+          'Centralized security gateway handling JWT issuance/rotation, Redis-backed brute-force rate limiting, and audit logging for sensitive operations.',
+          'Fault-tolerant event delivery pipeline using message queues with Dead Letter Queue (DLQ) recovery, idempotency keys, and exponential backoff.'
+        ],
+        projMetrics:['-35% SQL query latency · 99.95% sync reliability','OWASP Top-10 hardened · < 12ms token check in Redis','0 lost transactional events · Up to 1,500 msg/sec peak'],
+        projBtn:'Architecture & Details ↗',
+        caseModals:[
+          {kicker:'CASE 01 · ENTERPRISE LOGISTICS',title:'Postal Shipment Routing & Status Tracking Service',problem:'Challenge: Accelerate batch shipment status processing and eliminate duplicate state mutations during retries from external partner systems.',bullets:['Optimized complex SQL joins and introduced composite PostgreSQL indexes, cutting query latency by 35%.','Enforced strict DTO validation and idempotency keys across Spring Boot REST controllers.','Automated schema evolution via Liquibase migrations and JUnit 5 integration test suites.'],stack:'Stack: Java 17 · Spring Boot · Spring Data JPA · PostgreSQL · Liquibase · OpenAPI'},
+          {kicker:'CASE 02 · SECURITY-BY-DESIGN',title:'Authentication & Role-Based Access Microservice (RBAC)',problem:'Challenge: Centralize identity verification and fine-grained permissions across internal and client-facing endpoints while preventing credential stuffing.',bullets:['Implemented dual-token (Access + Refresh JWT) rotation with instant Redis blacklist revocation.','Configured method-level Spring Security RBAC policies and structured security audit trails.','Added a Redis Token-Bucket rate limiter protecting authentication and sensitive transactional routes.'],stack:'Stack: Java 21 · Spring Boot 3 · Spring Security · OAuth2 / JWT · Redis · Docker'},
+          {kicker:'CASE 03 · ASYNC MESSAGING',title:'Asynchronous Transactional Notification & Webhook Gateway',problem:'Challenge: Decouple core transaction processing from slow external SMS/Email/Webhook providers and guarantee delivery during third-party outages.',bullets:['Extracted an asynchronous queue consumer with exponential backoff retry policies.','Implemented the Outbox Pattern and Dead Letter Queue (DLQ) handling for zero message loss.','Reduced core user-facing API latency from 850ms to 45ms by offloading dispatches to background workers.'],stack:'Stack: Java 17 · Spring Boot · RabbitMQ / Kafka · PostgreSQL · Outbox Pattern · JUnit 5'}
+        ],
+        caseModalCta:'Discuss a Similar System ↗',
+        statement:'GOOD TECH<br>IS <span class="outline">INVISIBLE.</span><br><i>Its business impact isn\'t.</i>',
+        statementBody:'Behind every fast application is a well-modeled database schema, tuned indexes, and a secure API contract. I build that foundation without technical debt or fragile shortcuts.',
+        expertiseTitle:'WHAT I<br>DO<span style="font-family:var(--font-serif);font-weight:500;font-style:italic">.</span>',
+        expertiseBody:'Click any capability below to inspect specific tools, architectural patterns, and engineering deliverables.',
+        services:['Backend & REST API Architecture','Java & Spring Ecosystem Engineering','High-Load Systems & Integrations','Information Security (Security-by-Design)'],
+        serviceBody:[
+          'Server-side domain logic, OpenAPI/Swagger contracts, and predictable integration for web and mobile clients.',
+          'Building and scaling enterprise services with Java 17/21, Spring Boot 3, Spring Data JPA, and Hibernate.',
+          'Microservice communication, Redis caching, message queues, and resilient third-party API integrations.',
+          'Application hardening, JWT/OAuth2 authentication, fine-grained RBAC authorization, and vulnerability prevention.'
+        ],
+        serviceDetails:[
+          'I design clean layered architectures (Controller → Service → Repository / Domain), strict input DTO validation, standardized RFC 7807 error responses, and versioned API endpoints.',
+          'I eliminate Hibernate N+1 query bottlenecks, tune HikariCP connection pools, manage transactional boundaries (@Transactional), and write zero-downtime Liquibase/Flyway migrations.',
+          'I implement asynchronous background workers, idempotent webhooks, hot-data Redis caching, and fault-tolerant integrations with payment and logistics gateways.',
+          'Leveraging my B.Sc. in Information Security, I protect services against SQLi, XSS/CSRF, broken access control, and insecure secret handling using Spring Security and OWASP best practices.'
+        ],
+        serviceDeliv:[
+          'Deliverables: Documented REST API (Swagger UI) · JUnit/Mockito test coverage · Load-ready endpoints.',
+          'Deliverables: Clean maintainable Java code · Tuned SQL queries & indexes · Automated DB migrations.',
+          'Deliverables: Reduced primary DB load · Resilient message queues · Protection against cascading failures.',
+          'Deliverables: OWASP-compliant endpoints · Hardened JWT/OAuth2 flows · Audit logging for sensitive data.'
+        ],
+        experienceTitle:'THE<br>PATH<span style="font-family:var(--font-serif);font-weight:500;font-style:italic">.</span>',
+        expOrgs:['QazPost (National Postal & Fintech Operator)','Karaganda Technical University'],
+        expRoles:['Junior Java Developer · Astana, Kazakhstan','Bachelor\'s Degree · Computer and Information Systems Security'],
+        expDates:['2026 — PRESENT','2021 — 2025'],
+        expBullets0:[
+          'Developing and maintaining Java & Spring Boot backend services powering national logistics and postal operations.',
+          'Designing REST APIs, optimizing relational SQL queries, and authoring structured database migrations.',
+          'Collaborating in an agile engineering team with code reviews, unit testing, and performance troubleshooting.'
+        ],
+        expBullets1:[
+          'In-depth coursework in cryptography, network security, database protection, and secure systems architecture.',
+          'Focused on Secure SDLC practices and server-side web application security auditing.'
+        ],
+        contactTitle:'LET\'S<br><em>make</em> IT<br>WORK.',
+        invite:'Looking for a Java Backend Developer for your team or need a reliable API and server architecture built from scratch? Reach out directly via messenger or email — I reply within 2 hours.',
+        briefTitle:'1. Select cooperation format & briefly describe your task:',
+        slaBadge:'● Open to opportunities · Replies within 2 hours',
+        topics:['Backend / API Development','Java Developer (Team / Hire)','Microservices & Integration','Architecture & Security Audit'],
+        briefPlaceholder:'Briefly describe your project or role (e.g. Spring Boot payment microservice)...',
+        applyBrief:'Prepare Brief ✓',
+        briefReady:'Brief prepared! Click WhatsApp, Telegram, or Email below to send.',
+        waSub:'+7 708 548 08 59 · Instant chat with pre-filled brief',
+        tgSub:'@ahmetov_rasul · Direct chat with the developer',
+        alternative:'OR USE DIRECT EMAIL & PRINTABLE CV',
+        copyEmail:'Copy Email',
+        copiedEmail:'Copied ✓',
+        openCvFooter:'CV / RESUME ↗',
+        cvModalTitle:'Rasul Akhmetov — Java Backend Developer',
+        cvModalBody:'<p><strong>Location:</strong> Astana, Kazakhstan (GMT+5) · Remote / On-site / Hybrid</p><p><strong>Contact:</strong> rasulakhmetov2004@gmail.com · +7 708 548 08 59 · Telegram: @ahmetov_rasul</p><p><strong>Core Stack:</strong> Java 17/21, Spring Boot 3, Spring Security (JWT/OAuth2), Spring Data JPA / Hibernate, PostgreSQL, Redis, Liquibase, RabbitMQ/Kafka, Docker, Git, JUnit 5.</p><p><strong>Experience:</strong> QazPost (National Postal &amp; Fintech Operator) — Junior Java Developer (2026 — Present). Developing and optimizing backend services, REST APIs, and enterprise integrations.</p><p><strong>Education:</strong> Karaganda Technical University (2021 — 2025), Bachelor\'s Degree in Computer &amp; Information Systems Security.</p>',
+        printCv:'Print / Save PDF',
+        cvContact:'Contact Rasul',
+        footerCopy:'© 2026 RASUL AKHMETOV · JAVA & BACKEND DEVELOPER<br>ENGINEERED WITH INTENTION.',
+        footerCases:'CASE STUDIES ↑',footerTop:'BACK TO TOP ↑',
+        wa:'Hi Rasul! I saw your portfolio and would like to discuss cooperation.',
+        meta:'Rasul Akhmetov — Java & Backend Developer (QazPost, Kazakhstan). High-reliability backend systems, REST APIs, and microservices.'
+      }
     };
+
+    let currentLang = 'ru';
+    let selectedTopicIdx = 0;
+
     const all=(s)=>Array.from(document.querySelectorAll(s));
     const set=(s,val,html=false)=>{const el=document.querySelector(s);if(el)el[html?'innerHTML':'textContent']=val;};
     const batch=(selector,values,html=false)=>all(selector).forEach((el,i)=>{if(values[i]!==undefined)el[html?'innerHTML':'textContent']=values[i];});
+
+    function buildDynamicMessage(){
+      const t = d[currentLang] || d.ru;
+      const topicLabel = t.topics[selectedTopicIdx] || '';
+      const note = (document.getElementById('briefNoteInput')?.value || '').trim();
+      const parts = [t.wa];
+      if(currentLang === 'en'){
+        if(topicLabel) parts.push(`Format: ${topicLabel}.`);
+        if(note) parts.push(`Task details: ${note}`);
+      } else if(currentLang === 'kz'){
+        if(topicLabel) parts.push(`Бағыт: ${topicLabel}.`);
+        if(note) parts.push(`Қысқаша сипаттама: ${note}`);
+      } else {
+        if(topicLabel) parts.push(`Формат: ${topicLabel}.`);
+        if(note) parts.push(`Задача: ${note}`);
+      }
+      return parts.join(' ');
+    }
+
+    function syncContactLinks(){
+      const msg = buildDynamicMessage();
+      const t = d[currentLang] || d.ru;
+      const subj = `${t.topics[selectedTopicIdx] || 'Backend'} — Rasul Akhmetov Portfolio`;
+      const waEl = document.getElementById('whatsappLink');
+      const tgEl = document.getElementById('telegramLink');
+      const mailEl = document.getElementById('mailtoLink');
+      if(waEl) waEl.href = 'https://wa.me/77085480859?text=' + encodeURIComponent(msg);
+      if(tgEl) tgEl.href = 'https://t.me/ahmetov_rasul?text=' + encodeURIComponent(msg);
+      if(mailEl) mailEl.href = 'mailto:rasulakhmetov2004@gmail.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(msg);
+    }
+
     function setLanguage(lang){
-      if(!d[lang])lang='ru'; const t=d[lang]; document.documentElement.lang=lang==='kz'?'kk':lang;
-      batch('.nav-links a',t.nav);set('#menuToggle',t.menu);window.portfolioMenuOpen=t.menu;window.portfolioMenuClose=t.close;
-      document.querySelector('.top-micro').innerHTML='<span class="live-dot"></span> '+t.micro.replace(' — ',' <span style="opacity:.55">—</span> ');
-      batch('.hero-chapter .eyebrow',t.eyebrows);batch('.hero-chapter .hero-title',t.headings,true);batch('.hero-chapter .hero-desc',t.desc);
-      window.portfolioChapterLabels=t.chapters;
-      const active=Math.min(4,Math.max(0,Math.floor((parseInt(document.getElementById('scrollPercent').textContent,10)||0)/20)));
-      set('#chapterLabel',`0${active} — ${t.chapters[active]}`);
-      set('.scroll-hint span:last-child',t.scroll);set('.hero-jump',t.skip);set('.hero-seam',t.seam);
-      batch('.section-topline span:first-child',t.toplines);batch('.section-topline .dim',t.dims);
-      set('.about-copy h2',t.aboutTitle,true);batch('.about-copy > p',t.about);
-      set('.statement h2',t.statement,true);set('.statement-foot p',t.statementBody);
-      set('.expertise-head h2',t.expertiseTitle,true);set('.expertise-head p',t.expertiseBody);
-      batch('.service h3',t.services);batch('.service p',t.serviceBody);
-      set('.exp-title',t.experienceTitle,true);batch('.exp-item p',t.expItems);set('.exp-date',t.present);
-      set('.contact h2',t.contactTitle,true);set('#contactInvite',t.invite);set('#contactAlt',t.alternative);
-      document.getElementById('whatsappLink').href='https://wa.me/77085480859?text='+encodeURIComponent(t.wa);
-      document.querySelector('meta[name="description"]').content=t.meta;
-      all('.lang-btn').forEach(b=>{const active=b.dataset.lang===lang;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+      if(!d[lang]) lang='ru';
+      currentLang = lang;
+      const t = d[lang];
+      document.documentElement.lang = lang==='kz'?'kk':lang;
+      batch('.nav-links a', t.nav);
+      set('#menuToggle', t.menu);
+      set('#openCvBtn', t.cvBtn);
+      set('#navCtaBtn', t.navCta);
+      window.portfolioMenuOpen = t.menu;
+      window.portfolioMenuClose = t.close;
+      set('#topMicro', t.micro);
+      set('#heroPrimaryCta', t.heroPrimary);
+      set('#heroSecondaryCta', t.heroSecondary);
+      set('#heroEndPrimaryCta', t.heroPrimary);
+      set('#heroEndSecondaryCta', t.heroSecondary);
+      batch('.hero-chapter .eyebrow', t.eyebrows);
+      batch('.hero-chapter .hero-title', t.headings, true);
+      batch('.hero-chapter .hero-desc', t.desc);
+      window.portfolioChapterLabels = t.chapters;
+      const active = Math.min(4, Math.max(0, Math.floor((parseInt(document.getElementById('scrollPercent')?.textContent||'0',10)||0)/20)));
+      set('#chapterLabel', `0${active} — ${t.chapters[active]}`);
+      set('#scrollHintText', t.scroll);
+      set('#heroJump', t.skip);
+      set('#heroSeam', t.seam);
+      batch('[data-kpi-val]', t.kpiVals);
+      batch('[data-kpi-label]', t.kpiLabels);
+      all('[data-topline]').forEach(el=>{const idx=Number(el.dataset.topline);if(t.toplines[idx]!==undefined)el.textContent=t.toplines[idx];});
+      all('[data-dim]').forEach(el=>{const idx=Number(el.dataset.dim);if(t.dims[idx]!==undefined)el.textContent=t.dims[idx];});
+      set('#aboutKicker', t.aboutKicker);
+      set('#aboutLead', t.aboutLead, true);
+      set('#aboutHeading', t.aboutTitle, true);
+      set('#aboutP1', t.about[0]);
+      set('#aboutP2', t.about[1]);
+      batch('[data-about-hl-val]', t.aboutHlVals);
+      batch('[data-about-hl-lbl]', t.aboutHlLbls);
+      set('#openCvAboutBtn', t.cvBtn);
+      set('#aboutCasesBtn', t.aboutCasesBtn);
+      batch('[data-stack-title]', t.stackTitles);
+      set('.photo-label', t.photoLabel);
+      set('#projectsHeading', t.projectsHeading, true);
+      set('#projectsSub', t.projectsSub);
+      batch('[data-proj-meta]', t.projMeta);
+      batch('[data-proj-title]', t.projTitles);
+      batch('[data-proj-desc]', t.projDescs);
+      batch('[data-proj-metric]', t.projMetrics);
+      all('[data-proj-btn]').forEach(el => { el.textContent = t.projBtn; });
+      set('#caseModalCta', t.caseModalCta);
+      set('#statementHeading', t.statement, true);
+      set('#statementBody', t.statementBody);
+      set('#expertiseHeading', t.expertiseTitle, true);
+      set('#expertiseBody', t.expertiseBody);
+      batch('[data-srv-title]', t.services);
+      batch('[data-srv-summary]', t.serviceBody);
+      batch('[data-srv-detail]', t.serviceDetails);
+      batch('[data-srv-deliv]', t.serviceDeliv);
+      set('#expHeading', t.experienceTitle, true);
+      batch('[data-exp-org]', t.expOrgs);
+      batch('[data-exp-role]', t.expRoles);
+      batch('[data-exp-date]', t.expDates);
+      const b0 = document.getElementById('expBullets0');
+      if(b0) b0.innerHTML = t.expBullets0.map(item=>`<li>${item}</li>`).join('');
+      const b1 = document.getElementById('expBullets1');
+      if(b1) b1.innerHTML = t.expBullets1.map(item=>`<li>${item}</li>`).join('');
+      set('#contactHeading', t.contactTitle, true);
+      set('#contactInvite', t.invite);
+      set('#briefTitle', t.briefTitle);
+      set('#slaBadge', t.slaBadge);
+      batch('.topic-btn', t.topics);
+      const noteInput = document.getElementById('briefNoteInput');
+      if(noteInput) noteInput.placeholder = t.briefPlaceholder;
+      set('#applyBriefBtn', t.applyBrief);
+      set('#waSub', t.waSub);
+      set('#tgSub', t.tgSub);
+      set('#contactAlt', t.alternative);
+      set('#copyEmailBtn', t.copyEmail);
+      set('#openCvFooterBtn', t.openCvFooter);
+      set('#cvModalTitle', t.cvModalTitle);
+      set('#cvModalBody', t.cvModalBody, true);
+      set('#printCvBtn', t.printCv);
+      set('#cvContactBtn', t.cvContact);
+      set('#footerCopy', t.footerCopy, true);
+      set('#footerCasesLink', t.footerCases);
+      set('#footerTopLink', t.footerTop);
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if(metaDesc) metaDesc.content = t.meta;
+      all('.lang-btn').forEach(b=>{const isAct=b.dataset.lang===lang;b.classList.toggle('active',isAct);b.setAttribute('aria-pressed',String(isAct));});
+      syncContactLinks();
       try{localStorage.setItem('rasul-language',lang);}catch(e){}
     }
+
+    // Active section scroll-spy for navbar
+    const navAnchors = all('.nav-links a');
+    const spySections = ['about','projects','expertise','experience','contact'].map(id=>document.getElementById(id)).filter(Boolean);
+    function updateActiveNav(){
+      const y = window.scrollY + window.innerHeight * 0.35;
+      let currentId = '';
+      for(const sec of spySections){
+        if(y >= sec.offsetTop) currentId = sec.id;
+      }
+      navAnchors.forEach(a=>{
+        a.classList.toggle('active', a.getAttribute('href') === '#' + currentId);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, {passive:true});
+    updateActiveNav();
+
+    // Interactive Expertise Accordion
+    all('.service-trigger').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const item = btn.closest('.service-item');
+        const isOpen = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+      });
+    });
+
+    // Interactive Case Study Modal
+    const caseModal = document.getElementById('caseModal');
+    all('[data-open-case]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const idx = Number(btn.dataset.openCase)||0;
+        const t = d[currentLang] || d.ru;
+        const data = t.caseModals[idx] || t.caseModals[0];
+        set('#caseModalKicker', data.kicker);
+        set('#caseModalTitle', data.title);
+        set('#caseModalProblem', data.problem);
+        const listEl = document.getElementById('caseModalBullets');
+        if(listEl) listEl.innerHTML = data.bullets.map(b=>`<li>${b}</li>`).join('');
+        set('#caseModalStack', data.stack);
+        if(caseModal) caseModal.classList.add('open');
+      });
+    });
+    document.getElementById('closeCaseModal')?.addEventListener('click',()=>caseModal?.classList.remove('open'));
+    document.getElementById('caseModalCta')?.addEventListener('click',()=>caseModal?.classList.remove('open'));
+
+    // Interactive CV Modal
+    const cvModal = document.getElementById('cvModal');
+    const openCv = ()=>{ if(cvModal) cvModal.classList.add('open'); };
+    document.getElementById('openCvBtn')?.addEventListener('click', openCv);
+    document.getElementById('openCvAboutBtn')?.addEventListener('click', openCv);
+    document.getElementById('openCvFooterBtn')?.addEventListener('click', openCv);
+    document.getElementById('closeCvModal')?.addEventListener('click',()=>cvModal?.classList.remove('open'));
+    document.getElementById('cvContactBtn')?.addEventListener('click',()=>cvModal?.classList.remove('open'));
+    document.getElementById('printCvBtn')?.addEventListener('click',()=>window.print());
+
+    [caseModal, cvModal].forEach(m=>{
+      m?.addEventListener('click',(e)=>{ if(e.target===m) m.classList.remove('open'); });
+    });
+    window.addEventListener('keydown',(e)=>{
+      if(e.key==='Escape'){
+        caseModal?.classList.remove('open');
+        cvModal?.classList.remove('open');
+      }
+    });
+
+    // Interactive Brief Configurator
+    all('.topic-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        selectedTopicIdx = Number(btn.dataset.topicIndex)||0;
+        all('.topic-btn').forEach((b,i)=>{
+          const active = i===selectedTopicIdx;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', String(active));
+        });
+        syncContactLinks();
+      });
+    });
+    document.getElementById('briefNoteInput')?.addEventListener('input', syncContactLinks);
+    document.getElementById('applyBriefBtn')?.addEventListener('click',()=>{
+      syncContactLinks();
+      const t = d[currentLang] || d.ru;
+      const statusEl = document.getElementById('briefStatus');
+      if(statusEl) statusEl.textContent = t.briefReady;
+    });
+
+    // 1-Click Copy Email
+    const copyBtn = document.getElementById('copyEmailBtn');
+    copyBtn?.addEventListener('click', async ()=>{
+      const t = d[currentLang] || d.ru;
+      try{
+        await navigator.clipboard.writeText('rasulakhmetov2004@gmail.com');
+      }catch(e){}
+      copyBtn.classList.add('copied');
+      copyBtn.textContent = t.copiedEmail;
+      setTimeout(()=>{
+        copyBtn.classList.remove('copied');
+        copyBtn.textContent = (d[currentLang]||d.ru).copyEmail;
+      }, 2400);
+    });
+
     all('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));
     let saved='ru';try{saved=localStorage.getItem('rasul-language')||'ru';}catch(e){}
     setLanguage(saved);
