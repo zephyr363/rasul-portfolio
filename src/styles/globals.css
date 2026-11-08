@@ -1,0 +1,278 @@
+@import "tailwindcss";
+
+/*
+ * Design-токены mockup-v2 (тёмная тема — дефолт). Светлая тема включается
+ * атрибутом `html[data-theme="light"]` (CEO UI-BATCH): значения переменных
+ * переопределяются ниже, а utilities (bg-*, text-* и т.д.) резолвятся в
+ * `var(--color-*)` и следуют за темой автоматически.
+ */
+@theme {
+  /* mockup-v2 raw tokens (dark) */
+  --color-bg: #0c0c0c;
+  --color-surface: #161616;
+  --color-border: #2a2a2a;
+  --color-text: #fafafa;
+  --color-muted: #a1a1aa;
+  --color-dim: #52525b;
+  --color-accent: #c6f432;
+  --color-accent-foreground: #0c0c0c;
+
+  /* shadcn semantic aliases (new-york naming), чтобы сгенерированные
+     компоненты резолвились без правки тем */
+  --color-background: #0c0c0c;
+  --color-foreground: #fafafa;
+  --color-card: #161616;
+  --color-card-foreground: #fafafa;
+  --color-popover: #161616;
+  --color-popover-foreground: #fafafa;
+  --color-primary: #c6f432;
+  --color-primary-foreground: #0c0c0c;
+  --color-secondary: #161616;
+  --color-secondary-foreground: #fafafa;
+  --color-muted-foreground: #a1a1aa;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+  --color-ring: #c6f432;
+  --color-input: #2a2a2a;
+  --color-success: #86efac;
+  --color-warning: #fcd34d;
+
+  /* Fonts */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Oswald", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Motion: open/close панелей (Radix data-state). Самописные имена, без плагина. */
+  --animate-fade-in: fade-in 200ms ease-out;
+  --animate-fade-out: fade-out 150ms ease-in;
+  --animate-zoom-in: zoom-in 200ms ease-out;
+  --animate-zoom-out: zoom-out 150ms ease-in;
+  --animate-slide-in-right: slide-in-right 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-out-right: slide-out-right 180ms ease-in;
+  --animate-slide-in-left: slide-in-left 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-out-left: slide-out-left 180ms ease-in;
+  --animate-slide-in-top: slide-in-top 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-out-top: slide-out-top 180ms ease-in;
+  --animate-slide-in-bottom: slide-in-bottom 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-out-bottom: slide-out-bottom 180ms ease-in;
+  /* Индикатор «Сохранено» в админ-страницах. */
+  --animate-fade-in-fast: fade-in 150ms ease-out;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  @keyframes zoom-in {
+    from { opacity: 0; scale: 0.96; }
+    to { opacity: 1; scale: 1; }
+  }
+  @keyframes zoom-out {
+    from { opacity: 1; scale: 1; }
+    to { opacity: 0; scale: 0.96; }
+  }
+  @keyframes slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-out-right {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+  }
+  @keyframes slide-in-left {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-out-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+  @keyframes slide-in-top {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes slide-out-top {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100%); }
+  }
+  @keyframes slide-in-bottom {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes slide-out-bottom {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+ * Тема: светлая (CEO UI-BATCH). Тёмная — дефолт из @theme.
+ * `accent` одинаковый в обеих темах (#C6F432) — фоны кнопок/бейджей,
+ * текст на нём — `accent-foreground` (#0C0C0C).
+ * ──────────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --color-bg: #fafaf9;
+  --color-surface: #ffffff;
+  --color-border: #e7e5e4;
+  --color-text: #1c1917;
+  --color-muted: #57534e;
+  --color-dim: #a8a29e;
+  --color-accent: #c6f432;
+  --color-accent-foreground: #0c0c0c;
+
+  --color-background: #fafaf9;
+  --color-foreground: #1c1917;
+  --color-card: #ffffff;
+  --color-card-foreground: #1c1917;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1c1917;
+  --color-primary: #c6f432;
+  --color-primary-foreground: #0c0c0c;
+  --color-secondary: #ffffff;
+  --color-secondary-foreground: #1c1917;
+  --color-muted-foreground: #57534e;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-ring: #c6f432;
+  --color-input: #e7e5e4;
+  --color-success: #166534;
+  --color-warning: #854d0e;
+}
+
+/* color-scheme для нативных контролов (скроллбары, формы). */
+html {
+  color-scheme: dark;
+}
+html[data-theme="light"] {
+  color-scheme: light;
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Мягкий переход цветов при смене темы (200ms). */
+  body,
+  header,
+  section,
+  aside,
+  main,
+  footer,
+  nav {
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease;
+  }
+
+  /* Мягкий focus ring (flat UI) вместо жёсткого outline — для кнопок/ссылок/
+     инпутов/чипов. Клавиатурная видимость фокуса сохраняется. */
+  :where(a, button, input, textarea, select, [role="button"], [tabindex]):focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-bg),
+      0 0 0 4px color-mix(in srgb, var(--color-accent) 55%, transparent);
+    transition: box-shadow 0.15s ease;
+  }
+
+  /* Скроллбары по всему проекту: тонкий трек, thumb 10px скруглённый,
+     тема-зависимый цвет, hover-осветление. */
+  * {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--color-muted) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--color-muted) 45%, transparent);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in srgb, var(--color-muted) 70%, transparent);
+  }
+
+  ::selection {
+    @apply bg-accent text-accent-foreground;
+  }
+}
+
+@layer utilities {
+  /* Дисплейный uppercase-заголовок */
+  .text-display {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  /* Моноширинная uppercase-подпись/лейбл */
+  .text-mono-label {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* Печать: скрываем некликабельные элементы интерфейса (шапка и т.п.). */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Уважение к настройке «уменьшить движение». */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  :root {
+    --animate-zoom-in: fade-in 120ms ease-out;
+    --animate-zoom-out: fade-out 100ms ease-in;
+    --animate-slide-in-right: fade-in 120ms ease-out;
+    --animate-slide-out-right: fade-out 100ms ease-in;
+    --animate-slide-in-left: fade-in 120ms ease-out;
+    --animate-slide-out-left: fade-out 100ms ease-in;
+    --animate-slide-in-top: fade-in 120ms ease-out;
+    --animate-slide-out-top: fade-out 100ms ease-in;
+    --animate-slide-in-bottom: fade-in 120ms ease-out;
+    --animate-slide-out-bottom: fade-out 100ms ease-in;
+  }
+  .animate-spin,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none;
+  }
+}
+
+@media (max-width: 639px) {
+  :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+    min-height: 44px;
+    font-size: 16px;
+  }
+  :where([data-admin-control], [data-admin-layout] button, [data-admin-layout] [role="button"], [data-slot="dialog-content"] button, [data-slot="sheet-content"] button) {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

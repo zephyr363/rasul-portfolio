@@ -1,0 +1,73 @@
+rules_version = '2';
+
+// ============================================================
+// FIREBASE-ARCH-2 — правила безопасности Firestore
+// Проект: porfo-ddb46 (rasul-portfolio)
+//
+// Полномочия выдаются через adminAccess/{uid}, не через email.
+// ============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- Администратор ---
+    function isAdmin() {
+      // Grant создаётся доверенным оператором Console/Admin SDK, не клиентом.
+      return request.auth != null
+        && exists(/databases/$(database)/documents/adminAccess/$(request.auth.uid))
+        && get(/databases/$(database)/documents/adminAccess/$(request.auth.uid)).data.role == 'admin'
+        && get(/databases/$(database)/documents/adminAccess/$(request.auth.uid)).data.enabled == true;
+    }
+
+    match /adminAccess/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid;
+      allow list, create, update, delete: if false;
+    }
+
+    // --- Валидная новая заявка (lead) ---
+    function validNewLead() {
+      return request.resource.data.keys().hasOnly(['name', 'phone', 'hp', 'status', 'createdAt', 'updatedAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 1
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.name.matches('.*[^ ].*')
+        && request.resource.data.phone is string
+        && request.resource.data.phone.matches('^\\+7[0-9]{10}$')
+        && request.resource.data.hp == ''
+        && request.resource.data.status == 'new'
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    // --- Контент сайта (siteContent) ---
+    match /siteContent/{docId} {
+      allow get: if true;
+      allow create, update: if isAdmin();
+    }
+
+    // --- Локали (locales) ---
+    match /locales/{docId} {
+      allow get: if true;
+      allow create, update: if isAdmin();
+    }
+
+    // --- Кейсы (cases) ---
+    match /cases/{caseId} {
+      allow get, list: if true;
+      allow create, update: if isAdmin() && request.resource.data.id == caseId;
+      allow delete: if isAdmin();
+    }
+
+    // --- Заявки (leads) ---
+    match /leads/{leadId} {
+      allow create: if validNewLead();
+      allow read, delete: if isAdmin();
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
+        && request.resource.data.status in ['new', 'in_progress', 'done', 'spam']
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    // Остальные пути неявно запрещены (deny by default).
+  }
+}

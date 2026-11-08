@@ -1,0 +1,8 @@
+.env
+.env.*
+*.local.json
+exports/
+node_modules/
+dist/
+firestore-debug.log
+ui-debug.log

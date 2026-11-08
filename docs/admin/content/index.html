@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0C0C0C" />
+    <title>Расул Ахметов — сайты, Telegram-боты и ИИ-агенты для бизнеса</title>
+    <script>
+      // Ранняя установка темы до первой отрисовки (без мигания). По умолчанию —
+      // системная; явный выбор читается из localStorage['rasul-theme'].
+      (function () {
+        try {
+          var stored = localStorage.getItem("rasul-theme");
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia &&
+                  window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+    <meta
+      name="description"
+      content="Расул Ахметов из Астаны — сайты, Telegram-боты, ИИ-агенты и автоматизация для малого и среднего бизнеса. Больше заявок, меньше рутины."
+    />
+    <link rel="canonical" href="https://zephyr363.github.io/rasul-portfolio/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:url" content="https://zephyr363.github.io/rasul-portfolio/" />
+    <meta property="og:site_name" content="Расул Ахметов" />
+    <meta property="og:title" content="Расул Ахметов — сайты, Telegram-боты и ИИ-агенты для бизнеса" />
+    <meta
+      property="og:description"
+      content="Расул Ахметов из Астаны — сайты, Telegram-боты, ИИ-агенты и автоматизация для малого и среднего бизнеса."
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Расул Ахметов — сайты, Telegram-боты и ИИ-агенты для бизнеса" />
+    <meta
+      name="twitter:description"
+      content="Сайты, Telegram-боты, ИИ-агенты и автоматизация для малого и среднего бизнеса."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD: Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Расул Ахметов",
+        "alternateName": "Rasul Akhmetov",
+        "jobTitle": "Веб-разработчик и ИИ-агенты",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Астана",
+          "addressCountry": "KZ"
+        },
+        "knowsAbout": [
+          "Сайты для бизнеса",
+          "Telegram-боты",
+          "ИИ-агенты",
+          "Автоматизация"
+        ],
+        "sameAs": ["https://t.me/ahmetov_rasul"],
+        "email": "mailto:rasulakhmetov2004@gmail.com"
+      }
+    </script>
+    <script type="module" crossorigin src="/rasul-portfolio/assets/index-DJz-kL1_.js"></script>
+    <link rel="modulepreload" crossorigin href="/rasul-portfolio/assets/firebase-CEYWgxOI.js">
+    <link rel="stylesheet" crossorigin href="/rasul-portfolio/assets/index-DoOACkPs.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

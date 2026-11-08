@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "parcel-status",
+      "type": "ai",
+      "order": 1,
+      "ru": {
+        "meta": "ПОЧТОВЫЙ СЕРВИС · QAZPOST",
+        "title": "Быстрее обработка статусов посылок",
+        "desc": "Ускорил обработку статусов, чтобы клиент видел актуальную информацию о посылке, а записи не дублировались.",
+        "metric": "Статусы обновляются быстрее · без дублей",
+        "btn": "Подробнее ↗",
+        "kicker": "ЗАДАЧА 01 · ПОЧТОВЫЙ СЕРВИС",
+        "problem": "Задача: статусы посылок обновлялись медленно, а при повторных запросах появлялись дубли записей.",
+        "field": "Сфера: логистика и доставка",
+        "bullets": [
+          "Ускорил обработку статусов — клиенты видят актуальную информацию о посылке.",
+          "Убрал дубли, чтобы одна посылка не показывалась несколько раз.",
+          "Добавил автоматические проверки, чтобы изменения не ломали уже работающую систему."
+        ]
+      },
+      "kz": {
+        "meta": "ПОШТА СЕРВИСІ · QAZPOST",
+        "title": "Сәлемдеме мәртебесін жылдам өңдеу",
+        "desc": "Клиент сәлемдеме туралы өзекті ақпаратты көруі үшін мәртебелерді өңдеуді жылдамдаттым, жазбалар қосарланбайды.",
+        "metric": "Мәртебелер жылдамырақ жаңарады · қосарланусыз",
+        "btn": "Толығырақ ↗",
+        "kicker": "МІНДЕТ 01 · ПОШТА СЕРВИСІ",
+        "problem": "Міндет: сәлемдеме мәртебелері баяу жаңаратын, ал қайталама сұраныстарда жазбалар қосарланатын.",
+        "field": "Сала: логистика және жеткізу",
+        "bullets": [
+          "Мәртебелерді өңдеуді жылдамдаттым — клиент сәлемдеме туралы өзекті ақпарат көреді.",
+          "Қосарлануды жойдым, бір сәлемдеме бірнеше рет көрсетілмейді.",
+          "Өзгерістер жұмыс істеп тұрған жүйені бұзбауы үшін автоматты тексерулер қостым."
+        ]
+      },
+      "en": {
+        "meta": "POSTAL SERVICE · QAZPOST",
+        "title": "Faster parcel status handling",
+        "desc": "Sped up status handling so clients see current parcel info, with no duplicated records.",
+        "metric": "Statuses update faster · no duplicates",
+        "btn": "Details ↗",
+        "kicker": "TASK 01 · POSTAL SERVICE",
+        "problem": "Challenge: parcel statuses updated slowly, and repeated requests created duplicate records.",
+        "field": "Field: logistics & delivery",
+        "bullets": [
+          "Sped up status handling so clients see current parcel info.",
+          "Removed duplicates so one parcel never shows up twice.",
+          "Added automatic checks so changes don't break a working system."
+        ]
+      }
+    },
+    {
+      "id": "access-control",
+      "type": "website",
+      "order": 2,
+      "ru": {
+        "meta": "ЗАЩИТА ДОСТУПА",
+        "title": "Защищённый вход и разграничение прав",
+        "desc": "Настроил безопасный вход и доступ по ролям, чтобы каждый сотрудник видел только своё, а посторонние не заходили.",
+        "metric": "Доступ по ролям · посторонние не заходят",
+        "btn": "Подробнее ↗",
+        "kicker": "ЗАДАЧА 02 · ЗАЩИТА ДОСТУПА",
+        "problem": "Задача: сотрудники и клиенты должны видеть только то, что им положено, а доступ нужно защитить от перебора паролей.",
+        "field": "Сфера: доступ и безопасность",
+        "bullets": [
+          "Настроил вход по ролям: каждый видит только своё.",
+          "Добавил защиту от подбора паролей и компрометации сессий.",
+          "Включил журнал важных действий, чтобы видеть, кто и что делал."
+        ]
+      },
+      "kz": {
+        "meta": "ҚОЛЖЕТІМДІЛІКТІ ҚОРҒАУ",
+        "title": "Қорғалған кіру және құқықтарды шектеу",
+        "desc": "Әр қызметкер тек өзінікін көруі үшін қауіпсіз кіру мен рөлдер бойынша қолжетімділікті баптадым, бөтен адамдар кірмейді.",
+        "metric": "Рөлдер бойынша қолжетімділік · бөтендер кірмейді",
+        "btn": "Толығырақ ↗",
+        "kicker": "МІНДЕТ 02 · ҚОЛЖЕТІМДІЛІКТІ ҚОРҒАУ",
+        "problem": "Міндет: қызметкерлер мен клиенттер тек өздеріне тиесіліні көруі керек, ал кіруді құпиясөз іріктеуден қорғау керек.",
+        "field": "Сала: қолжетімділік және қауіпсіздік",
+        "bullets": [
+          "Рөлдер бойынша кіруді баптадым: әркім тек өзінікін көреді.",
+          "Құпиясөз іріктеуден және сессияны бұзудан қорғаныс қостым.",
+          "Кім не істегенін көру үшін маңызды әрекеттер журналын қостым."
+        ]
+      },
+      "en": {
+        "meta": "ACCESS SECURITY",
+        "title": "Secure sign-in and role-based access",
+        "desc": "Set up secure sign-in and role-based access so each employee sees only their own work and outsiders stay out.",
+        "metric": "Role-based access · outsiders stay out",
+        "btn": "Details ↗",
+        "kicker": "TASK 02 · ACCESS SECURITY",
+        "problem": "Challenge: staff and clients should only see what they're allowed to, and access needed protection from password guessing.",
+        "field": "Field: access & security",
+        "bullets": [
+          "Set up role-based sign-in: each person sees only their own.",
+          "Added protection from password guessing and session compromise.",
+          "Turned on a log of important actions so you can see who did what."
+        ]
+      }
+    },
+    {
+      "id": "notifications",
+      "type": "bot",
+      "order": 3,
+      "ru": {
+        "meta": "УВЕДОМЛЕНИЯ КЛИЕНТАМ",
+        "title": "Уведомления, которые не теряются",
+        "desc": "Сделал доставку уведомлений надёжной: сообщение доходит до клиента даже при сбоях, без потерь.",
+        "metric": "Сообщения не теряются · клиент всегда получает уведомление",
+        "btn": "Подробнее ↗",
+        "kicker": "ЗАДАЧА 03 · УВЕДОМЛЕНИЯ",
+        "problem": "Задача: отправка сообщений клиентам тормозила основную систему и могла теряться при сбоях.",
+        "field": "Сфера: клиентские уведомления",
+        "bullets": [
+          "Вынес отправку уведомлений в отдельный процесс, чтобы основная система работала быстро.",
+          "Настроил повторные попытки, чтобы сообщение доходило даже при сбоях.",
+          "Сделал доставку без потерь: клиент всегда получает уведомление."
+        ]
+      },
+      "kz": {
+        "meta": "КЛИЕНТКЕ ХАБАРЛАМАЛАР",
+        "title": "Жоғалмайтын хабарламалар",
+        "desc": "Хабарлама жеткізуді сенімді еттім: ақау кезінде де хабарлама клиентке жетеді, жоғалтусыз.",
+        "metric": "Хабарламалар жоғалмайды · клиент әрқашан алады",
+        "btn": "Толығырақ ↗",
+        "kicker": "МІНДЕТ 03 · ХАБАРЛАМАЛАР",
+        "problem": "Міндет: клиенттерге хабарлама жіберу негізгі жүйені баяулатып, ақау кезінде жоғалып кетуі мүмкін еді.",
+        "field": "Сала: клиенттік хабарламалар",
+        "bullets": [
+          "Хабарлама жіберуді бөлек үдеріске шығардым, негізгі жүйе жылдам жұмыс істейді.",
+          "Ақау кезінде де хабарлама жетуі үшін қайталауларды баптадым.",
+          "Жоғалтусыз жеткізуді жасадым: клиент әрқашан хабарлама алады."
+        ]
+      },
+      "en": {
+        "meta": "CLIENT NOTIFICATIONS",
+        "title": "Notifications that never get lost",
+        "desc": "Made notification delivery reliable: messages reach the client even during outages, with nothing lost.",
+        "metric": "Messages never lost · clients always notified",
+        "btn": "Details ↗",
+        "kicker": "TASK 03 · NOTIFICATIONS",
+        "problem": "Challenge: sending client messages slowed the main system and could fail during outages.",
+        "field": "Field: client notifications",
+        "bullets": [
+          "Moved notification sending to a separate process so the main system stays fast.",
+          "Set up retries so a message gets through even during outages.",
+          "Made delivery lossless: clients always get the notification."
+        ]
+      }
+    }
+  ]
+}

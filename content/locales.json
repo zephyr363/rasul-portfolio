@@ -1,0 +1,266 @@
+{
+  "version": 1,
+  "locales": {
+    "ru": {
+      "lang": "ru",
+      "meta": {
+        "title": "Расул Ахметов — сайты, Telegram-боты и ИИ-агенты для бизнеса",
+        "description": "Расул Ахметов из Астаны — сайты, Telegram-боты, ИИ-агенты и автоматизация для малого и среднего бизнеса. Больше заявок, меньше рутины."
+      },
+      "nav": {
+        "logo": "Расул Ахметов",
+        "links": [
+          "Кейсы",
+          "Услуги",
+          "Обо мне",
+          "Опыт",
+          "Контакты"
+        ],
+        "cta": "Обсудить задачу ↗"
+      },
+      "hero": {
+        "title": "Привет, меня зовут Расул",
+        "sub": "Сайты, боты и ИИ-агенты для бизнеса",
+        "lead": "Делаю сайты, Telegram-ботов, ИИ-агентов и автоматизацию для малого и среднего бизнеса. Больше заявок, меньше рутины.",
+        "ctaPrimary": "Написать в Telegram ↗",
+        "ctaSecondary": "Смотреть услуги",
+        "photoAlt": "Расул Ахметов"
+      },
+      "cases": {
+        "heading": "Кейсы — Примеры в работе."
+      },
+      "services": {
+        "heading": "Услуги — Что я делаю.",
+        "intro": "Сайт, с которого клиенты пишут и оставляют заявки, а не просто смотрят.",
+        "body": "Бот принимает заказы и отвечает клиентам, даже когда вы заняты. ИИ отвечает на типовые вопросы как сотрудник. Автоматизация связывает заявки, рассылки и отчёты в один процесс.",
+        "result": "Результат: понятный инструмент, который приносит заявки и работает без вашего участия.",
+        "capabilitiesTitle": "Мои возможности",
+        "capabilities": [
+          "Сайты для бизнеса",
+          "Telegram-боты",
+          "ИИ-агенты",
+          "Автоматизация"
+        ]
+      },
+      "about": {
+        "heading": "Обо мне — Кто я.",
+        "lead": "Я Расул Ахметов из Астаны. Помогаю малому и среднему бизнесу получать больше клиентов и тратить меньше времени на однотипные задачи.",
+        "body": "Днём работаю разработчиком в Казпочте, а параллельно делаю сайты, ботов и автоматизацию для бизнеса."
+      },
+      "experience": {
+        "items": [
+          {
+            "date": "2026 — Н.В.",
+            "org": "АО «Казпочта» (QazPost)",
+            "role": "Разработчик · Астана, Казахстан. Помогаю делать внутренние сервисы почты надёжнее и быстрее."
+          },
+          {
+            "date": "2021 — 2025",
+            "org": "Карагандинский технический университет",
+            "role": "Бакалавр · Информационная безопасность."
+          }
+        ]
+      },
+      "next": {
+        "toAbout": "Кто я и чем помогу вам ↓",
+        "toServices": "Что я могу сделать для вашего бизнеса ↓",
+        "toCases": "Как это работает на деле ↓",
+        "toContact": "Обсудим вашу задачу ↓"
+      },
+      "contact": {
+        "heading": "Давайте приведём вам клиентов.",
+        "invite": "Нужен сайт, Telegram-бот или автоматизация? Напишите мне в Telegram — опишете задачу, и я предложу решение. Отвечаю быстро.",
+        "telegramLabel": "Telegram",
+        "whatsappLabel": "WhatsApp",
+        "emailLabel": "Email",
+        "form": {
+          "title": "Заявка",
+          "nameLabel": "Имя",
+          "namePlaceholder": "Ваше имя",
+          "phoneLabel": "Номер телефона",
+          "phonePlaceholder": "+7 (999) 999-99-99",
+          "nameError": "Введите имя",
+          "phoneError": "Введите номер полностью",
+          "cta": "Отправить заявку",
+          "success": "Заявка отправлена ✓",
+          "sending": "Отправляем…",
+          "submitError": "Не удалось отправить заявку. Попробуйте ещё раз."
+        }
+      }
+    },
+    "kz": {
+      "lang": "kz",
+      "meta": {
+        "title": "Расул Ахметов — бизнеске арналған сайттар, Telegram-боттар және ИИ-агенттер",
+        "description": "Расул Ахметов — шағын және орта бизнеске арналған сайттар, Telegram-боттар, ИИ-агенттер және автоматтандыру."
+      },
+      "nav": {
+        "logo": "Расул Ахметов",
+        "links": [
+          "Кейстер",
+          "Қызметтер",
+          "Мен туралы",
+          "Тәжірибе",
+          "Байланыс"
+        ],
+        "cta": "Тапсырманы талқылау ↗"
+      },
+      "hero": {
+        "title": "Сәлем, менің атым Расул",
+        "sub": "Бизнеске арналған сайттар, боттар және ИИ-агенттер",
+        "lead": "Шағын және орта бизнеске сайттар, Telegram-боттар, ИИ-агенттер және автоматтандыру жасаймын. Көбірек тапсырыс, аз жұмыс.",
+        "ctaPrimary": "Telegram-ға жазу ↗",
+        "ctaSecondary": "Қызметтерді көру",
+        "photoAlt": "Расул Ахметов"
+      },
+      "cases": {
+        "heading": "Кейстер — Іс жүзіндегі мысалдар."
+      },
+      "services": {
+        "heading": "Қызметтер — Немен айналысамын.",
+        "intro": "Клиент жай қарамай, жазып, заявка қалдыратын сайт.",
+        "body": "Бот сіз бос емес кезде де тапсырыс қабылдап, клиенттерге жауап береді. ИИ әдеттегі сұрақтарға қызметкердей жауап береді. Автоматтандыру заявка, тарату және есепті бір үдеріске біріктіреді.",
+        "result": "Нәтиже: заявка әкелетін және сіздің қатысуыңызсыз жұмыс істейтін түсінікті құрал.",
+        "capabilitiesTitle": "Менің мүмкіндіктерім",
+        "capabilities": [
+          "Бизнеске арналған сайттар",
+          "Telegram-боттар",
+          "ИИ-агенттер",
+          "Автоматтандыру"
+        ]
+      },
+      "about": {
+        "heading": "Мен туралы — Мен кіммін.",
+        "lead": "Мен Расул Ахметовпын, Астанадан. Шағын және орта бизнеске көбірек клиент табуға және біртипті жұмыстарға аз уақыт жұмсауға көмектесемін.",
+        "body": "Күндіз Қазпоштада әзірлеуші болып жұмыс істеймін, ал қатар бизнеске сайт, бот және автоматтандыру жасаймын."
+      },
+      "experience": {
+        "items": [
+          {
+            "date": "2026 — қазір",
+            "org": "«Қазпошта» АҚ (QazPost)",
+            "role": "Әзірлеуші · Астана, Қазақстан. Поштаның ішкі сервистерін сенімді әрі жылдамырақ етуге көмектесемін."
+          },
+          {
+            "date": "2021 — 2025",
+            "org": "Қарағанды техникалық университеті",
+            "role": "Бакалавр · Ақпараттық қауіпсіздік."
+          }
+        ]
+      },
+      "next": {
+        "toAbout": "Мен кіммін, сізге қалай көмектесемін ↓",
+        "toServices": "Сіздің бизнесіңіз үшін не істей аламын ↓",
+        "toCases": "Іс жүзінде қалай жұмыс істейді ↓",
+        "toContact": "Міндетіңізді талқылайық ↓"
+      },
+      "contact": {
+        "heading": "Бірге клиент тауып берейік.",
+        "invite": "Сайт, Telegram-бот немесе автоматтандыру керек пе? Маған Telegram-ға жазыңыз — міндетті сипаттаңыз, мен шешім ұсынамын. Тез жауап беремін.",
+        "telegramLabel": "Telegram",
+        "whatsappLabel": "WhatsApp",
+        "emailLabel": "Email",
+        "form": {
+          "title": "Өтінім",
+          "nameLabel": "Атыңыз",
+          "namePlaceholder": "Сіздің атыңыз",
+          "phoneLabel": "Телефон нөмірі",
+          "phonePlaceholder": "+7 (999) 999-99-99",
+          "nameError": "Атыңызды енгізіңіз",
+          "phoneError": "Нөмірді толық енгізіңіз",
+          "cta": "Өтінім жіберу",
+          "success": "Өтінім жіберілді ✓",
+          "sending": "Жіберуде…",
+          "submitError": "Өтінімді жіберу мүмкін болмады. Қайталап көріңіз."
+        }
+      }
+    },
+    "en": {
+      "lang": "en",
+      "meta": {
+        "title": "Rasul Akhmetov — websites, Telegram bots, and AI agents for business",
+        "description": "Rasul Akhmetov — websites, Telegram bots, AI agents, and automation for small and medium businesses."
+      },
+      "nav": {
+        "logo": "Rasul Akhmetov",
+        "links": [
+          "Case Studies",
+          "Services",
+          "About",
+          "Experience",
+          "Contact"
+        ],
+        "cta": "Discuss a Task ↗"
+      },
+      "hero": {
+        "title": "Hi, my name is Rasul",
+        "sub": "Websites, bots, and AI agents for business",
+        "lead": "I build websites, Telegram bots, AI agents, and automation for small and medium businesses. More leads, less busywork.",
+        "ctaPrimary": "Message on Telegram ↗",
+        "ctaSecondary": "See services",
+        "photoAlt": "Rasul Akhmetov"
+      },
+      "cases": {
+        "heading": "Case Studies — Work in action."
+      },
+      "services": {
+        "heading": "Services — What I do.",
+        "intro": "A site where clients write and leave a request, not just look around.",
+        "body": "A bot takes orders and answers clients even when you're busy. AI answers common questions like an employee. Automation connects requests, follow-ups, and reports into one flow.",
+        "result": "Result: a clear tool that brings in leads and runs without you.",
+        "capabilitiesTitle": "My capabilities",
+        "capabilities": [
+          "Business websites",
+          "Telegram bots",
+          "AI agents",
+          "Automation"
+        ]
+      },
+      "about": {
+        "heading": "About — Who I am.",
+        "lead": "I'm Rasul Akhmetov from Astana. I help small and medium businesses get more clients and spend less time on repetitive tasks.",
+        "body": "During the day I work as a developer at Kazpost; in parallel I build websites, bots, and automation for business."
+      },
+      "experience": {
+        "items": [
+          {
+            "date": "2026 — Present",
+            "org": "Kazpost (QazPost)",
+            "role": "Developer · Astana, Kazakhstan. I help make the postal service's internal systems more reliable and faster."
+          },
+          {
+            "date": "2021 — 2025",
+            "org": "Karaganda Technical University",
+            "role": "Bachelor's Degree · Information Security."
+          }
+        ]
+      },
+      "next": {
+        "toAbout": "Who I am and how I can help ↓",
+        "toServices": "What I can do for your business ↓",
+        "toCases": "How it works in practice ↓",
+        "toContact": "Let's discuss your task ↓"
+      },
+      "contact": {
+        "heading": "Let's bring you clients.",
+        "invite": "Need a website, Telegram bot, or automation? Message me on Telegram — describe the task and I'll suggest a solution. I reply fast.",
+        "telegramLabel": "Telegram",
+        "whatsappLabel": "WhatsApp",
+        "emailLabel": "Email",
+        "form": {
+          "title": "Request",
+          "nameLabel": "Name",
+          "namePlaceholder": "Your name",
+          "phoneLabel": "Phone number",
+          "phonePlaceholder": "+7 (999) 999-99-99",
+          "nameError": "Enter your name",
+          "phoneError": "Enter the full number",
+          "cta": "Send request",
+          "success": "Request sent ✓",
+          "sending": "Sending…",
+          "submitError": "Couldn't send your request. Please try again."
+        }
+      }
+    }
+  }
+}

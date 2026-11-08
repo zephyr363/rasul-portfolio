@@ -1,0 +1,81 @@
+// ============================================================
+// FB-QA: КАНДИДАТ правил — НЕ ЗАДЕПЛОЕН и НЕ является прод-файлом.
+// Копия firestore.rules с единственной правкой validNewLead():
+//   было:  phone.size() == 12 && phone.substring(0, 2) == '+7'
+//          && phone.substring(2).matches('^[0-9]{10}$')
+//   стало: phone.matches('^\\+7[0-9]{10}$')
+// Причина: в Firestore Rules нет функции/метода `substring` — эмулятор даёт
+// "Function not found error: Name: [substring]", и ЛЮБОЕ создание заявки
+// (публичная форма) упирается в permission-denied.
+// Проверка: RULES_FILE=tests/rules/firestore.rules.candidate npm run test:rules
+//           → 36/36 pass (с текущим firestore.rules — 34/36).
+// ============================================================
+rules_version = '2';
+
+// ============================================================
+// FIREBASE-ARCH-2 — правила безопасности Firestore
+// Проект: porfo-ddb46 (rasul-portfolio)
+//
+// Важно: замените email ниже на email владельца при необходимости
+// (CEO подтвердит финальное значение). Пока — placeholder из конфига проекта.
+// ============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- Администратор ---
+    function isAdmin() {
+      // Точный email владельца; канонический request.auth; без регистра + алиас googlemail.
+      return request.auth != null
+        && request.auth.token.email is string
+        && (request.auth.token.email.lower() == 'rasulakhmetov2004@gmail.com'
+            || request.auth.token.email.lower() == 'rasulakhmetov2004@googlemail.com');
+    }
+
+    // --- Валидная новая заявка (lead) ---
+    function validNewLead() {
+      return request.resource.data.keys().hasOnly(['name', 'phone', 'hp', 'status', 'createdAt', 'updatedAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 1
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.name.matches('.*[^ ].*')
+        && request.resource.data.phone is string
+        && request.resource.data.phone.matches('^\\+7[0-9]{10}$')
+        && request.resource.data.hp == ''
+        && request.resource.data.status == 'new'
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    // --- Контент сайта (siteContent) ---
+    match /siteContent/{docId} {
+      allow get: if true;
+      allow create, update: if isAdmin();
+    }
+
+    // --- Локали (locales) ---
+    match /locales/{docId} {
+      allow get: if true;
+      allow create, update: if isAdmin();
+    }
+
+    // --- Кейсы (cases) ---
+    match /cases/{caseId} {
+      allow get, list: if true;
+      allow create, update: if isAdmin() && request.resource.data.id == caseId;
+      allow delete: if isAdmin();
+    }
+
+    // --- Заявки (leads) ---
+    match /leads/{leadId} {
+      allow create: if validNewLead();
+      allow read, delete: if isAdmin();
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
+        && request.resource.data.status in ['new', 'in_progress', 'done', 'spam']
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    // Остальные пути неявно запрещены (deny by default).
+  }
+}
