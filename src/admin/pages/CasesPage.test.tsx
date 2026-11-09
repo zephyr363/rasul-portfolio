@@ -48,3 +48,19 @@ it('confirms dirty cancellation once and preserves the draft when declined', asy
   await waitFor(() => expect(screen.queryByText('Редактор кейса')).not.toBeInTheDocument());
   confirm.mockRestore();
 });
+
+it('asks to delete a case in a modal instead of an inline block', async () => {
+  render(<CasesPage />);
+  await screen.findAllByText(raw.cases[0].ru.title);
+  fireEvent.click(screen.getAllByText('Удалить')[0]);
+  const dialog = await screen.findByRole('dialog');
+  expect(dialog).toHaveTextContent('Удалить кейс?');
+  expect(dialog).toHaveTextContent(raw.cases[0].ru.title);
+  expect(screen.queryByRole('group', { name: 'Подтверждение удаления' })).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Подтвердить удаление' }));
+  await waitFor(() => expect(mocks.saveCases).toHaveBeenCalledTimes(1));
+  const [next, removed] = mocks.saveCases.mock.calls[0];
+  expect(next).toHaveLength(raw.cases.length - 1);
+  expect(removed).toHaveLength(1);
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+});

@@ -5,8 +5,9 @@ const state = vi.hoisted(() => ({ photoUrl: undefined as string | undefined }));
 vi.mock("@/lib/i18n", () => ({ useLocale: () => ({ copy: { hero: { title: "Title", sub: "Subtitle", lead: "Lead", ctaPrimary: "Contact", ctaSecondary: "Services", photoAlt: "Portrait", photoUrl: state.photoUrl } } }) }));
 vi.mock("./SectionNext", () => ({ SectionNext: () => null }));
 import { Hero } from "./Hero";
+import { HERO_PHOTO_URL } from "@/lib/hero-photo";
 
-const externalPhotoUrl = "https://lh3.google.com/u/0/d/1CqupFBSMr-e2jjZAso4hNFcgJLsssiDB=w1920-h868-iv1?auditContext=forDisplay";
+const externalPhotoUrl = HERO_PHOTO_URL;
 
 it("uses a saved URL without replacing it on error, and defaults only for blank", () => {
   state.photoUrl = "https://example.com/saved.jpg";

@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useUnsavedChanges } from '@/admin/lib/navigation-protection';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 // @ts-expect-error shared contract
 import { validateCasesDoc } from '../../../content/cases-contract.mjs';
 
@@ -80,11 +81,19 @@ export function CasesPage() {
       <Button disabled={pending} variant="outline" onClick={() => edit(item)}>Изменить</Button>
       <Button disabled={pending} variant="outline" onClick={() => { setDeleting(item); setError(''); }}>Удалить</Button>
     </li>)}</ul>
-    {deleting && <div className="mt-4 rounded-lg border border-border p-4" role="group" aria-label="Подтверждение удаления">
-      <p>Удалить «{deleting.ru.title}»?</p>
-      <Button disabled={pending} onClick={() => void operation(async () => { await persist(cases.filter(c => c.id !== deleting.id), [deleting]); setDeleting(null); })}>Подтвердить удаление</Button>
-      <Button disabled={pending} variant="outline" onClick={() => setDeleting(null)}>Отмена</Button>
-    </div>}
+    <Dialog open={deleting != null} onOpenChange={open => { if (!open && !pending) setDeleting(null); }}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Удалить кейс?</DialogTitle>
+          <DialogDescription>Кейс «{deleting?.ru.title}» будет удалён безвозвратно.</DialogDescription>
+        </DialogHeader>
+        {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
+        <DialogFooter>
+          <Button variant="outline" onClick={() => setDeleting(null)} disabled={pending}>Отмена</Button>
+          <Button variant="destructive" disabled={pending} onClick={() => { const target = deleting; if (!target) return; void operation(async () => { await persist(cases.filter(c => c.id !== target.id), [target]); setDeleting(null); }); }}>{pending ? 'Удаляем…' : 'Подтвердить удаление'}</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
     <Sheet open={!!draft} onOpenChange={open => { if (!open) closeEditor(); }}>
       <SheetContent className="overflow-y-auto sm:max-w-lg"><SheetHeader><SheetTitle>Редактор кейса</SheetTitle><SheetDescription>Заполните заголовок и описание на RU, KZ и EN. Ссылки необязательны, только HTTPS.</SheetDescription></SheetHeader>
         {draft && <fieldset disabled={pending} className="space-y-4 px-4 pb-6 [&_input]:min-h-11 sm:[&_input]:min-h-0">

@@ -132,7 +132,7 @@ export function Contact() {
           </div>
 
           <form
-            className="rounded-[18px] border border-border bg-surface p-7"
+            className="rounded-[18px] border border-border bg-surface p-5 sm:p-7"
             onSubmit={handleSubmit}
             noValidate
           >
