@@ -1,4 +1,4 @@
-import { Component, lazy, Suspense, useMemo, useState, type ComponentType, type ReactNode } from "react";
+import { Component, lazy, Suspense, useState, type ComponentType, type ReactNode } from "react";
 import { createBrowserRouter, Navigate, Outlet, RouterProvider, type RouteObject } from "react-router-dom";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { Button } from "@/components/ui/button";
@@ -18,11 +18,22 @@ class ChunkErrorBoundary extends Component<{ children: ReactNode; retry: () => v
   }
 }
 
-function LazyRoute({ load }: { load: () => Promise<{ default: ComponentType }> }) {
+type RouteLoader = () => Promise<{ default: ComponentType }>;
+// A suspended, not-yet-committed render can lose its hook memo. Keep lazy's
+// promise/status outside that render so concurrent retries use the same type.
+// Weak keys avoid retaining loaders; production has only the six below.
+const lazyPages = new WeakMap<RouteLoader, ReturnType<typeof lazy<ComponentType>>>();
+
+function LazyRoute({ load }: { load: RouteLoader }) {
   const [attempt, setAttempt] = useState(0);
-  // Recreating lazy clears its cached import rejection on retry.
-  const Page = useMemo(() => lazy(load), [load, attempt]);
-  return <ChunkErrorBoundary key={attempt} retry={() => setAttempt((value) => value + 1)}>
+  let Page = lazyPages.get(load);
+  if (!Page) { Page = lazy(load); lazyPages.set(load, Page); }
+  function retry() {
+    // Only an explicit retry clears lazy's cached rejection, never a render.
+    lazyPages.delete(load);
+    setAttempt((value) => value + 1);
+  }
+  return <ChunkErrorBoundary key={attempt} retry={retry}>
     <Suspense fallback={<LoadingScreen label="Загрузка раздела…" />}><Page /></Suspense>
   </ChunkErrorBoundary>;
 }
