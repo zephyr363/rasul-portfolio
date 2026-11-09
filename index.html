@@ -2,7 +2,7 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#0C0C0C" />
     <title>Расул Ахметов — сайты, Telegram-боты и ИИ-агенты для бизнеса</title>
@@ -20,6 +20,8 @@
                 ? "dark"
                 : "light";
           document.documentElement.setAttribute("data-theme", theme);
+          var tm = document.querySelector('meta[name="theme-color"]');
+          if (tm) tm.setAttribute("content", theme === "light" ? "#fafaf9" : "#0c0c0c");
         } catch (e) {
           document.documentElement.setAttribute("data-theme", "dark");
         }

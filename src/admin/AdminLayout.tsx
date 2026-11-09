@@ -71,7 +71,7 @@ function ProtectedAdminLayout({ user }: { user: User }) {
   }
 
   return (
-    <div data-admin-layout className="flex min-h-screen bg-bg text-text">
+    <div data-admin-layout className="flex min-h-dvh bg-bg text-text">
       {/* Sidebar — desktop (≥900px) */}
       <aside className="hidden w-60 shrink-0 flex-col border-r border-border p-4 min-[900px]:flex">
         <div className="text-display mb-6 text-lg font-bold">Админ-панель</div>
@@ -82,7 +82,7 @@ function ProtectedAdminLayout({ user }: { user: User }) {
       </aside>
 
       {/* Контентная колонка */}
-      <div className="flex min-h-screen min-w-0 flex-1 flex-col">
+      <div className="flex min-h-dvh min-w-0 flex-1 flex-col">
         <header className="flex h-14 items-center gap-3 border-b border-border px-4">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>

@@ -165,6 +165,7 @@ html[data-theme="dark"] {
   body {
     @apply bg-bg text-text font-sans antialiased;
     font-variant-numeric: tabular-nums;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* Мягкий переход цветов при смене темы (200ms). */
@@ -274,5 +275,12 @@ html[data-theme="dark"] {
   :where([data-admin-control], [data-admin-layout] button, [data-admin-layout] [role="button"], [data-slot="dialog-content"] button, [data-slot="sheet-content"] button) {
     min-height: 44px;
     min-width: 44px;
+  }
+}
+
+/* Fallback для старых браузеров без поддержки dvh (iOS < 15.4): 100vh. */
+@supports not (height: 100dvh) {
+  .min-h-dvh {
+    min-height: 100vh;
   }
 }

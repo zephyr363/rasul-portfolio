@@ -49,6 +49,8 @@ function writeStoredTheme(theme: Theme): void {
 
 function applyTheme(theme: Theme): void {
   document.documentElement.setAttribute(THEME_ATTR, theme);
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", theme === "light" ? "#fafaf9" : "#0c0c0c");
 }
 
 interface ThemeContextValue {

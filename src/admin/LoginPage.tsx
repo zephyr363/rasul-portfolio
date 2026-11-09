@@ -101,7 +101,7 @@ export function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-bg px-4 text-text">
+    <div className="flex min-h-dvh items-center justify-center bg-bg px-4 text-text">
       <div className="w-full max-w-sm rounded-lg border border-border bg-surface p-6">
         <h1 className="text-display text-xl font-bold">Вход для владельца</h1>
         <p className="mt-2 text-sm text-muted">

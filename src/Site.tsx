@@ -54,7 +54,7 @@ function LoadingScreen() {
       role="status"
       aria-live="polite"
       aria-busy="true"
-      className="flex min-h-screen flex-col items-center justify-center gap-4 bg-bg px-6 text-text"
+      className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-bg px-6 text-text"
     >
       <div className="h-3 w-44 animate-pulse rounded-full bg-surface" />
       <div className="h-3 w-64 animate-pulse rounded-full bg-surface" />
@@ -69,7 +69,7 @@ function ErrorScreen({ message, onRetry }: { message: string; onRetry: () => voi
   return (
     <div
       role="alert"
-      className="flex min-h-screen flex-col items-center justify-center gap-4 bg-bg px-6 text-center text-text"
+      className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-bg px-6 text-center text-text"
     >
       <h1 className="text-display text-2xl font-bold">Не удалось загрузить данные</h1>
       <p className="max-w-[480px] text-muted">
@@ -91,7 +91,7 @@ function ErrorScreen({ message, onRetry }: { message: string; onRetry: () => voi
  */
 function SiteView({ cases }: { cases: CaseItem[] }) {
   return (
-    <div id="top" className="min-h-screen bg-bg text-text">
+    <div id="top" className="min-h-dvh bg-bg text-text">
       <Header />
       <main>
         <Hero />

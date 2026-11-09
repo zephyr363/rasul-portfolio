@@ -23,7 +23,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="no-print sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur-md">
+    <header className="no-print sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur-md [padding-top:env(safe-area-inset-top)]">
       <div className="mx-auto flex h-[66px] w-full max-w-[1200px] items-center gap-3 px-6 sm:px-8">
         <nav className="hidden items-center gap-6 min-[851px]:flex" aria-label="Main">
           {copy.nav.links.map((label, i) => (

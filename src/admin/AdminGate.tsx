@@ -36,7 +36,7 @@ export function AdminGate() {
   if (state.status === "anonymous") return <Navigate to="/admin/login" replace />;
   if (state.status === "allowed" && state.user) return <AdminLayout user={state.user} />;
   if (state.status === "loading") return <LoadingScreen fullPage label="Проверка доступа…" />;
-  return <div className="min-h-screen bg-bg p-8 text-text">
+  return <div className="min-h-dvh bg-bg p-8 text-text">
     <>
       <p role="alert">{state.status === "error" ? "Не удалось проверить доступ. Возможна ошибка подключения или чтения Firestore; отсутствие прав администратора не подтверждено." : "Доступ не предоставлен или отозван."}</p>
       {state.status === "denied" && state.user && <div className="mt-4 space-y-3">
