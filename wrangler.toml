@@ -1,0 +1,13 @@
+# Cloudflare Workers конфиг (альтернатива деплою через dashboard).
+# Деплой: wrangler deploy. Секреты: wrangler secret put BOT_TOKEN / TG_WEBHOOK_SECRET.
+name = "rasul-tg-bot"
+main = "tg-bot/worker.ts"
+compatibility_date = "2026-11-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://zephyr363.github.io,http://localhost:5180"
+
+# KV namespace (создать в dashboard или `wrangler kv namespace create TG_KV`) — вставить id.
+[[kv_namespaces]]
+binding = "TG_KV"
+id = "c8c4c62103774f4c9dbfa55d26d2c136"

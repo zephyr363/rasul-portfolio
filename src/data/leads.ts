@@ -15,6 +15,28 @@ import { db } from "@/lib/firebase";
 
 const LEADS_COLLECTION = "leads";
 
+/** Deno Deploy `/notify` (Vite env). Пусто — уведомления выключены (dev/тесты). */
+const tgNotifyUrl = (): string | undefined => import.meta.env.VITE_TG_NOTIFY_URL as string | undefined;
+
+/**
+ * Вторичное уведомление в Telegram после успешной записи заявки.
+ * Никогда не влияет на результат createLead: ошибка глушится.
+ */
+async function notifyTelegram(payload: { leadId: string; name: string; phone: string }): Promise<void> {
+  const url = tgNotifyUrl();
+  if (!url || typeof fetch !== "function") return;
+  try {
+    await fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ id: crypto.randomUUID(), ...payload }),
+      keepalive: true,
+    });
+  } catch {
+    // Заявка уже в Firestore; уведомление вторично.
+  }
+}
+
 /** Сколько последних заявок грузит стрим CRM (свежие сверху). */
 export const LEADS_PAGE_SIZE = 50;
 
@@ -84,6 +106,7 @@ export async function createLead({ name, phone, hp = "" }: LeadInput): Promise<s
   };
 
   const ref = await addDoc(collection(db, LEADS_COLLECTION), payload);
+  void notifyTelegram({ leadId: ref.id, name: payload.name, phone: payload.phone });
   return ref.id;
 }
 

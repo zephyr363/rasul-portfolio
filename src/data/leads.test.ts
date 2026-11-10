@@ -354,6 +354,39 @@ describe("leads — updateLeadStatus / deleteLead", () => {
   });
 });
 
+describe("leads — Telegram notify", () => {
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+  it("после создания заявки шлёт POST с id uuid и полями заявки", async () => {
+    vi.stubEnv("VITE_TG_NOTIFY_URL", "https://bot.example/notify");
+    const fetchMock = vi.fn((_url: string, _init?: RequestInit) => Promise.resolve({ ok: true }));
+    vi.stubGlobal("fetch", fetchMock);
+    try {
+      await createLead({ name: "Иван", phone: "+7 (701) 234-56-78" });
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+      expect(url).toBe("https://bot.example/notify");
+      const body = JSON.parse(String(init.body));
+      expect(body).toMatchObject({ leadId: "lead-1", name: "Иван", phone: "+77012345678" });
+      expect(body.id).toMatch(UUID_RE);
+    } finally {
+      vi.unstubAllEnvs();
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it("сбой notify не ломает createLead", async () => {
+    vi.stubEnv("VITE_TG_NOTIFY_URL", "https://bot.example/notify");
+    vi.stubGlobal("fetch", vi.fn(() => Promise.reject(new Error("network"))));
+    try {
+      await expect(createLead({ name: "Иван", phone: "+7 (701) 234-56-78" })).resolves.toBe("lead-1");
+    } finally {
+      vi.unstubAllEnvs();
+      vi.unstubAllGlobals();
+    }
+  });
+});
+
 describe("leads — describeLeadsError", () => {
   it("permission-denied → «Нет доступа»", () => {
     expect(describeLeadsError({ code: "permission-denied" })).toMatch(/Нет доступа/);

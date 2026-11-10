@@ -6,3 +6,4 @@ node_modules/
 dist/
 firestore-debug.log
 ui-debug.log
+tg-bot/js/

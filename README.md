@@ -58,6 +58,8 @@ admin.html      UI платформы
 .ai/            память проекта и служебные материалы команды
 ```
 
+Telegram-бот заявок (Cloud Functions + Firestore, секреты, деплой, приёмка): [TG-BOT.md](TG-BOT.md).
+
 Тексты сайта теперь живут в `content/locales.json`, адаптер — `src/lib/locales.ts`. Старые `src/content/locales/*.ts` удалены (миграция на единый JSON-документ).
 
 ## Архив: прежняя локальная платформа CMS+CRM
