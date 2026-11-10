@@ -14,7 +14,8 @@
     "test:rules": "node scripts/rules-test.mjs",
     "validate:content": "node scripts/validate-content.mjs",
     "lint": "tsc --noEmit",
-    "release:check": "node scripts/verify-release.mjs"
+    "release:check": "node scripts/verify-release.mjs",
+    "deploy:bot": "node scripts/tg/deploy-bot.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.3.1",

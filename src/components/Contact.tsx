@@ -20,6 +20,9 @@ function formatPhone(raw: string): string {
   if (!digits) return "";
 
   let d = digits[0] === "8" ? "7" + digits.slice(1) : digits;
+  // Даём полностью стереть номер: если остался только код страны и это результат
+  // удаления (в строке уже есть "+7"), очищаем поле, а не подставляем "+7" снова.
+  if (d === "7" && /\+7/.test(raw)) return "";
   if (d[0] !== "7") d = "7" + d;
   d = d.slice(0, PHONE_DIGITS);
 

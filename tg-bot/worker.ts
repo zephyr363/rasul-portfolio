@@ -28,6 +28,11 @@ interface Env {
   TG_WEBHOOK_SECRET: string;
   ADMIN_CHAT_ID?: string;
   ALLOWED_ORIGIN?: string;
+  /** JSON сервисного аккаунта Firebase (secret) — для смены статуса заявки. */
+  FIREBASE_SA?: string;
+  FIREBASE_PROJECT_ID?: string;
+  /** Пароль для входа в бота (secret). Без него команды недоступны. */
+  BOT_ADMIN_PASSWORD?: string;
   TG_KV: KV;
 }
 
@@ -67,12 +72,19 @@ async function tgCall(env: Env, method: string, payload: Record<string, unknown>
   });
 }
 
-async function sendMessage(env: Env, chatId: string, text: string): Promise<void> {
-  let res = await tgCall(env, "sendMessage", { chat_id: chatId, text, parse_mode: "HTML" });
+async function sendMessage(
+  env: Env,
+  chatId: string,
+  text: string,
+  replyMarkup?: unknown,
+): Promise<void> {
+  const payload: Record<string, unknown> = { chat_id: chatId, text, parse_mode: "HTML" };
+  if (replyMarkup) payload.reply_markup = replyMarkup;
+  let res = await tgCall(env, "sendMessage", payload);
   if (res.status === 429) {
     const retry = Number(res.headers.get("retry-after")) * 1000;
     await new Promise((r) => setTimeout(r, Number.isFinite(retry) && retry > 0 ? retry : 1500));
-    res = await tgCall(env, "sendMessage", { chat_id: chatId, text, parse_mode: "HTML" });
+    res = await tgCall(env, "sendMessage", payload);
   }
   if (!res.ok) throw new Error(`sendMessage ${res.status}: ${await res.text()}`);
 }
@@ -150,13 +162,128 @@ async function isAuthorized(env: Env, chatId: string, userId?: number): Promise<
   }
 }
 
-async function handleCommand(env: Env, text: string, chatId: string): Promise<void> {
+// ---------- Firestore (сервисный аккаунт, для смены статуса) ----------
+
+let tokenCache: { token: string; exp: number } | null = null;
+
+const b64url = (bytes: Uint8Array): string => {
+  let s = "";
+  for (const b of bytes) s += String.fromCharCode(b);
+  return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+};
+const b64urlStr = (s: string): string => b64url(new TextEncoder().encode(s));
+
+function pemToArrayBuffer(pem: string): ArrayBuffer {
+  const b64 = pem.replace(/-----[^-]+-----/g, "").replace(/\s+/g, "");
+  const bin = atob(b64);
+  const buf = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+  return buf.buffer;
+}
+
+async function getAccessToken(env: Env): Promise<string> {
+  if (tokenCache && tokenCache.exp > Math.floor(Date.now() / 1000) + 60) return tokenCache.token;
+  const sa = JSON.parse(env.FIREBASE_SA ?? "") as { client_email?: string; private_key?: string };
+  if (!sa.client_email || !sa.private_key) throw new Error("FIREBASE_SA не задан или неполный");
+  const now = Math.floor(Date.now() / 1000);
+  const header = b64urlStr(JSON.stringify({ alg: "RS256", typ: "JWT" }));
+  const claims = b64urlStr(JSON.stringify({
+    iss: sa.client_email,
+    scope: "https://www.googleapis.com/auth/datastore",
+    aud: "https://oauth2.googleapis.com/token",
+    iat: now,
+    exp: now + 3600,
+  }));
+  const key = await crypto.subtle.importKey(
+    "pkcs8",
+    pemToArrayBuffer(sa.private_key),
+    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+  const sig = await crypto.subtle.sign(
+    "RSASSA-PKCS1-v1_5",
+    key,
+    new TextEncoder().encode(`${header}.${claims}`),
+  );
+  const assertion = `${header}.${claims}.${b64url(new Uint8Array(sig))}`;
+  const res = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "content-type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      assertion,
+    }),
+  });
+  if (!res.ok) throw new Error(`oauth ${res.status}: ${await res.text()}`);
+  const data = await res.json() as { access_token: string; expires_in: number };
+  tokenCache = { token: data.access_token, exp: now + data.expires_in };
+  return data.access_token;
+}
+
+async function updateLeadStatus(env: Env, leadId: string, status: string): Promise<void> {
+  const token = await getAccessToken(env);
+  const project = env.FIREBASE_PROJECT_ID ?? "porfo-ddb46";
+  const mask = new URLSearchParams();
+  mask.append("updateMask.fieldPaths", "status");
+  mask.append("updateMask.fieldPaths", "updatedAt");
+  const url = `https://firestore.googleapis.com/v1/projects/${project}/databases/(default)/documents/leads/${encodeURIComponent(leadId)}?${mask}`;
+  const res = await fetch(url, {
+    method: "PATCH",
+    headers: { authorization: `Bearer ${token}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      fields: {
+        status: { stringValue: status },
+        updatedAt: { timestampValue: new Date().toISOString() },
+      },
+    }),
+  });
+  if (!res.ok) throw new Error(`firestore ${res.status}: ${(await res.text()).slice(0, 200)}`);
+}
+
+const LEAD_STATUSES = ["new", "in_progress", "done", "spam"] as const;
+
+const SESSION_TTL = 60 * 60 * 12; // 12 часов
+const sessionKey = (chatId: string, userId: number) => `auth:${chatId}:${userId}`;
+
+async function isLoggedIn(env: Env, chatId: string, userId: number): Promise<boolean> {
+  return (await env.TG_KV.get(sessionKey(chatId, userId))) === "1";
+}
+
+async function handleCommand(env: Env, text: string, chatId: string, userId: number): Promise<void> {
   const [command, ...args] = text.split(/\s+/);
   const arg = args.join(" ").trim();
-  switch (command) {
-    case "/start":
-      await sendMessage(env, chatId, "🤖 Бот заявок на связи. Заявки с сайта приходят в эту группу.");
+
+  // Вход/выход доступны администратору группы без сессии.
+  if (command === "/login") {
+    if (!env.BOT_ADMIN_PASSWORD) {
+      await sendMessage(env, chatId, "⚠️ Пароль бота не настроен: задайте секрет BOT_ADMIN_PASSWORD.");
       return;
+    }
+    if (arg !== env.BOT_ADMIN_PASSWORD) {
+      await sendMessage(env, chatId, "❌ Неверный пароль.");
+      return;
+    }
+    await env.TG_KV.put(sessionKey(chatId, userId), "1", { expirationTtl: SESSION_TTL });
+    await sendMessage(env, chatId, "✅ Вход выполнен. Команды доступны 12 часов.");
+    return;
+  }
+  if (command === "/logout") {
+    await env.TG_KV.delete(sessionKey(chatId, userId));
+    await sendMessage(env, chatId, "👋 Вы вышли.");
+    return;
+  }
+  if (command === "/start") {
+    await sendMessage(env, chatId, "🤖 Бот заявок на связи. Заявки с сайта приходят в эту группу.\nВход для администраторов: /login <пароль>.");
+    return;
+  }
+
+  if (!(await isLoggedIn(env, chatId, userId))) {
+    await sendMessage(env, chatId, "🔒 Нужен вход: /login <пароль>");
+    return;
+  }
+
+  switch (command) {
     case "/maintenance": {
       if (arg !== "on" && arg !== "off") {
         await sendMessage(env, chatId, "Использование: /maintenance on|off");
@@ -177,6 +304,31 @@ async function handleCommand(env: Env, text: string, chatId: string): Promise<vo
       await broadcast(env, escapeHtml(arg));
       return;
     }
+    case "/changeLeadStatus": {
+      const [rawId, status] = arg.split(/\s+/);
+      if (!rawId || !LEAD_STATUSES.includes(status as (typeof LEAD_STATUSES)[number])) {
+        await sendMessage(env, chatId, "Использование: /changeLeadStatus <id> <new|in_progress|done|spam>");
+        return;
+      }
+      if (!env.FIREBASE_SA) {
+        await sendMessage(env, chatId, "⚠️ Firestore не настроен: добавьте секрет FIREBASE_SA (ключ сервисного аккаунта).");
+        return;
+      }
+      let leadId = await env.TG_KV.get(`lead:${rawId}`);
+      if (!leadId && /^[A-Za-z0-9]{15,}$/.test(rawId)) leadId = rawId;
+      if (!leadId) {
+        await sendMessage(env, chatId, `❌ Заявка «${escapeHtml(rawId)}» не найдена.`);
+        return;
+      }
+      try {
+        await updateLeadStatus(env, leadId, status);
+        await sendMessage(env, chatId, `✅ Статус заявки <code>${escapeHtml(rawId)}</code> → <b>${status}</b>`);
+      } catch (err) {
+        console.error("changeLeadStatus failed:", err);
+        await sendMessage(env, chatId, `⚠️ Не удалось обновить статус: ${escapeHtml(String(err).slice(0, 200))}`);
+      }
+      return;
+    }
     default:
       console.info(`unknown command ignored: ${command}`);
   }
@@ -195,7 +347,7 @@ async function handleNotify(env: Env, req: Request): Promise<Response> {
   if (count > 20) return new Response("too many requests", { status: 429, headers });
   await env.TG_KV.put(rlKey, String(count), { expirationTtl: 60 });
 
-  let body: { id?: string; name?: string; phone?: string };
+  let body: { id?: string; leadId?: string; name?: string; phone?: string };
   try {
     body = await req.json();
   } catch {
@@ -209,6 +361,17 @@ async function handleNotify(env: Env, req: Request): Promise<Response> {
   }
 
   const id = body.id && UUID_RE.test(body.id) ? body.id : crypto.randomUUID();
+  // Запоминаем соответствие uuid → id документа Firestore (для /changeLeadStatus).
+  if (body.leadId) {
+    await env.TG_KV.put(`lead:${id}`, String(body.leadId), { expirationTtl: 60 * 60 * 24 * 180 });
+  }
+
+  const waDigits = phone.replace(/\D/g, "");
+  const waText = encodeURIComponent("Здравствуйте! Пишу по вашей заявке с сайта.");
+  const replyMarkup = waDigits
+    ? { inline_keyboard: [[{ text: "💬 Написать в WhatsApp", url: `https://wa.me/${waDigits}?text=${waText}` }]] }
+    : undefined;
+
   const text = [
     "🔔 <b>Новая заявка с сайта</b>",
     "",
@@ -224,7 +387,9 @@ async function handleNotify(env: Env, req: Request): Promise<Response> {
     return new Response("no chat configured", { status: 503, headers });
   }
 
-  const results = await Promise.allSettled(targets.map((chatId) => sendMessage(env, chatId, text)));
+  const results = await Promise.allSettled(
+    targets.map((chatId) => sendMessage(env, chatId, text, replyMarkup)),
+  );
   if (results.every((r) => r.status === "rejected")) {
     return new Response("telegram error", { status: 502, headers });
   }
@@ -256,7 +421,7 @@ async function handleWebhook(env: Env, req: Request): Promise<Response> {
             env,
             String(update.my_chat_member.chat.id),
             "✅ Бот подключён. Заявки с сайта будут приходить в этот чат.\n" +
-              "Команды для администраторов группы: /maintenance on|off, /broadcast <текст>.",
+              "Администраторам группы: /login <пароль>, затем /maintenance on|off, /broadcast <текст>.",
           );
         }
       }
@@ -269,15 +434,36 @@ async function handleWebhook(env: Env, req: Request): Promise<Response> {
     if (msg.chat.type !== "private") await upsertChat(env, msg.chat);
 
     const chatId = String(msg.chat.id);
+    const userId = msg.from?.id;
     const text = (msg.text ?? "").trim();
-    if (text.startsWith("/") && await isAuthorized(env, chatId, msg.from?.id)) {
-      await handleCommand(env, text, chatId);
+    if (userId && text.startsWith("/") && await isAuthorized(env, chatId, userId)) {
+      await handleCommand(env, text, chatId, userId);
     }
     return new Response("ok");
   } catch (err) {
     console.error("webhook error:", err);
     return new Response("ok");
   }
+}
+
+async function handleAdminAnnounce(env: Env, req: Request): Promise<Response> {
+  if (req.headers.get("x-admin-secret") !== env.TG_WEBHOOK_SECRET) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  let body: { maintenance?: boolean };
+  try {
+    body = await req.json();
+  } catch {
+    return new Response("bad json", { status: 400 });
+  }
+  const on = body.maintenance === true;
+  await env.TG_KV.put("config:maintenance", String(on));
+  await broadcast(env, on
+    ? "🔧 Бот обновляется: технические работы. Заявки временно могут не приходить."
+    : "✅ Обновление завершено — бот снова принимает заявки.");
+  return new Response(JSON.stringify({ ok: true, maintenance: on }), {
+    headers: { "content-type": "application/json" },
+  });
 }
 
 export default {
@@ -295,6 +481,9 @@ export default {
     }
     if (req.method === "POST" && url.pathname === "/telegram") {
       return handleWebhook(env, req);
+    }
+    if (req.method === "POST" && url.pathname === "/admin/announce") {
+      return handleAdminAnnounce(env, req);
     }
     return new Response("not found", { status: 404 });
   },

@@ -89,6 +89,16 @@ describe("Contact: форма", () => {
     expect(phone).toHaveValue("+7");
   });
 
+  it("позволяет полностью очистить номер (а не оставляет +7)", () => {
+    renderContact();
+
+    const phone = screen.getByLabelText("Номер телефона");
+    fireEvent.change(phone, { target: { value: "89999999999" } });
+    expect(phone).toHaveValue("+7 (999) 999-99-99");
+    fireEvent.change(phone, { target: { value: "+7" } });
+    expect(phone).toHaveValue("");
+  });
+
   it("не отправляет заявку при неполном номере и показывает ошибку", async () => {
     renderContact();
 
