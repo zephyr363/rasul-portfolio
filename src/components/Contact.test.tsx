@@ -45,6 +45,14 @@ function contactSection() {
   return section;
 }
 
+/** Ввод как у браузера: значение и каретка уже изменены, затем приходит input-событие. */
+function typeInPhone(input: HTMLInputElement, value: string, caret: number) {
+  const setNativeValue = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")!.set!;
+  setNativeValue.call(input, value);
+  input.setSelectionRange(caret, caret);
+  fireEvent.input(input);
+}
+
 beforeEach(() => {
   window.localStorage.clear();
   document.documentElement.lang = "";
@@ -97,6 +105,35 @@ describe("Contact: форма", () => {
     expect(phone).toHaveValue("+7 (999) 999-99-99");
     fireEvent.change(phone, { target: { value: "+7" } });
     expect(phone).toHaveValue("");
+  });
+
+  it("не прыгает в конец: удаление первых цифр после маски сохраняет курсор у начала", () => {
+    renderContact();
+
+    const phone = screen.getByLabelText("Номер телефона") as HTMLInputElement;
+
+    typeInPhone(phone, "+7 (701) 234-56-78", 18);
+    expect(phone).toHaveValue("+7 (701) 234-56-78");
+    expect(phone.selectionStart).toBe(18);
+
+    // Backspace по выделенным первым трём цифрам: браузер отдаёт уже урезанное значение.
+    typeInPhone(phone, "+7 () 234-56-78", 4);
+    expect(phone).toHaveValue("+7 (234) 567-8");
+    expect(phone.selectionStart).toBe(2);
+  });
+
+  it("не съедает первую введённую цифру: курсор остаётся после неё", () => {
+    renderContact();
+
+    const phone = screen.getByLabelText("Номер телефона") as HTMLInputElement;
+
+    typeInPhone(phone, "9", 1);
+    expect(phone).toHaveValue("+7 (9");
+    expect(phone.selectionStart).toBe(5);
+
+    typeInPhone(phone, "+7 (90", 6);
+    expect(phone).toHaveValue("+7 (90");
+    expect(phone.selectionStart).toBe(6);
   });
 
   it("не отправляет заявку при неполном номере и показывает ошибку", async () => {

@@ -36,6 +36,26 @@ function formatPhone(raw: string): string {
   return out;
 }
 
+/** Позиция в маске после N-й цифры (0 — начало строки). */
+function caretAfterDigits(mask: string, digitCount: number): number {
+  if (digitCount <= 0) return 0;
+  let seen = 0;
+  for (let i = 0; i < mask.length; i += 1) {
+    if (/\d/.test(mask[i]) && (seen += 1) === digitCount) return i + 1;
+  }
+  return mask.length;
+}
+
+/** Маска + позиция каретки: без восстановления курсор прыгает в конец. */
+function maskPhone(raw: string, caret: number): { value: string; caret: number } {
+  const digitsBefore = raw.slice(0, caret).replace(/\D/g, "").length;
+  const digits = raw.replace(/\D/g, "");
+  // formatPhone дописывает код страны, если первая цифра не 7 и не 8.
+  const prefixAdded = digits.length > 0 && digits[0] !== "7" && digits[0] !== "8";
+  const value = formatPhone(raw);
+  return { value, caret: caretAfterDigits(value, digitsBefore + (prefixAdded ? 1 : 0)) };
+}
+
 const PLATFORM_LINK =
   "group flex items-center gap-3.5 rounded-[12px] border border-border bg-surface px-4 py-3.5 text-[15px] font-semibold text-text transition-colors hover:border-accent hover:text-accent";
 const PLATFORM_ICON =
@@ -178,7 +198,11 @@ export function Contact() {
               autoComplete="tel"
               value={phone}
               onChange={(e) => {
-                setPhone(formatPhone(e.target.value));
+                const input = e.target;
+                const next = maskPhone(input.value, input.selectionStart ?? input.value.length);
+                input.value = next.value;
+                input.setSelectionRange(next.caret, next.caret);
+                setPhone(next.value);
                 resetOutcome();
               }}
               placeholder={form.phonePlaceholder}
