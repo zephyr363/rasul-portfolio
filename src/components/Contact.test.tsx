@@ -89,12 +89,27 @@ describe("Contact: форма", () => {
     expect(phone).toHaveValue("+7 (999) 999-99-99");
   });
 
-  it("приводит первую цифру к 7 (ввод с 8 → +7)", () => {
+  it("не съедает первую 7: ввод 708 даёт +7 (708", () => {
     renderContact();
 
-    const phone = screen.getByLabelText("Номер телефона");
-    fireEvent.change(phone, { target: { value: "8" } });
-    expect(phone).toHaveValue("+7");
+    const phone = screen.getByLabelText("Номер телефона") as HTMLInputElement;
+
+    typeInPhone(phone, "7", 1);
+    expect(phone).toHaveValue("+7 (7");
+    typeInPhone(phone, "+7 (70", 6);
+    expect(phone).toHaveValue("+7 (70");
+    typeInPhone(phone, "+7 (708", 7);
+    expect(phone).toHaveValue("+7 (708)");
+  });
+
+  it("убирает код страны из полного номера, вставленного с 8 или 7", () => {
+    renderContact();
+
+    const phone = screen.getByLabelText("Номер телефона") as HTMLInputElement;
+    fireEvent.change(phone, { target: { value: "8 (708) 123-45-67" } });
+    expect(phone).toHaveValue("+7 (708) 123-45-67");
+    fireEvent.change(phone, { target: { value: "77081234567" } });
+    expect(phone).toHaveValue("+7 (708) 123-45-67");
   });
 
   it("позволяет полностью очистить номер (а не оставляет +7)", () => {

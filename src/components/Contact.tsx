@@ -10,29 +10,32 @@ import { Container } from "./Container";
 import { SectionHeading } from "./SectionHeading";
 import { ArrowIcon, EmailIcon, TelegramIcon, WhatsAppIcon } from "./icons";
 
-const PHONE_DIGITS = 11;
+/** Длина национального номера без кода страны. */
+const PHONE_DIGITS = 10;
 
 type SubmitStatus = "idle" | "sending" | "success" | "error";
 
-/** Форматирует ввод в маску `+7 (999) 999-99-99`; первая цифра всегда 7. */
-function formatPhone(raw: string): string {
-  const digits = raw.replace(/\D/g, "");
-  if (!digits) return "";
+/**
+ * Цифры национального номера. Код страны из ввода отбрасывается:
+ * из готовой маски («+7 …») и из вставленного полного номера (7…/8…, 11 цифр).
+ */
+function nationalDigits(raw: string): string {
+  let digits = raw.replace(/\D/g, "");
+  if (/^\s*\+7/.test(raw)) digits = digits.slice(1);
+  else if (digits.length > PHONE_DIGITS && (digits[0] === "7" || digits[0] === "8")) {
+    digits = digits.slice(1);
+  }
+  return digits.slice(0, PHONE_DIGITS);
+}
 
-  let d = digits[0] === "8" ? "7" + digits.slice(1) : digits;
-  // Даём полностью стереть номер: если остался только код страны и это результат
-  // удаления (в строке уже есть "+7"), очищаем поле, а не подставляем "+7" снова.
-  if (d === "7" && /\+7/.test(raw)) return "";
-  if (d[0] !== "7") d = "7" + d;
-  d = d.slice(0, PHONE_DIGITS);
-
-  let out = "+7";
-  const tail = d.slice(1);
-  if (tail.length > 0) out += " (" + tail.slice(0, 3);
-  if (tail.length >= 3) out += ")";
-  if (tail.length >= 4) out += " " + tail.slice(3, 6);
-  if (tail.length >= 7) out += "-" + tail.slice(6, 8);
-  if (tail.length >= 9) out += "-" + tail.slice(8, 10);
+/** Маска `+7 (999) 999-99-99` из национальных цифр; `+7` подставляется сама. */
+function formatPhone(national: string): string {
+  if (!national) return "";
+  let out = "+7 (" + national.slice(0, 3);
+  if (national.length >= 3) out += ")";
+  if (national.length >= 4) out += " " + national.slice(3, 6);
+  if (national.length >= 7) out += "-" + national.slice(6, 8);
+  if (national.length >= 9) out += "-" + national.slice(8, 10);
   return out;
 }
 
@@ -48,12 +51,13 @@ function caretAfterDigits(mask: string, digitCount: number): number {
 
 /** Маска + позиция каретки: без восстановления курсор прыгает в конец. */
 function maskPhone(raw: string, caret: number): { value: string; caret: number } {
-  const digitsBefore = raw.slice(0, caret).replace(/\D/g, "").length;
-  const digits = raw.replace(/\D/g, "");
-  // formatPhone дописывает код страны, если первая цифра не 7 и не 8.
-  const prefixAdded = digits.length > 0 && digits[0] !== "7" && digits[0] !== "8";
-  const value = formatPhone(raw);
-  return { value, caret: caretAfterDigits(value, digitsBefore + (prefixAdded ? 1 : 0)) };
+  const hasPrefix = /^\s*\+7/.test(raw);
+  const national = nationalDigits(raw);
+  const value = formatPhone(national);
+  const before = raw.slice(0, caret).replace(/\D/g, "");
+  const count = Math.min((hasPrefix ? before.slice(1) : before).length, national.length);
+  // +1 — цифра кода страны, она уже есть в маске.
+  return { value, caret: caretAfterDigits(value, count + 1) };
 }
 
 const PLATFORM_LINK =
@@ -86,7 +90,7 @@ export function Contact() {
 
     const next: { name?: string; phone?: string } = {};
     if (!name.trim()) next.name = form.nameError;
-    if (phone.replace(/\D/g, "").length !== PHONE_DIGITS) next.phone = form.phoneError;
+    if (phone.replace(/\D/g, "").length !== PHONE_DIGITS + 1) next.phone = form.phoneError;
     setErrors(next);
     if (next.name || next.phone) return;
 

@@ -394,6 +394,31 @@ describe("leads — Telegram notify", () => {
       vi.unstubAllGlobals();
     }
   });
+
+  it("после удаления заявки просит бота удалить сообщение с ID-токеном", async () => {
+    vi.stubEnv("VITE_TG_NOTIFY_URL", "https://bot.example/notify");
+    const fetchMock = vi.fn((_url: string, _init?: RequestInit) => Promise.resolve({ ok: true }));
+    vi.stubGlobal("fetch", fetchMock);
+    const getIdToken = vi.fn(() => Promise.resolve("id-token"));
+    const { auth } = await import("@/lib/firebase");
+    (auth as { currentUser?: unknown }).currentUser = { getIdToken };
+    try {
+      await deleteLead("lead-42");
+      await vi.waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
+      expect(fetchMock).toHaveBeenCalledWith(
+        "https://bot.example/delete-lead",
+        expect.objectContaining({
+          method: "POST",
+          headers: { "content-type": "application/json", authorization: "Bearer id-token" },
+          body: JSON.stringify({ leadId: "lead-42" }),
+        }),
+      );
+    } finally {
+      delete (auth as { currentUser?: unknown }).currentUser;
+      vi.unstubAllEnvs();
+      vi.unstubAllGlobals();
+    }
+  });
 });
 
 describe("leads — describeLeadsError", () => {

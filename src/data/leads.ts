@@ -11,7 +11,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-import { db } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
 
 const LEADS_COLLECTION = "leads";
 
@@ -41,6 +41,33 @@ async function notifyTelegram(payload: { leadId: string; name: string; phone: st
     });
   } catch {
     // Заявка уже в Firestore; уведомление вторично.
+  }
+}
+
+/** URL `/delete-lead` того же Worker: сообщение заявки удаляется вместе с заявкой. */
+const tgDeleteLeadUrl = (): string | undefined =>
+  tgNotifyUrl()?.replace(/\/notify$/, "/delete-lead");
+
+/**
+ * Просит бота удалить сообщение(я) удалённой заявки. Ошибка глушится:
+ * заявка уже удалена из Firestore, сообщение в боте — вторично.
+ */
+async function deleteTelegramLeadMessage(leadId: string): Promise<void> {
+  const url = tgDeleteLeadUrl();
+  const user = auth.currentUser;
+  if (!url || !user || typeof fetch !== "function") return;
+  try {
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${await user.getIdToken()}`,
+      },
+      body: JSON.stringify({ leadId }),
+      keepalive: true,
+    });
+  } catch {
+    // Сообщение в Telegram могло быть уже удалено или устарело (>48 ч).
   }
 }
 
@@ -196,9 +223,10 @@ export async function updateLeadStatus(id: string, status: LeadStatus): Promise<
   });
 }
 
-/** Удаляет заявку по id (правила: `allow delete if isAdmin()`). */
+/** Удаляет заявку по id (правила: `allow delete if isAdmin()`); затем — сообщение в боте. */
 export async function deleteLead(id: string): Promise<void> {
   await deleteDoc(doc(db, LEADS_COLLECTION, id));
+  void deleteTelegramLeadMessage(id);
 }
 
 /**

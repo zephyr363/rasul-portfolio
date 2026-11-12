@@ -59,7 +59,7 @@ function cors(env: Env, origin: string | null): Record<string, string> {
   return {
     "Access-Control-Allow-Origin": origin && list.includes(origin) ? origin : list[0] ?? "",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "content-type",
+    "Access-Control-Allow-Headers": "content-type, authorization",
     "Vary": "Origin",
   };
 }
@@ -77,7 +77,7 @@ async function sendMessage(
   chatId: string,
   text: string,
   replyMarkup?: unknown,
-): Promise<void> {
+): Promise<number | undefined> {
   const payload: Record<string, unknown> = { chat_id: chatId, text, parse_mode: "HTML" };
   if (replyMarkup) payload.reply_markup = replyMarkup;
   let res = await tgCall(env, "sendMessage", payload);
@@ -87,6 +87,8 @@ async function sendMessage(
     res = await tgCall(env, "sendMessage", payload);
   }
   if (!res.ok) throw new Error(`sendMessage ${res.status}: ${await res.text()}`);
+  const data = await res.json() as { result?: { message_id?: number } };
+  return data.result?.message_id;
 }
 
 interface Chat { id: number; type: string; title?: string; first_name?: string; last_name?: string }
@@ -388,12 +390,109 @@ async function handleNotify(env: Env, req: Request): Promise<Response> {
   }
 
   const results = await Promise.allSettled(
-    targets.map((chatId) => sendMessage(env, chatId, text, replyMarkup)),
+    targets.map(async (chatId) => ({ chatId, messageId: await sendMessage(env, chatId, text, replyMarkup) })),
   );
   if (results.every((r) => r.status === "rejected")) {
     return new Response("telegram error", { status: 502, headers });
   }
+  // Запоминаем сообщения заявки, чтобы удалить их вместе с заявкой в CRM.
+  const sent: Array<{ chatId: string; messageId: number }> = [];
+  for (const r of results) {
+    if (r.status === "fulfilled" && r.value.messageId != null) {
+      sent.push({ chatId: r.value.chatId, messageId: r.value.messageId });
+    }
+  }
+  if (body.leadId && sent.length) {
+    await env.TG_KV.put(`leadmsg:${body.leadId}`, JSON.stringify(sent), {
+      expirationTtl: 60 * 60 * 24 * 180,
+    });
+  }
   return new Response(JSON.stringify({ ok: true, id }), {
+    status: 200,
+    headers: { ...headers, "content-type": "application/json" },
+  });
+}
+
+/** Firebase web API key — публичный конфиг проекта (не секрет). */
+const FIREBASE_API_KEY = "AIzaSyCmX0CUAZZ6HCRRNfqXPGMjZRBp3NQvVAI";
+
+/** Проверяет Firebase ID токен и grant adminAccess/{uid} (role=admin, enabled=true). */
+async function isAdminToken(env: Env, idToken: string): Promise<boolean> {
+  try {
+    const lookup = await fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${FIREBASE_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ idToken }),
+      },
+    );
+    if (!lookup.ok) return false;
+    const uid = (await lookup.json() as { users?: Array<{ localId?: string }> }).users?.[0]?.localId;
+    if (!uid || !env.FIREBASE_SA) return false;
+
+    const token = await getAccessToken(env);
+    const project = env.FIREBASE_PROJECT_ID ?? "porfo-ddb46";
+    const res = await fetch(
+      `https://firestore.googleapis.com/v1/projects/${project}/databases/(default)/documents/adminAccess/${uid}`,
+      { headers: { authorization: `Bearer ${token}` } },
+    );
+    if (!res.ok) return false;
+    const data = await res.json() as {
+      fields?: { role?: { stringValue?: string }; enabled?: { booleanValue?: boolean } };
+    };
+    return data.fields?.role?.stringValue === "admin" && data.fields?.enabled?.booleanValue === true;
+  } catch (err) {
+    console.error("admin token check failed:", err);
+    return false;
+  }
+}
+
+/** Удаляет сообщения заявки в чатах бота (вызывается админкой после удаления заявки). */
+async function handleDeleteLeadMessages(env: Env, req: Request): Promise<Response> {
+  const origin = req.headers.get("origin");
+  const headers = cors(env, origin);
+  if (!allowedOrigins(env).includes(origin ?? "")) {
+    return new Response("forbidden origin", { status: 403, headers });
+  }
+
+  const authz = req.headers.get("authorization") ?? "";
+  const idToken = authz.startsWith("Bearer ") ? authz.slice(7) : "";
+  if (!idToken) return new Response("unauthorized", { status: 401, headers });
+
+  let body: { leadId?: string };
+  try {
+    body = await req.json();
+  } catch {
+    return new Response("bad json", { status: 400, headers });
+  }
+  const leadId = String(body.leadId ?? "");
+  if (!/^[A-Za-z0-9]{15,}$/.test(leadId)) {
+    return new Response("invalid payload", { status: 400, headers });
+  }
+  if (!(await isAdminToken(env, idToken))) {
+    return new Response("forbidden", { status: 403, headers });
+  }
+
+  const raw = await env.TG_KV.get(`leadmsg:${leadId}`);
+  if (raw) {
+    let messages: Array<{ chatId: string; messageId: number }> = [];
+    try {
+      messages = JSON.parse(raw) as Array<{ chatId: string; messageId: number }>;
+    } catch {
+      // битое значение — просто забываем связку
+    }
+    await Promise.allSettled(
+      messages.map(async ({ chatId, messageId }) => {
+        const res = await tgCall(env, "deleteMessage", { chat_id: chatId, message_id: messageId });
+        if (!res.ok) {
+          console.warn(`deleteMessage ${chatId}/${messageId} failed: ${res.status} ${await res.text()}`);
+        }
+      }),
+    );
+    await env.TG_KV.delete(`leadmsg:${leadId}`);
+  }
+  return new Response(JSON.stringify({ ok: true }), {
     status: 200,
     headers: { ...headers, "content-type": "application/json" },
   });
@@ -478,6 +577,9 @@ export default {
     }
     if (req.method === "POST" && url.pathname === "/notify") {
       return handleNotify(env, req);
+    }
+    if (req.method === "POST" && url.pathname === "/delete-lead") {
+      return handleDeleteLeadMessages(env, req);
     }
     if (req.method === "POST" && url.pathname === "/telegram") {
       return handleWebhook(env, req);
