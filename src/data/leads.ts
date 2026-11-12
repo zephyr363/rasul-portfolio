@@ -143,8 +143,9 @@ function toDate(value: unknown): Date | undefined {
   if (value instanceof Date) return value;
   // Firestore `Timestamp` (плюс любые совместимые) — по duck-типу `toDate()`.
   if (typeof value === "object" && "toDate" in value) {
-    const fn = (value as { toDate?: unknown }).toDate;
-    if (typeof fn === "function") return (fn as () => Date)();
+    const ts = value as { toDate?: () => Date };
+    // Вызов именно методом: Timestamp.toDate() читает this.toMillis().
+    if (typeof ts.toDate === "function") return ts.toDate();
   }
   return undefined;
 }

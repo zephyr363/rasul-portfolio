@@ -297,7 +297,16 @@ describe("leads — getLeadsStream", () => {
   });
 
   it("принимает Timestamp-подобное значение (duck-typing toDate) и null", () => {
-    const ts = { toDate: () => new Date("2026-11-02T12:00:00Z") };
+    // Как у SDK: toDate() вызывает this.toMillis() — вызов без привязки падает.
+    const expected = new Date("2026-11-02T12:00:00Z");
+    const ts = {
+      toMillis() {
+        return expected.getTime();
+      },
+      toDate() {
+        return new Date(this.toMillis());
+      },
+    };
     mocks.onSnapshot.mockImplementation((_q: unknown, onNext: (s: unknown) => void) => {
       onNext({
         docs: [
