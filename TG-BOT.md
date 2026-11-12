@@ -23,6 +23,7 @@
 ```
 Форма → Firestore (все заявки, CRM — источник истины)
       └→ POST <worker>/notify → Telegram (группы + кнопка WhatsApp)
+Удаление заявки в админке → POST <worker>/delete-lead → удаление сообщения(й) в Telegram
 Telegram → POST <worker>/telegram (вход, команды, авто-регистрация групп)
 Смена статуса: бот → Firestore REST (сервисный аккаунт)
 Деплой: announce(on) → wrangler deploy → announce(off)
@@ -45,7 +46,7 @@ Telegram → POST <worker>/telegram (вход, команды, авто-реги
 | `ALLOWED_ORIGIN` | Var | `https://zephyr363.github.io,http://localhost:5180` |
 | `TG_KV` | KV binding | Состояние |
 
-Фронтенд (build-time): `VITE_TG_NOTIFY_URL=https://<worker>.workers.dev/notify`.
+Фронтенд (build-time): `VITE_TG_NOTIFY_URL=https://<worker>.workers.dev/notify`. В production по умолчанию используется публичный Worker, поэтому обычная пересборка уведомления не отключает; в dev/тестах уведомления выключены.
 
 ## Сообщение о заявке
 
