@@ -15,8 +15,15 @@ import { db } from "@/lib/firebase";
 
 const LEADS_COLLECTION = "leads";
 
-/** Deno Deploy `/notify` (Vite env). Пусто — уведомления выключены (dev/тесты). */
-const tgNotifyUrl = (): string | undefined => import.meta.env.VITE_TG_NOTIFY_URL as string | undefined;
+/** Публичный /notify Worker. Продовый дефолт: пересборка без env не должна отключать уведомления. */
+const DEFAULT_TG_NOTIFY_URL = "https://rasul-tg-bot.rasulakhmetov2004.workers.dev/notify";
+
+/** URL `/notify` (Vite env). В dev/тестах пусто — уведомления выключены. */
+const tgNotifyUrl = (): string | undefined => {
+  const override = import.meta.env.VITE_TG_NOTIFY_URL as string | undefined;
+  if (override) return override;
+  return import.meta.env.PROD ? DEFAULT_TG_NOTIFY_URL : undefined;
+};
 
 /**
  * Вторичное уведомление в Telegram после успешной записи заявки.
