@@ -403,6 +403,7 @@ async function handleNotify(env: Env, req: Request): Promise<Response> {
     }
   }
   if (body.leadId && sent.length) {
+    // Telegram удаляет сообщения только моложе 48 ч; более старые останутся (ошибка логируется).
     await env.TG_KV.put(`leadmsg:${body.leadId}`, JSON.stringify(sent), {
       expirationTtl: 60 * 60 * 24 * 180,
     });
